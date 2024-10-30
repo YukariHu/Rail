@@ -14,9 +14,6 @@
     <Filter Include="KamataEngine\Adapter">
       <UniqueIdentifier>{c6468eb4-788b-4a83-b207-a5f4804e56c5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="test">
-      <UniqueIdentifier>{c44be4d2-b04b-4604-be4b-87d2caccd5f8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Manger">
       <UniqueIdentifier>{ff123401-347d-47cf-9cac-321b8bc36e5e}</UniqueIdentifier>
     </Filter>
