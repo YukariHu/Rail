@@ -6,7 +6,6 @@ public:
 	Scene() = default;
 	~Scene() = default;
 
-	virtual void onEnter(){}//シーンが切り替わったときに呼ばれる
 	virtual void onEnter(){}//シーンに入るときに呼び出される
 	virtual void onInput(char* keys,char* prekeys) {
 		(void)keys;
