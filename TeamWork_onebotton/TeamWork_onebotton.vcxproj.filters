@@ -20,6 +20,9 @@
     <Filter Include="Scene">
       <UniqueIdentifier>{ec52cd91-5b16-462e-8c7a-c992754aaba1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\Title">
+      <UniqueIdentifier>{23418caa-69a1-46ac-98e3-bde1f21ebe17}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp">
@@ -44,9 +47,6 @@
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\StringUtility.cpp">
       <Filter>KamataEngine\Source</Filter>
     </ClCompile>
-    <ClCompile Include="titleScene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="stageSelectScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
@@ -58,6 +58,15 @@
     </ClCompile>
     <ClCompile Include="ResouresManager.cpp">
       <Filter>Manger</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleParticle.cpp">
+      <Filter>Scene\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="titleScene.cpp">
+      <Filter>Scene\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleParticleManager.cpp">
+      <Filter>Scene\Title</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,9 +149,6 @@
     <ClInclude Include="stageSelectScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="titleScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
     <ClInclude Include="scene.h">
       <Filter>Scene</Filter>
     </ClInclude>
@@ -151,6 +157,15 @@
     </ClInclude>
     <ClInclude Include="stageScene.h">
       <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleParticle.h">
+      <Filter>Scene\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="titleScene.h">
+      <Filter>Scene\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleParticleManager.h">
+      <Filter>Scene\Title</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

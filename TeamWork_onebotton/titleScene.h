@@ -1,5 +1,7 @@
 #pragma once
 #include <Scene.h>
+#include "TitleParticleManager.h"
+
 class TitleScene : public Scene
 {
 public:
@@ -13,4 +15,6 @@ public:
 		void draw() override;
 		
 private:
+	TitleParticleManager* titleParticle;
+
 };
