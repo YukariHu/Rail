@@ -6,7 +6,7 @@ public:
 		TitleScene() = default;
 		~TitleScene() = default;
 
-
+		//void onEnter() override;
 		void onInput(char* keys,char* prekeys) override;
 		void update() override;
 
