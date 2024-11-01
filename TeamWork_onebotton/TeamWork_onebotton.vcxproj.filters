@@ -168,7 +168,6 @@
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="MyVector2.h" />
-    <ClInclude Include="Camera.h" />
     <ClInclude Include="StateNode.h">
       <Filter>State_Machine</Filter>
     </ClInclude>

@@ -16,7 +16,7 @@ StageScene::StageScene(int _id)
 
 void StageScene::onEnter()
 {
-	boss = new BossA();
+	//boss = new BossA();
 }
 
 void StageScene::onInput(char* keys, char* prekeys)
@@ -29,13 +29,13 @@ void StageScene::onInput(char* keys, char* prekeys)
 
 void StageScene::update()
 {
-	boss->onUpdate();
+	//boss->onUpdate();
 }
 
 void StageScene::draw()
 {
 	Novice::DrawBox(0, 0, windowWidth, windowHeight, 0.0f, backGroundColor, kFillModeSolid);
-	Novice::ScreenPrintf(0, 0, "%d", id);
+	Novice::ScreenPrintf(0, 0, "stage:%d", id);
 
-	boss->onDraw();
+	//boss->onDraw();
 }
