@@ -14,11 +14,17 @@
     <Filter Include="KamataEngine\Adapter">
       <UniqueIdentifier>{c6468eb4-788b-4a83-b207-a5f4804e56c5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Manger">
-      <UniqueIdentifier>{ff123401-347d-47cf-9cac-321b8bc36e5e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scene">
       <UniqueIdentifier>{ec52cd91-5b16-462e-8c7a-c992754aaba1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Charactor">
+      <UniqueIdentifier>{2ac19c22-6264-4708-ba85-bd10279da4b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{ff123401-347d-47cf-9cac-321b8bc36e5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="State_Machine">
+      <UniqueIdentifier>{3fb92b11-ca2e-4e68-86a7-00380e1c2f84}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -54,10 +60,19 @@
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
-      <Filter>Manger</Filter>
+      <Filter>Manager</Filter>
     </ClCompile>
     <ClCompile Include="ResouresManager.cpp">
-      <Filter>Manger</Filter>
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachine.cpp">
+      <Filter>State_Machine</Filter>
+    </ClCompile>
+    <ClCompile Include="Charactor.cpp">
+      <Filter>Charactor</Filter>
+    </ClCompile>
+    <ClCompile Include="BossA.cpp">
+      <Filter>Charactor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -135,7 +150,7 @@
     <ClInclude Include="read_csv.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="SceneManager.h">
-      <Filter>Manger</Filter>
+      <Filter>Manager</Filter>
     </ClInclude>
     <ClInclude Include="stageSelectScene.h">
       <Filter>Scene</Filter>
@@ -147,10 +162,24 @@
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="ResouresManager.h">
-      <Filter>Manger</Filter>
+      <Filter>Manager</Filter>
     </ClInclude>
     <ClInclude Include="stageScene.h">
       <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="MyVector2.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="StateNode.h">
+      <Filter>State_Machine</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine.h">
+      <Filter>State_Machine</Filter>
+    </ClInclude>
+    <ClInclude Include="Charactor.h">
+      <Filter>Charactor</Filter>
+    </ClInclude>
+    <ClInclude Include="BossA.h">
+      <Filter>Charactor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

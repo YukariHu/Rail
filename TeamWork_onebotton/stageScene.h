@@ -1,5 +1,6 @@
 #pragma once
 #include <Scene.h>
+#include "BossA.h"
 class StageScene : public Scene
 {
 	public:
@@ -15,8 +16,7 @@ class StageScene : public Scene
 
 	private:
 		int id;
+		int backGroundColor = 0x363636FF;
 
-
-		//画像
-		int img_backgroung = 0;
+		Charactor* boss = nullptr;
 };

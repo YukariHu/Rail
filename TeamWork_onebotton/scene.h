@@ -16,4 +16,6 @@ public:
 	virtual void onExit(){}//シーンが切り替わるときに呼ばれる
 
 
+private:
+
 };

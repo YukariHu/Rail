@@ -109,6 +109,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BossA.cpp" />
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\StringUtility.cpp" />
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp" />
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\WinApp.cpp" />
@@ -116,14 +117,17 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\TextureManager.cpp" />
     <ClCompile Include="C:\KamataEngine\DirectXGame\2d\ImGuiManager.cpp" />
     <ClCompile Include="C:\KamataEngine\Adapter\Novice.cpp" />
+    <ClCompile Include="Charactor.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ResouresManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="stageScene.cpp" />
     <ClCompile Include="stageSelectScene.cpp" />
+    <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="titleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BossA.h" />
     <ClInclude Include="C:\KamataEngine\DirectXGame\base\StringUtility.h" />
     <ClInclude Include="C:\KamataEngine\DirectXGame\math\Matrix4x4.h" />
     <ClInclude Include="C:\KamataEngine\DirectXGame\math\Vector2.h" />
@@ -151,12 +155,17 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="C:\KamataEngine\DirectXGame\input\Input.h" />
     <ClInclude Include="C:\KamataEngine\DirectXGame\scene\GameScene.h" />
     <ClInclude Include="C:\KamataEngine\Adapter\Novice.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Charactor.h" />
+    <ClInclude Include="MyVector2.h" />
     <ClInclude Include="read_csv.h" />
     <ClInclude Include="ResouresManager.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="stageScene.h" />
     <ClInclude Include="stageSelectScene.h" />
+    <ClInclude Include="StateMachine.h" />
+    <ClInclude Include="StateNode.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="titleScene.h" />
   </ItemGroup>

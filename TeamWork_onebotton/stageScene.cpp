@@ -2,18 +2,21 @@
 #include "sceneManager.h"
 #include "resouresManager.h"
 #include <Novice.h>
-extern int gameBackgroundHandler[];
+
+
+
 extern SceneManager sceneManager;
-//extern ResouresManager resouresManager;
+extern int windowHeight;
+extern int windowWidth;
+
 StageScene::StageScene(int _id)
 {
 	id = _id;
-	
 }
 
 void StageScene::onEnter()
 {
-	img_backgroung = gameBackgroundHandler[id];
+	boss = new BossA();
 }
 
 void StageScene::onInput(char* keys, char* prekeys)
@@ -26,10 +29,13 @@ void StageScene::onInput(char* keys, char* prekeys)
 
 void StageScene::update()
 {
+	boss->onUpdate();
 }
 
 void StageScene::draw()
 {
-	Novice::DrawSprite(0, 0, img_backgroung, 1.0f, 1.0f, 0.0f, WHITE);
-	//Novice::ScreenPrintf(0, 0, "%d", id);
+	Novice::DrawBox(0, 0, windowWidth, windowHeight, 0.0f, backGroundColor, kFillModeSolid);
+	Novice::ScreenPrintf(0, 0, "%d", id);
+
+	boss->onDraw();
 }

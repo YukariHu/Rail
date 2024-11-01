@@ -13,6 +13,4 @@ class StageSelectScene : public Scene
 	void draw() override;
 	//void onExit() override;
 
-	private:
-
 };
