@@ -4,7 +4,13 @@
 #include <cmath>
 
 TitlePlayer::TitlePlayer()
-    : pos_({ 0, 600 }), startPos_({ -20, 600 }), targetPos_({ 640, 600 }), easingFactor_(0.02f), elapsedTime_(0.0f), totalTime_(200.0f)
+    :
+    pos_({ 0, 600 }),
+    startPos_({ -20, 600 }),
+    targetPos_({ 640, 600 }),
+    easingFactor_(0.02f), 
+    elapsedTime_(0.0f), 
+    totalTime_(200.0f)
 {
 }
 
@@ -20,7 +26,7 @@ void TitlePlayer::Update()
 {
     elapsedTime_ += easingFactor_;
     if (elapsedTime_ > 1.0f) {
-        elapsedTime_ = 1.0f;  
+        elapsedTime_ = 1.0f;
     }
 
     float ease = -(cosf((float)M_PI * elapsedTime_) - 1.0f) / 2.0f;
@@ -29,9 +35,15 @@ void TitlePlayer::Update()
     if (elapsedTime_ >= 1.0f) {
         pos_.x = targetPos_.x;
     }
+    
+    if (isTransition_) {
+
+        targetPos_ = { 1300,600 };
+    }
+
 }
 
 void TitlePlayer::Draw()
 {
-    Novice::DrawEllipse((int)pos_.x, (int)pos_.y, 15,15,0.0f, WHITE, kFillModeSolid);
+    Novice::DrawEllipse((int)pos_.x, (int)pos_.y, 20, 20, 0.0f, 0xB6BBC4FF, kFillModeSolid);
 }

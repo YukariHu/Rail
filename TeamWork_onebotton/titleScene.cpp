@@ -17,8 +17,10 @@ void TitleScene::onEnter()
 
 void TitleScene::onInput(char* keys, char* prekeys)
 {
-    if (keys[DIK_SPACE] && !prekeys[DIK_SPACE]) {
+    if (keys[DIK_SPACE] && !prekeys[DIK_SPACE] /*||*/
+       /* Novice::IsTriggerMouse(0)*/) {
         hF_ = true;
+        player_.SetTran(hF_);
     }
 
     if (h_ >= 600) {
@@ -47,7 +49,7 @@ void TitleScene::update()
 
     if (hF_) {
 
-        h_ += 10;
+        h_ += 1;
         if (h_ >= 600) {
             h_ = 600;
         }
@@ -57,7 +59,7 @@ void TitleScene::update()
 
 void TitleScene::draw()
 {
-    Novice::DrawBox(0, 0, 1280, 720, 0.0f, 0x333333FF, kFillModeSolid);
+    Novice::DrawBox(0, 0, 1280, 720, 0.0f, 0x161A30FF, kFillModeSolid);
    
     Novice::DrawBox(0, 600, 1280, h_, 0.0f, WHITE, kFillModeSolid);
     

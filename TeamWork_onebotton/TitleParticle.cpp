@@ -30,7 +30,7 @@ void TitleParticle::Update() {
 
 void TitleParticle::Draw() {
     if (alive_) {
-        Novice::DrawEllipse((int)pos_.x, (int)pos_.y, (int)rad_, (int)rad_, 0.0f, 0xFFFFFF55, kFillModeSolid);
+        Novice::DrawEllipse((int)pos_.x, (int)pos_.y, (int)rad_, (int)rad_, 0.0f, 0x6962ADAA, kFillModeSolid);
     }
 }
 

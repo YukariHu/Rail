@@ -13,6 +13,8 @@ public:
 
     Vector2 GetPos() const { return pos_; }
 
+    bool SetTran(bool trans) { this->isTransition_ = trans; return isTransition_; }
+
 private:
     Vector2 pos_;         
     Vector2 startPos_;    
@@ -20,4 +22,5 @@ private:
     float easingFactor_;  
     float elapsedTime_;    
     float totalTime_;     
+    bool isTransition_;
 };
