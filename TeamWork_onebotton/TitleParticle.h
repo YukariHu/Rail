@@ -1,31 +1,21 @@
 #pragma once
 #include <Vector2.h>
-#include <list>
-#include "TitleParticleManager.h"
 
-class TitleParticle
-{
+class TitleParticle {
+public:
+    TitleParticle();
+    ~TitleParticle();
+
+    void Init(const Vector2& direction);
+    void Update();
+    void Draw();
+    bool IsAlive() const;
+
 private:
-	
-	TitleParticleManager *tileParticleManager_;
-
-public:
-	TitleParticle();
-	~TitleParticle();
-
-	void Init();
-	void Update();
-	void Draw();
-
-	void Finalize();
-
-	Vector2 GetPos() { return pos_; }
-
-public:
-	Vector2 pos_;
-	float rad_;
-	float theta_;
-	float velocity_;
-	int time_;
+    Vector2 pos_;       
+    Vector2 direction_;  
+    float rad_;         
+    float velocity_;    
+    float oscillation_;  
+    bool alive_;       
 };
-

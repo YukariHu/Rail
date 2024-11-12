@@ -1,76 +1,47 @@
 #include "TitleParticleManager.h"
 
-TitleParticleManager::TitleParticleManager():mpParticle_()
-{
+TitleParticleManager::TitleParticleManager() : mpParticle_() {}
+
+TitleParticleManager::~TitleParticleManager() {
+    Finalize();
 }
 
-TitleParticleManager::~TitleParticleManager()
-{
+void TitleParticleManager::Init() {
 }
 
-void TitleParticleManager::Init()
-{
+void TitleParticleManager::Update() {
+    for (auto itr = mpParticle_.begin(); itr != mpParticle_.end();) {
+        if ((*itr) != nullptr) {
+            (*itr)->Update();
+            if (!(*itr)->IsAlive()) { 
+                delete (*itr);
+                itr = mpParticle_.erase(itr);
+            } else {
+                ++itr;
+            }
+        } else {
+            ++itr;
+        }
+    }
 }
 
-void TitleParticleManager::Update()
-{
-	for (std::list<TitleParticle*>::iterator itr = mpParticle_.begin(); itr != mpParticle_.end(); itr++) {
-		if ((*itr) != nullptr)
-		{
-			(*itr)->Update();
-		}
-	}
+void TitleParticleManager::Draw() {
+    for (auto& particle : mpParticle_) {
+        if (particle != nullptr) {
+            particle->Draw();
+        }
+    }
 }
 
-void TitleParticleManager::Draw()
-{
-	for (std::list<TitleParticle*>::iterator itr = mpParticle_.begin(); itr != mpParticle_.end(); itr++) {
-		if ((*itr) != nullptr)
-		{
-			(*itr)->Draw();
-		}
-	}
+void TitleParticleManager::Create(const Vector2& direction) {
+    TitleParticle* newParticle = new TitleParticle();
+    newParticle->Init(direction);
+    mpParticle_.push_back(newParticle);
 }
 
-void TitleParticleManager::Finalize()
-{
-	for (std::list<TitleParticle*>::iterator itr = mpParticle_.begin(); itr != mpParticle_.end(); itr++) {
-		if ((*itr) != nullptr)
-		{
-			continue;
-		}
-
-		(*itr)->Finalize();
-		delete (*itr);
-	}
-
-	mpParticle_.clear();
-}
-
-void TitleParticleManager::Create()
-{
-	mpParticle_.push_back(new TitleParticle());
-	std::list<TitleParticle*>::iterator itr = mpParticle_.end();
-	itr--;
-	(*itr)->Init();
-}
-
-void TitleParticleManager::DeleteParticle()
-{
-	for (std::list<TitleParticle*>::iterator itr = mpParticle_.begin(); itr != mpParticle_.end(); itr++) {
-		if ((*itr) != nullptr)
-		{
-			itr++;
-			continue;
-		}
-
-		if ((*itr)->GetPos().y <= 0.0f) {
-			(*itr)->Finalize();
-			delete (*itr);
-			(*itr) = nullptr;
-			itr = mpParticle_.erase(itr);
-			continue;
-		}
-		itr++;
-	}
+void TitleParticleManager::Finalize() {
+    for (auto& particle : mpParticle_) {
+        delete particle;
+    }
+    mpParticle_.clear();
 }

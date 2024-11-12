@@ -68,6 +68,18 @@
     <ClCompile Include="TitleParticleManager.cpp">
       <Filter>Scene\Title</Filter>
     </ClCompile>
+    <ClCompile Include="TitlePlayer.cpp">
+      <Filter>Scene\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleLine.cpp">
+      <Filter>Scene\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitlePlayerParticle.cpp">
+      <Filter>Scene\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitlePlayerParticleManager.cpp">
+      <Filter>Scene\Title</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -165,6 +177,18 @@
       <Filter>Scene\Title</Filter>
     </ClInclude>
     <ClInclude Include="TitleParticleManager.h">
+      <Filter>Scene\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitlePlayer.h">
+      <Filter>Scene\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleLine.h">
+      <Filter>Scene\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitlePlayerParticle.h">
+      <Filter>Scene\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitlePlayerParticleManager.h">
       <Filter>Scene\Title</Filter>
     </ClInclude>
   </ItemGroup>

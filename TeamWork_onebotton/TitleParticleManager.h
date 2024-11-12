@@ -3,26 +3,18 @@
 #include <list>
 #include "TitleParticle.h"
 
-class TitleParticle;
-
-class TitleParticleManager
-{
+class TitleParticleManager {
 public:
-	TitleParticleManager();
-	~TitleParticleManager();
+    TitleParticleManager();
+    ~TitleParticleManager();
 
-	void Init();
-	void Update();
-	void Draw();
-
-	void Finalize();
-	void Create();
-
-private:
-	void DeleteParticle();
+    void Init();
+    void Update();
+    void Draw();
+    void Finalize();
+    void Create(const Vector2& direction);  
 
 private:
-	std::list<TitleParticle*>mpParticle_;
-
+    void DeleteParticle();
+    std::list<TitleParticle*> mpParticle_;
 };
-
