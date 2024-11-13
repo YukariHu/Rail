@@ -34,10 +34,11 @@ public:
 	void onExit() override;
 private:
 
-	int moveCount;
-	int currentMoveCount;
+	int moveIndex;
+	int currentMoveIndex;
 
 	Vector2 targetPos[4];
+	Vector2 startPos;
 
 };
 

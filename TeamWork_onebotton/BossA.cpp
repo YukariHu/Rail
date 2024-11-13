@@ -13,6 +13,7 @@ BossA::BossA()
 
 	stateMachine.RegisterState("idle",new IdleState());
 	stateMachine.RegisterState("circlefire", new CircleFireState());
+	stateMachine.RegisterState("moveA",new MoveAState());
 
 	stateMachine.SetEntry("idle");
 }
@@ -42,12 +43,10 @@ for (int i = 0; i < 360; i += 360/ bulletNum)
 	}
 }
 
-void BossA::MoveTo(Vector2 targetPos,float time)
-{
-	//使用缓动函数移动到目标位置
-	(void)time;
-	(void)targetPos;
-	
-
-}
+//void BossA::MoveTo(Vector2 targetPos,float time)
+//{
+//	//使用缓动函数移动到目标位置
+//	
+//	 
+//}
 

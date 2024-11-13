@@ -1,6 +1,7 @@
 #include "BossAStateNode.h"
 #include "BossA.h"
 #include "Bullet.h"
+#include "Easing.h"
 extern Charactor* boss;
 extern Charactor* player;
 extern std::vector<Bullet*> bulletList;
@@ -69,7 +70,7 @@ void CircleFireState::onUpdate()
 
 	if (currentFireCount >= fireCount)
 	{
-		boss->SwitchState("idle");
+		boss->SwitchState("moveA");
 	}
 
 }
@@ -79,11 +80,12 @@ void CircleFireState::onExit()
 	bulletNum = 8;
 }
 
+
 MoveAState::MoveAState()
 {
-	currentMoveCount = 0;
-	moveCount = 4;
-
+	currentMoveIndex = 0;
+	moveIndex = 3;
+	
 	targetPos[0] = Vector2(100, 100);
 	targetPos[1] = Vector2(500, 100);
 	targetPos[2] = Vector2(500, 500);
@@ -91,10 +93,16 @@ MoveAState::MoveAState()
 }
 void MoveAState::onEnter()
 {
+	startPos = boss->Getposition();
 }
 void MoveAState::onUpdate()
 {
-	
+	boss->Setposition(lerp(startPos,targetPos[moveIndex],1.0f));
+	if (boss->Getposition().x == targetPos[moveIndex].x && boss->Getposition().y == targetPos[moveIndex].y)
+	{
+		currentMoveIndex++;
+		boss->SwitchState("circlefire");
+	}
 }
 void MoveAState::onExit()
 {
