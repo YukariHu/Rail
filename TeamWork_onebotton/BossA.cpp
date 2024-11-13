@@ -14,7 +14,6 @@ BossA::BossA()
 	stateMachine.RegisterState("idle",new IdleState());
 	stateMachine.RegisterState("circlefire", new CircleFireState());
 	stateMachine.RegisterState("moveA",new MoveAState());
-
 	stateMachine.SetEntry("idle");
 }
 

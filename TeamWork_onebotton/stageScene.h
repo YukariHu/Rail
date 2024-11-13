@@ -26,6 +26,7 @@ class StageScene : public Scene
 
 		int id;
 		int backGroundColor = 0x363636FF;
+		
 
 
 };

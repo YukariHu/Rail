@@ -23,6 +23,7 @@ private:
 
 };
 
+
 class MoveAState : public StateNode
 {
 public:
@@ -39,6 +40,10 @@ private:
 
 	Vector2 targetPos[4];
 	Vector2 startPos;
+
+	float totalTime;
+	float passTime;
+	bool isMove;
 
 };
 

@@ -41,7 +41,6 @@ void IdleState::onUpdate()
 
 }
 
-
 CircleFireState::CircleFireState()
 {
 	fireCount = 3;
@@ -60,7 +59,7 @@ CircleFireState::CircleFireState()
 }
 void CircleFireState::onEnter()
 {
-	bulletNum = 1;
+	bulletNum = 3;
 	timer.set_wait_time(0.5f);
 	timer.restart();
 }
@@ -77,7 +76,7 @@ void CircleFireState::onUpdate()
 void CircleFireState::onExit()
 {
 	currentFireCount = 0;
-	bulletNum = 8;
+	bulletNum = 3;
 }
 
 
@@ -90,15 +89,29 @@ MoveAState::MoveAState()
 	targetPos[1] = Vector2(500, 100);
 	targetPos[2] = Vector2(500, 500);
 	targetPos[3] = Vector2(100, 500);
+
+	totalTime = 1.0f;
+
 }
 void MoveAState::onEnter()
 {
 	startPos = boss->Getposition();
+	passTime = 0.0f;
+	isMove = true;
 }
 void MoveAState::onUpdate()
 {
-	boss->Setposition(lerp(startPos,targetPos[moveIndex],1.0f));
-	if (boss->Getposition().x == targetPos[moveIndex].x && boss->Getposition().y == targetPos[moveIndex].y)
+	passTime += deltaTime;
+	float t = passTime / totalTime;
+	if (t >= 1.0f)
+	{
+		t = 1.0f;
+		isMove = false;
+	}
+	float easeT = EaseInOut(t);
+	boss->Setposition(startPos + (targetPos[moveIndex] - startPos) * easeT);
+
+	if (isMove == false)
 	{
 		currentMoveIndex++;
 		boss->SwitchState("circlefire");
