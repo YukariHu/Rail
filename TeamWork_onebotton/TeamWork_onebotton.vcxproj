@@ -121,6 +121,12 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="stageScene.cpp" />
     <ClCompile Include="stageSelectScene.cpp" />
+    <ClCompile Include="TitleLine.cpp" />
+    <ClCompile Include="TitleParticle.cpp" />
+    <ClCompile Include="TitleParticleManager.cpp" />
+    <ClCompile Include="TitlePlayer.cpp" />
+    <ClCompile Include="TitlePlayerParticle.cpp" />
+    <ClCompile Include="TitlePlayerParticleManager.cpp" />
     <ClCompile Include="titleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +164,12 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="stageScene.h" />
     <ClInclude Include="stageSelectScene.h" />
     <ClInclude Include="timer.h" />
+    <ClInclude Include="TitleLine.h" />
+    <ClInclude Include="TitleParticle.h" />
+    <ClInclude Include="TitleParticleManager.h" />
+    <ClInclude Include="TitlePlayer.h" />
+    <ClInclude Include="TitlePlayerParticle.h" />
+    <ClInclude Include="TitlePlayerParticleManager.h" />
     <ClInclude Include="titleScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
