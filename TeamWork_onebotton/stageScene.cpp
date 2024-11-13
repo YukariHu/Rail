@@ -72,6 +72,7 @@ void StageScene::onExit()
 	{
 		delete bullet;
 	}
+	bulletList.clear();
 }
 
 void StageScene::BulletListUpdate()

@@ -1,6 +1,7 @@
 #include "TitlePlayer.h"
 #include <Novice.h>
 #define _USE_MATH_DEFINES
+#define M_PI       3.14159265358979323846   // pi
 #include <cmath>
 
 float lerp(float start, float end, float t)
