@@ -25,6 +25,7 @@ void TitlePlayer::Init()
 {
     pos_ = startPos_;
     elapsedTime_ = 0.0f;
+    isTransition_ = false;
 }
 
 void TitlePlayer::Update()
