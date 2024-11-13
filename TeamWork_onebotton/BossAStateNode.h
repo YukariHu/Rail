@@ -1,6 +1,7 @@
 #pragma once
 #include "timer.h"
 #include "StateNode.h"
+#include "MyVector2.h"
 
 
 class IdleState : public StateNode
@@ -15,20 +16,28 @@ public:
 private:
 	Timer timer;
 
+	Vector2 topPos;
+	Vector2 bottomPos;
+	float speed;
+	float dir;
+
 };
 
-class MoveState : public StateNode
+class MoveAState : public StateNode
 {
 public:
-	MoveState();
-	~MoveState() = default;
+	MoveAState();
+	~MoveAState() = default;
 
 	void onEnter() override;
 	void onUpdate() override;
 	void onExit() override;
 private:
 
-	const float speed = 2.0f;
+	int moveCount;
+	int currentMoveCount;
+
+	Vector2 targetPos[4];
 
 };
 
@@ -58,7 +67,11 @@ public:
 private:
 
 	Timer timer;
-	int fireCount = 5;
-	int currentFireCount = 0;
+	//CircleFireの回数
+	int fireCount;
+	int currentFireCount;
+
+	//毎回circleFireの弾の数
+	int bulletNum;
 };
 

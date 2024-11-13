@@ -19,6 +19,9 @@ class StageScene : public Scene
 		void draw() override;
 		void onExit() override;
 
+		void BulletListUpdate();
+		void BulletListDraw();
+
 	private:
 
 		int id;

@@ -47,6 +47,8 @@ void StageScene::update()
 {
 	boss->onUpdate();
 	player->onUpdate();
+	BulletListUpdate();
+	//TODO:check collision
 }
 
 void StageScene::draw()
@@ -55,7 +57,8 @@ void StageScene::draw()
 	Novice::ScreenPrintf(0, 0, "stage:%d", id);
 
 	boss->onDraw();
-	player->onDraw();  
+	player->onDraw();
+	BulletListDraw();
 }
 
 void StageScene::onExit()
@@ -64,5 +67,39 @@ void StageScene::onExit()
 	boss = nullptr;
 	delete player;
 	player = nullptr;
+
+	for (auto bullet : bulletList)
+	{
+		delete bullet;
+	}
+}
+
+void StageScene::BulletListUpdate()
+{
+	for (auto bullet : bulletList)
+	{
+		bullet->onUpdate();
+	}
+
+	for (int i = 0;i < bulletList.size();i++)
+	{
+		Bullet* bullet = bulletList[i];
+		if (bulletList[i]->isCanRemove)
+		{
+			std::swap(bulletList[i], bulletList.back());
+			bulletList.pop_back();
+			delete bullet;
+		}
+	}
+
+
+}
+
+void StageScene::BulletListDraw()
+{
+	for (auto bullet : bulletList)
+	{
+		bullet->onDraw();
+	}
 }
 
