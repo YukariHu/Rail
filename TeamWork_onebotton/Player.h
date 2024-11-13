@@ -1,19 +1,15 @@
 #pragma once
 #include "Charactor.h"
 
-class BossA : public Charactor
+class Player : public Charactor
 {
 public:
-	BossA();
-	~BossA() = default;
+	Player();
+	~Player() = default;
+
 
 	void onUpdate() override;
 	void onDraw() override;
-
-	
-
 private:
-	
 
-	
 };

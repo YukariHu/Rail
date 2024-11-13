@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -110,6 +110,8 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BossA.cpp" />
+    <ClCompile Include="BossAStateNode.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\StringUtility.cpp" />
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp" />
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\WinApp.cpp" />
@@ -119,6 +121,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="C:\KamataEngine\Adapter\Novice.cpp" />
     <ClCompile Include="Charactor.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="ResouresManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="stageScene.cpp" />
@@ -128,6 +131,8 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BossA.h" />
+    <ClInclude Include="BossAStateNode.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="C:\KamataEngine\DirectXGame\base\StringUtility.h" />
     <ClInclude Include="C:\KamataEngine\DirectXGame\math\Matrix4x4.h" />
     <ClInclude Include="C:\KamataEngine\DirectXGame\math\Vector2.h" />
@@ -157,6 +162,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="C:\KamataEngine\Adapter\Novice.h" />
     <ClInclude Include="Charactor.h" />
     <ClInclude Include="MyVector2.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="read_csv.h" />
     <ClInclude Include="ResouresManager.h" />
     <ClInclude Include="scene.h" />

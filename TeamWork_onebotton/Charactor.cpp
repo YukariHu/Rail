@@ -44,3 +44,13 @@ const Vector2& Charactor::GetSize()
 {
     return size;
 }
+
+void Charactor::SetTarget(Charactor* _target)
+{
+	this->target = _target;
+}
+
+void Charactor::SwitchState(const std::string& id)
+{
+    stateMachine.SwitchTo(id);
+}

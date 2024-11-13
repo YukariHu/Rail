@@ -26,6 +26,9 @@
     <Filter Include="State_Machine">
       <UniqueIdentifier>{3fb92b11-ca2e-4e68-86a7-00380e1c2f84}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Bullet">
+      <UniqueIdentifier>{ed4a29be-b5fb-45fb-a642-af46a7e4ae09}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp">
@@ -73,6 +76,15 @@
     </ClCompile>
     <ClCompile Include="BossA.cpp">
       <Filter>Charactor</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Charactor</Filter>
+    </ClCompile>
+    <ClCompile Include="BossAStateNode.cpp">
+      <Filter>State_Machine</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +191,15 @@
     </ClInclude>
     <ClInclude Include="BossA.h">
       <Filter>Charactor</Filter>
+    </ClInclude>
+    <ClInclude Include="BossAStateNode.h">
+      <Filter>State_Machine</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Charactor</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

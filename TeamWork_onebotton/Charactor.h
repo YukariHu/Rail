@@ -1,6 +1,7 @@
 #pragma once
 #include "MyVector2.h"
 #include <Novice.h>
+#include "StateMachine.h"
 class Charactor
 {
 public:
@@ -21,6 +22,12 @@ public:
 	const Vector2& Getposition();
 	void SetSize(const Vector2& _size);
 	const Vector2& GetSize();
+
+	void SetTarget(Charactor* _target);
+
+
+	void SwitchState(const std::string& id);
+
 protected:
 	Vector2 size;
 	Vector2 pos;
@@ -31,4 +38,8 @@ protected:
 	bool isDead = false;
 
 	bool isEnableCollisionBox = true;//当たり判定を有効にするか
+
+	Charactor* target = nullptr;
+
+	StateMachine stateMachine;
 };
