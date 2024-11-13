@@ -4,6 +4,12 @@
 
 extern SceneManager sceneManager;
 
+float tLerp(float start, float end, float t)
+{
+    return start + t * (end - start);
+}
+
+
 void TitleScene::onEnter()
 {
     titleLine_.Init();
@@ -23,7 +29,7 @@ void TitleScene::onInput(char* keys, char* prekeys)
         player_.SetTran(hF_);
     }
 
-    if (h_ >= 600) {
+    if (h_ >= 1400) {
         sceneManager.switchScene(SceneManager::SceneType::StageSelect);
     }
 }
@@ -47,25 +53,29 @@ void TitleScene::update()
 
     player_.Update();
 
-    if (hF_) {
+    /*if (hF_) {
 
         h_ += 1;
         if (h_ >= 600) {
             h_ = 600;
         }
-    }
+    }*/
 
+    if (player_.GetPos().x >= 1280.0f) {
+        h_ = (int)tLerp((float)h_, 1500.0f, 0.05f);
+    }
 }
 
 void TitleScene::draw()
 {
+
     Novice::DrawBox(0, 0, 1280, 720, 0.0f, 0x161A30FF, kFillModeSolid);
-   
-    Novice::DrawBox(0, 600, 1280, h_, 0.0f, WHITE, kFillModeSolid);
-    
-    Novice::DrawBox(0, 600, 1280, -h_, 0.0f, WHITE, kFillModeSolid);
+
+    Novice::ScreenPrintf(0, 0, "%d", h_);
 
     titleParticle_.Draw();
+
+    Novice::DrawEllipse(1280, 720 / 2, h_, h_, 0.0f, WHITE, kFillModeSolid);
 
     titleLine_.Draw();
 

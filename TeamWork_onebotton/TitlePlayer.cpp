@@ -3,6 +3,11 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
 
+float lerp(float start, float end, float t)
+{
+    return start + t * (end - start);
+}
+
 TitlePlayer::TitlePlayer()
     :
     pos_({ 0, 600 }),
@@ -24,21 +29,21 @@ void TitlePlayer::Init()
 
 void TitlePlayer::Update()
 {
-    elapsedTime_ += easingFactor_;
-    if (elapsedTime_ > 1.0f) {
-        elapsedTime_ = 1.0f;
-    }
-
-    float ease = -(cosf((float)M_PI * elapsedTime_) - 1.0f) / 2.0f;
-    pos_.x = startPos_.x + (targetPos_.x - startPos_.x) * ease;
-
-    if (elapsedTime_ >= 1.0f) {
-        pos_.x = targetPos_.x;
-    }
     
     if (isTransition_) {
+        pos_.x = lerp(pos_.x, 1400.0f, 0.06f);
+    } else {
+        elapsedTime_ += easingFactor_;
+        if (elapsedTime_ > 1.0f) {
+            elapsedTime_ = 1.0f;
+        }
 
-        targetPos_ = { 1300,600 };
+        float ease = -(cosf((float)M_PI * elapsedTime_) - 1.0f) / 2.0f;
+        pos_.x = startPos_.x + (targetPos_.x - startPos_.x) * ease;
+
+        if (elapsedTime_ >= 1.0f) {
+            pos_.x = targetPos_.x;
+        }
     }
 
 }
