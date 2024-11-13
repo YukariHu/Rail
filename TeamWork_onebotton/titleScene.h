@@ -4,6 +4,7 @@
 #include "TitlePlayer.h"
 #include "TitlePlayerParticleManager.h"
 #include "TitleParticleManager.h"
+#include "titleName.h"
 
 class TitleScene : public Scene
 {
@@ -20,6 +21,8 @@ private:
     TitleLine titleLine_;                        
     TitlePlayer player_;                             
     TitleParticleManager titleParticle_;
+    titleName titleName_;
+
     int titleSceneParticleTime_;
     int titleScenePlayerParticleTime_;
     int lineLength_;
