@@ -1,11 +1,11 @@
 #pragma once
 #include <Scene.h>
 
-class StageSelectScene : public Scene
+class ClearScene : public Scene
 {
 	public:
-	StageSelectScene() = default;
-	~StageSelectScene() = default;
+	ClearScene() = default;
+	~ClearScene() = default;
 
 	void onEnter() override;
 	void onInput(char* keys,char* prekeys) override;

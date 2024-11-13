@@ -1,16 +1,16 @@
 #pragma once
-#include "StageSelectScene.h"
+#include "ClearScene.h"
 #include <SceneManager.h>
 #include <Novice.h>
 
 extern int stageSelectBackground;
 extern SceneManager sceneManager;
 
-void StageSelectScene::onEnter()
+void ClearScene::onEnter()
 {
 }
 
-void StageSelectScene::onInput(char* keys, char* prekeys)
+void ClearScene::onInput(char* keys, char* prekeys)
 {
 	if (keys[DIK_BACK] && !prekeys[DIK_BACK])
 	{
@@ -37,12 +37,17 @@ void StageSelectScene::onInput(char* keys, char* prekeys)
 	}
 }
 
-void StageSelectScene::update()
+void ClearScene::update()
 {
 }
 
-void StageSelectScene::draw()
+void ClearScene::draw()
 {
-	Novice::DrawSprite(0,0, stageSelectBackground,1.0f,1.0f,0.0f,WHITE);
+	Novice::DrawBox(0, 0, 1280, 720, 0.0f, 0xCAC9A1FF, kFillModeSolid);
+
+	Novice::DrawLine(0, 720 / 2, 1280, 720 / 2, 0x4A505FFF);
+
+	Novice::DrawEllipse(1280 / 2, 720 / 2, 20, 20, 0.0f, 0x4A505FFF, kFillModeSolid);
+
 	Novice::ScreenPrintf(0,0,"select:-> <- stageId %d", sceneManager.selectedStage);
 }
