@@ -1,7 +1,7 @@
 #include "titleName.h"
 
 titleName::titleName():
-	width_(15)
+	width_(30)
 {
 }
 
@@ -21,7 +21,9 @@ void titleName::Draw()
 {
 	for (int i = 0; i < map.size();i++) {
 		for (int j = 0; j < map[i].size();j++) {
-				Novice::DrawBox(j * width_, i * width_, width_, width_, 0.0f, WHITE, kFillModeSolid);
+			if (map[i][j] == 1) {
+				Novice::DrawBox(250 + (j * width_), 100 + (i * width_), width_, width_, 0.0f, WHITE, kFillModeSolid);
+			}
 		}
 	}
 }
