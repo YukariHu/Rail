@@ -103,8 +103,28 @@ private:
 	float totalTime;
 	float passTime;
 	bool isMove;
+};
 
-	int randPos;
-	int randTime;
-	Vector2 randTargetPos;
+
+class MoveBState : public StateNode
+{
+public:
+	MoveBState();
+	~MoveBState() = default;
+
+	void onEnter() override;
+	void onUpdate() override;
+	void onExit() override;
+private:
+
+	int moveIndex;
+	int currentMoveIndex;
+
+	Vector2 targetPos[2];
+	Vector2 startPos;
+
+	float totalTime;
+	float passTime;
+	bool isMove;
+
 };

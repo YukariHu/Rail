@@ -13,7 +13,7 @@ IdleState::IdleState()
 	timer.set_one_shot(true);
 	timer.set_on_timeout([&]()
 	{
-			boss->SwitchState("StraightLineFire");
+			boss->SwitchState("MoveB");
 	});
 	speed = 2.0f;
 	dir = 1;
@@ -124,7 +124,7 @@ void MoveAState::onExit()
 
 StraightLineFire::StraightLineFire()
 {
-	fireCount = 3;
+	fireCount = 1;
 	currentFireCount = 0;
 
 	timer.set_one_shot(false);
@@ -136,14 +136,6 @@ StraightLineFire::StraightLineFire()
 			bossA->StraightFire();
 		}
 	);
-
-	targetPos[0] = Vector2(1180, 500.0f);
-	targetPos[1] = Vector2(1180, 300.0f);
-
-	totalTime = 1.0f;
-
-	randTime = 120;
-	randTargetPos = Vector2(0.0f, 0.0f);
 }
 
 void StraightLineFire::onEnter()
@@ -151,33 +143,48 @@ void StraightLineFire::onEnter()
 	startPos = boss->Getposition();
 	passTime = 0.0f;
 	isMove = true;
-	timer.set_wait_time(1.0f);
+	timer.set_wait_time(0.2f);
 	timer.restart();
+
 }
 
 void StraightLineFire::onUpdate()
 {
-	//
-	randTime--;
-
-	if (randTime <= 0) {
-		randTime = 120;
-
-		randPos = rand() % 1;
-
-	}
-
-	if (randPos == 0) {
-
-		randTargetPos = targetPos[0];
-	} else {
-		randTargetPos = targetPos[1];
-	}
-
-	//
 
 	timer.on_update(deltaTime);
 
+	if (currentFireCount >= fireCount)
+	{
+		boss->SwitchState("moveB");
+	}
+}
+
+void StraightLineFire::onExit()
+{
+	currentFireCount = 0;
+}
+
+
+
+MoveBState::MoveBState()
+{
+	currentMoveIndex = 0;
+
+	targetPos[0] = Vector2(1180, 600.0f);
+	targetPos[1] = Vector2(1180, 400.0f);
+
+	totalTime = 0.5f;
+
+}
+void MoveBState::onEnter()
+{
+	startPos = boss->Getposition();
+	passTime = 0.0f;
+	isMove = true;
+	moveIndex = rand() % 2;
+}
+void MoveBState::onUpdate()
+{
 	passTime += deltaTime;
 	float t = passTime / totalTime;
 	if (t >= 1.0f)
@@ -186,9 +193,14 @@ void StraightLineFire::onUpdate()
 		isMove = false;
 	}
 	float easeT = EaseInOut(t);
-	boss->Setposition(startPos + (randTargetPos - startPos) * easeT);
-}
+	boss->Setposition(startPos + (targetPos[moveIndex] - startPos) * easeT);
 
-void StraightLineFire::onExit()
+	if (isMove == false)
+	{
+		currentMoveIndex++;
+		boss->SwitchState("StraightLineFire");
+	}
+}
+void MoveBState::onExit()
 {
 }

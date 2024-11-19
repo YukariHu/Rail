@@ -53,6 +53,8 @@ public:
 			pass_time -= wait_time;
 		}
 	}
+
+
 private:
 	float pass_time = 0;
 	float wait_time = 0;
