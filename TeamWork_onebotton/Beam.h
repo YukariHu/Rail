@@ -12,5 +12,5 @@ public:
     void onDraw() override;
 
 private:
-	is
+
 };
