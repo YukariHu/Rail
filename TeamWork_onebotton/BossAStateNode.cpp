@@ -226,3 +226,96 @@ void MoveBState::onUpdate()
 void MoveBState::onExit()
 {
 }
+
+RandomShotting::RandomShotting()
+{
+	fireCount = 60;
+	currentFireCount = 0;
+
+	timer.set_one_shot(false);
+	timer.set_on_timeout([&]()
+		{
+			currentFireCount++;
+			//fire
+			BossA* bossA = (BossA*)(boss);
+			bossA->DeviationShot();
+		}
+	);
+}
+
+void RandomShotting::onEnter()
+{
+	passTime = 0.0f;
+	isMove = true;
+	timer.set_wait_time(0.08f);
+	timer.restart();
+}
+
+void RandomShotting::onUpdate()
+{
+	timer.on_update(deltaTime);
+
+	if (currentFireCount >= fireCount)
+	{
+		boss->SwitchState("RandomShottingMove");
+	}
+}
+
+void RandomShotting::onExit()
+{
+	currentFireCount = 0;
+}
+
+RandomShottingMoveState::RandomShottingMoveState()
+{
+	currentMoveIndex = 0;
+	moveIndex = 1;
+
+	targetPos = Vector2(1280 / 2, 100);
+
+	totalTime = 1.0f;
+}
+
+void RandomShottingMoveState::onEnter()
+{
+	startPos = boss->Getposition();
+	passTime = 0.0f;
+	isMove = true;
+}
+
+void RandomShottingMoveState::onUpdate()
+{
+	passTime += deltaTime;
+	float t = passTime / totalTime;
+
+	float easeT = EaseInOut(t);
+	boss->Setposition(startPos + (targetPos - startPos) * easeT);
+
+	if (t >= 1.0f)
+	{
+		t = 1.0f;
+		isMove = false;
+	}
+	if (isMove == false)
+	{
+
+		if (currentMoveIndex >= moveIndex)
+		{
+
+			boss->SwitchState("idle");
+		} else
+		{
+			boss->SwitchState("RandomShotting");
+			currentMoveIndex++;
+		}
+
+	}
+}
+
+void RandomShottingMoveState::onExit()
+{
+	if (currentMoveIndex >= moveIndex)
+	{
+		currentMoveIndex = 0;
+	}
+}

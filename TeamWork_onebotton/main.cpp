@@ -2,7 +2,7 @@
 #include <SceneManager.h>
 #include <ResouresManager.h>
 
-const char kWindowTitle[] = "GC1A_05_コウ_ホウケイ_タイトル";
+const char kWindowTitle[] = "5202_タイトル";
 
 SceneManager sceneManager;
 ResouresManager resouresManager;//画像と音声を管理

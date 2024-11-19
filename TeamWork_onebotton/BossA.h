@@ -12,10 +12,12 @@ public:
 
 	void CircleFire(int bulletNum);
 	void StraightFire();
+	void RandomFire();
 
 	void BeamFire(int bulletNum);
 	void MoveTo(Vector2 targetPos,float time);
 
+	void DeviationShot();
 private:
 	
 

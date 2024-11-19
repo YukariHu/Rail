@@ -2,8 +2,10 @@
 #include "BossAStateNode.h"
 #include "Bullet.h"
 #include "Beam.h"
+#include "DeviationShotBullet.h"
 #define PI 3.1415926f
 extern std::vector<Bullet*> bulletList;
+extern std::vector<DeviationShotBullet*> DeviationShotBulletList;
 
 BossA::BossA()
 {
@@ -17,8 +19,10 @@ BossA::BossA()
 	stateMachine.RegisterState("moveA",new MoveAState());
 	stateMachine.RegisterState("StraightLineFire", new StraightLineFire());
 	stateMachine.RegisterState("moveB", new MoveBState());
+	stateMachine.RegisterState("RandomShotting", new RandomShotting());
+	stateMachine.RegisterState("RandomShottingMove", new RandomShottingMoveState());
 
-	stateMachine.SetEntry("moveB");
+	stateMachine.SetEntry("RandomShottingMove");
 }
 
 
@@ -52,6 +56,22 @@ void BossA::StraightFire()
 	Bullet* bullet = new Bullet(pos, direction);
 	bulletList.push_back(bullet);
 }
+
+void BossA::RandomFire()
+{
+	Vector2 direction = { cosf(float(rand() % 180) * PI / float(rand() % 180)), sinf(float(rand() % 180)* PI / 180) };
+	Bullet* bullet = new Bullet(pos, direction);
+	bulletList.push_back(bullet);
+}
+
+void BossA::DeviationShot()
+{
+	Vector2 direction = { cosf(float(rand() % 180) * PI / float(rand() % 180)), sinf(float(rand() % 180) * PI / 180) };
+	DeviationShotBullet* bullet = new DeviationShotBullet(pos, direction);
+	DeviationShotBulletList.push_back(bullet);
+}
+
+
 
 //void BossA::MoveTo(Vector2 targetPos,float time)
 //{
