@@ -131,8 +131,18 @@ void MoveAState::onUpdate()
 		}
 		
 	}
+}
+
+void StraightLineFire::onEnter()
+{
+	
+	passTime = 0.0f;
+	isMove = true;
+	timer.set_wait_time(0.2f);
+	timer.restart();
 
 }
+
 void MoveAState::onExit()
 {
 	if (currentMoveIndex >= moveIndex)

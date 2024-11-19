@@ -85,3 +85,48 @@ private:
 	int bulletNum;
 };
 
+class StraightLineFire : public StateNode
+{
+public:
+	StraightLineFire();
+	~StraightLineFire() = default;
+
+	void onEnter() override;
+	void onUpdate() override;
+	void onExit() override;
+private:
+
+	Timer timer;
+	//撃つ回数
+	int fireCount;
+	int currentFireCount;
+
+
+	float totalTime;
+	float passTime;
+	bool isMove;
+};
+
+
+class MoveBState : public StateNode
+{
+public:
+	MoveBState();
+	~MoveBState() = default;
+
+	void onEnter() override;
+	void onUpdate() override;
+	void onExit() override;
+private:
+
+	int moveIndex;
+	int currentMoveIndex;
+
+	Vector2 targetPos[2];
+	Vector2 startPos;
+
+	float totalTime;
+	float passTime;
+	bool isMove;
+
+};
