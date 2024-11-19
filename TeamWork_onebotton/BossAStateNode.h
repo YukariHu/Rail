@@ -85,6 +85,7 @@ private:
 	int bulletNum;
 };
 
+
 class StraightLineFire : public StateNode
 {
 public:
@@ -106,7 +107,6 @@ private:
 	float passTime;
 	bool isMove;
 };
-
 
 class MoveBState : public StateNode
 {
