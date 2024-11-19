@@ -11,6 +11,7 @@ public:
 	void onDraw() override;
 
 	void CircleFire(int bulletNum);
+	void StraightFire();
 	void MoveTo(Vector2 targetPos,float time);
 
 private:
