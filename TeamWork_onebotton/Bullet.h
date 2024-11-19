@@ -4,12 +4,13 @@
 class Bullet
 {
 public:
+	Bullet() = default;
 	Bullet(Vector2 firePos,Vector2 dir);
 	~Bullet() = default;
 
 	virtual void onUpdate();
 	virtual void onDraw();
-private:
+protected:
 
 	Vector2 pos;
 	Vector2 size;

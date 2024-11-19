@@ -53,6 +53,11 @@ public:
 			pass_time -= wait_time;
 		}
 	}
+
+	float get_pass_time()
+	{
+		return pass_time;
+	}
 private:
 	float pass_time = 0;
 	float wait_time = 0;
