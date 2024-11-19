@@ -1,5 +1,5 @@
 #include "Beam.h"
 
-Beam::Beam()
-{
-}
+//Beam::Beam(Vector2 firePos, Vector2 dir)
+//{
+//}

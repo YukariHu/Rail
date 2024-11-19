@@ -3,6 +3,6 @@
 class Beam : public Bullet
 {
 public:
-	Beam();
+	Beam(Vector2 firePos, Vector2 dir);
 	~Beam();
 };
