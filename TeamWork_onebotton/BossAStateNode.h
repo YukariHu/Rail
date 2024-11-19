@@ -23,7 +23,9 @@ private:
 
 };
 
+//class MoveToCenter
 
+//ボスは4つのポイントを順番に移動する
 class MoveAState : public StateNode
 {
 public:
@@ -38,7 +40,7 @@ private:
 	int moveIndex;
 	int currentMoveIndex;
 
-	Vector2 targetPos[4];
+	Vector2 targetPos[5];
 	Vector2 startPos;
 
 	float totalTime;
@@ -46,6 +48,8 @@ private:
 	bool isMove;
 
 };
+
+
 
 
 class BossAimState : public StateNode

@@ -6,6 +6,9 @@ extern Charactor* boss;
 extern Charactor* player;
 extern std::vector<Bullet*> bulletList;
 
+extern int windowHeight;
+extern int windowWidth;
+
 float deltaTime = 1.0f / 60.0f;
 
 IdleState::IdleState()
@@ -13,7 +16,7 @@ IdleState::IdleState()
 	timer.set_one_shot(true);
 	timer.set_on_timeout([&]()
 	{
-			boss->SwitchState("circlefire");
+			boss->SwitchState("moveA");
 	});
 	speed = 2.0f;
 	dir = 1;
@@ -83,12 +86,13 @@ void CircleFireState::onExit()
 MoveAState::MoveAState()
 {
 	currentMoveIndex = 0;
-	moveIndex = 3;
+	moveIndex = 4;
 	
-	targetPos[0] = Vector2(100, 100);
-	targetPos[1] = Vector2(500, 100);
-	targetPos[2] = Vector2(500, 500);
-	targetPos[3] = Vector2(100, 500);
+	targetPos[0] = Vector2(200, 150);
+	targetPos[1] = Vector2(200, static_cast<float>(windowHeight - 150));
+	targetPos[2] = Vector2(static_cast<float>(windowWidth - 150), static_cast<float>(windowHeight - 150));
+	targetPos[3] = Vector2(static_cast<float>(windowWidth - 150), 150);
+	targetPos[4] = Vector2(static_cast<float>(windowWidth / 2), static_cast<float>(windowHeight / 2));
 
 	totalTime = 1.0f;
 
@@ -103,20 +107,36 @@ void MoveAState::onUpdate()
 {
 	passTime += deltaTime;
 	float t = passTime / totalTime;
+
+	float easeT = EaseInOut(t);
+	boss->Setposition(startPos + (targetPos[currentMoveIndex] - startPos) * easeT);
+
 	if (t >= 1.0f)
 	{
 		t = 1.0f;
 		isMove = false;
 	}
-	float easeT = EaseInOut(t);
-	boss->Setposition(startPos + (targetPos[moveIndex] - startPos) * easeT);
-
 	if (isMove == false)
 	{
-		currentMoveIndex++;
-		boss->SwitchState("circlefire");
+		
+		if(currentMoveIndex >= moveIndex)
+		{
+			
+			boss->SwitchState("idle");
+		}
+		else
+		{
+			boss->SwitchState("circlefire");
+			currentMoveIndex++;
+		}
+		
 	}
+
 }
 void MoveAState::onExit()
 {
+	if (currentMoveIndex >= moveIndex)
+	{
+		currentMoveIndex = 0;
+	}
 }

@@ -7,7 +7,7 @@ extern std::vector<Bullet*> bulletList;
 BossA::BossA()
 {
 	color = 0xB6BBC4FF;
-	size = { 80.0f, 80.0f };
+	size = { 60.0f, 60.0f };
 	pos = { 400.0f, 300.0f };
 	velocity = { 0.0f, 0.0f };
 

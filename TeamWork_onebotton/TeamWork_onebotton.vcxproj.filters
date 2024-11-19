@@ -107,6 +107,9 @@
     <ClCompile Include="TitlePlayerParticleManager.cpp">
       <Filter>Scene\Title</Filter>
     </ClCompile>
+    <ClCompile Include="Beam.cpp">
+      <Filter>Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -238,6 +241,10 @@
       <Filter>Charactor</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h">
+      <Filter>Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Easing.h" />
+    <ClInclude Include="Beam.h">
       <Filter>Bullet</Filter>
     </ClInclude>
   </ItemGroup>
