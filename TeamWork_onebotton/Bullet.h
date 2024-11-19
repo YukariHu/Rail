@@ -1,6 +1,7 @@
 #pragma once
 #include "MyVector2.h"
 #include <functional>
+
 class Bullet
 {
 public:

@@ -1,6 +1,7 @@
 #pragma once
 #include "Bullet.h"
 #include "timer.h"
+
 class Beam : public Bullet
 {
 public:

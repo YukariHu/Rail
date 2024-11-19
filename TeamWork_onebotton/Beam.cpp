@@ -1,4 +1,6 @@
 #include "Beam.h"
+#include "Novice.h"
+
 extern float deltaTime;
 Beam::Beam(Vector2 firePos, Vector2 _dir)
 {
@@ -8,6 +10,9 @@ Beam::Beam(Vector2 firePos, Vector2 _dir)
 		size.x = 10.0f;//幅
 		size.y = 1300.0f;//長さ
 		damage = 1;
+
+		color = WHITE;
+		
 
 		isAiming = true;
 		aimTimer.set_one_shot(true);
@@ -27,6 +32,7 @@ void Beam::onUpdate()
 {
 	//照準線表示
 	if (isAiming) {
+		//float width = 5.0f;
 		aimTimer.on_update(deltaTime);
 	}
 	else {
@@ -38,6 +44,13 @@ void Beam::onDraw()
 {
 	if (isAiming)
 	{
+		//Novice::DrawLine(static_cast<int>(pos.x),static_cast<int>(pos.y),);
+		//Novice::DrawBox(
+		//	static_cast<int>(pos.x + size.x * dir.normalize().x),
+		//	static_cast<int>(pos.y + size.x * dir.normalize().y),
+		//	static_cast<int>(size.x),
+		//	static_cast<int>(size.y),
 
+		//);
 	}
 }
