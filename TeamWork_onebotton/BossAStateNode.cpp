@@ -16,7 +16,7 @@ IdleState::IdleState()
 	timer.set_one_shot(true);
 	timer.set_on_timeout([&]()
 	{
-			boss->SwitchState("moveA");
+			boss->SwitchState("MoveB");
 	});
 	speed = 2.0f;
 	dir = 1;
@@ -149,4 +149,88 @@ void MoveAState::onExit()
 	{
 		currentMoveIndex = 0;
 	}
+}
+
+
+StraightLineFire::StraightLineFire()
+{
+	fireCount = 1;
+	currentFireCount = 0;
+
+	timer.set_one_shot(false);
+	timer.set_on_timeout([&]()
+		{
+			currentFireCount++;
+			//fire
+			BossA* bossA = (BossA*)(boss);
+			bossA->StraightFire();
+		}
+	);
+}
+
+void StraightLineFire::onEnter()
+{
+	startPos = boss->Getposition();
+	passTime = 0.0f;
+	isMove = true;
+	timer.set_wait_time(0.2f);
+	timer.restart();
+
+}
+
+void StraightLineFire::onUpdate()
+{
+
+	timer.on_update(deltaTime);
+
+	if (currentFireCount >= fireCount)
+	{
+		boss->SwitchState("moveB");
+	}
+}
+
+void StraightLineFire::onExit()
+{
+	currentFireCount = 0;
+}
+
+
+
+MoveBState::MoveBState()
+{
+	currentMoveIndex = 0;
+
+	targetPos[0] = Vector2(1180, 600.0f);
+	targetPos[1] = Vector2(1180, 400.0f);
+
+	totalTime = 0.5f;
+
+}
+void MoveBState::onEnter()
+{
+	startPos = boss->Getposition();
+	passTime = 0.0f;
+	isMove = true;
+	moveIndex = rand() % 2;
+}
+void MoveBState::onUpdate()
+{
+	passTime += deltaTime;
+	float t = passTime / totalTime;
+	if (t >= 1.0f)
+	{
+		t = 1.0f;
+		isMove = false;
+	}
+	float easeT = EaseInOut(t);
+	boss->Setposition(startPos + (targetPos[moveIndex] - startPos) * easeT);
+
+	if (isMove == false)
+	{
+		currentMoveIndex++;
+		boss->SwitchState("StraightLineFire");
+	}
+}
+void MoveBState::onExit()
+{
 }

@@ -46,6 +46,13 @@ for (int i = 0; i < 360; i += 360/ bulletNum)
 	}
 }
 
+void BossA::StraightFire()
+{
+	Vector2 direction = { -1.0f ,0.0f };
+	Bullet* bullet = new Bullet(pos, direction);
+	bulletList.push_back(bullet);
+}
+
 //void BossA::MoveTo(Vector2 targetPos,float time)
 //{
 //	//使用缓动函数移动到目标位置
