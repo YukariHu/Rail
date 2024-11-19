@@ -25,7 +25,6 @@ public:
 
 	void SetTarget(Charactor* _target);
 
-
 	void SwitchState(const std::string& id);
 
 protected:

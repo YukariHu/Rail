@@ -13,7 +13,7 @@ public:
 	void CircleFire(int bulletNum);
 	void StraightFire();
 
-	void BeamFire(int bulletNum);
+	void BeamFire();
 	void MoveTo(Vector2 targetPos,float time);
 
 private:

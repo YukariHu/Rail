@@ -2,6 +2,7 @@
 #include "BossA.h"
 #include "Bullet.h"
 #include "Easing.h"
+
 extern Charactor* boss;
 extern Charactor* player;
 extern std::vector<Bullet*> bulletList;
@@ -16,7 +17,7 @@ IdleState::IdleState()
 	timer.set_one_shot(true);
 	timer.set_on_timeout([&]()
 	{
-			boss->SwitchState("MoveB");
+			boss->SwitchState("moveB");
 	});
 	speed = 2.0f;
 	dir = 1;
@@ -108,7 +109,7 @@ void MoveAState::onUpdate()
 	passTime += deltaTime;
 	float t = passTime / totalTime;
 
-	float easeT = EaseInOut(t);
+	float easeT = Easing::EaseInOut(t);
 	boss->Setposition(startPos + (targetPos[currentMoveIndex] - startPos) * easeT);
 
 	if (t >= 1.0f)
@@ -132,9 +133,6 @@ void MoveAState::onUpdate()
 		
 	}
 }
-
-
-
 void MoveAState::onExit()
 {
 	if (currentMoveIndex >= moveIndex)
@@ -159,7 +157,6 @@ StraightLineFire::StraightLineFire()
 		}
 	);
 }
-
 void StraightLineFire::onEnter()
 {
 
@@ -169,7 +166,6 @@ void StraightLineFire::onEnter()
 	timer.restart();
 
 }
-
 void StraightLineFire::onUpdate()
 {
 
@@ -180,7 +176,6 @@ void StraightLineFire::onUpdate()
 		boss->SwitchState("moveB");
 	}
 }
-
 void StraightLineFire::onExit()
 {
 	currentFireCount = 0;
@@ -214,7 +209,7 @@ void MoveBState::onUpdate()
 		t = 1.0f;
 		isMove = false;
 	}
-	float easeT = EaseInOut(t);
+	float easeT = Easing::EaseInOut(t);
 	boss->Setposition(startPos + (targetPos[moveIndex] - startPos) * easeT);
 
 	if (isMove == false)

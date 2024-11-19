@@ -18,7 +18,7 @@ BossA::BossA()
 	stateMachine.RegisterState("StraightLineFire", new StraightLineFire());
 	stateMachine.RegisterState("moveB", new MoveBState());
 
-	stateMachine.SetEntry("moveB");
+	stateMachine.SetEntry("idle");
 }
 
 
@@ -51,6 +51,15 @@ void BossA::StraightFire()
 	Vector2 direction = { -1.0f ,0.0f };
 	Bullet* bullet = new Bullet(pos, direction);
 	bulletList.push_back(bullet);
+}
+
+void BossA::BeamFire()
+{
+	Vector2 direction = { 1.0f, 0.0f };
+	Vector2 firepos = {-30.0f,300.0f};
+	Beam* beam = new Beam(firepos, direction);
+	bulletList.push_back(beam);
+
 }
 
 //void BossA::MoveTo(Vector2 targetPos,float time)

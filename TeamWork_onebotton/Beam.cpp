@@ -1,5 +1,7 @@
 #include "Beam.h"
 #include "Novice.h"
+#include "Easing.h"
+
 
 extern float deltaTime;
 Beam::Beam(Vector2 firePos, Vector2 _dir)
@@ -7,6 +9,7 @@ Beam::Beam(Vector2 firePos, Vector2 _dir)
 		this->pos = firePos;
 		this->dir = _dir;
 
+		currentWidth = 0.0f;
 		size.x = 10.0f;//幅
 		size.y = 1300.0f;//長さ
 		damage = 1;
@@ -32,8 +35,10 @@ void Beam::onUpdate()
 {
 	//照準線表示
 	if (isAiming) {
-		//float width = 5.0f;
 		aimTimer.on_update(deltaTime);
+
+		float t = Easing::EaseInOut(aimTimer.get_progress());
+		currentWidth = size.x * t;
 	}
 	else {
 		lifeTimer.on_update(deltaTime);
@@ -45,12 +50,28 @@ void Beam::onDraw()
 	if (isAiming)
 	{
 		//Novice::DrawLine(static_cast<int>(pos.x),static_cast<int>(pos.y),);
-		//Novice::DrawBox(
-		//	static_cast<int>(pos.x + size.x * dir.normalize().x),
-		//	static_cast<int>(pos.y + size.x * dir.normalize().y),
-		//	static_cast<int>(size.x),
-		//	static_cast<int>(size.y),
 
-		//);
+		//横のビーム
+		Novice::DrawBox(
+			static_cast<int>(pos.x * dir.normalize().x),
+			static_cast<int>(pos.y - currentWidth / 2 * dir.normalize().y),
+			static_cast<int>(size.y),
+			static_cast<int>(currentWidth),
+			0.0f,
+			color,
+			kFillModeWireFrame
+		);
+	}
+	else
+	{
+		Novice::DrawBox(
+			static_cast<int>(pos.x * dir.normalize().x),
+			static_cast<int>(pos.y - currentWidth / 2 * dir.normalize().y),
+			static_cast<int>(size.y),
+			static_cast<int>(currentWidth),
+			0.0f,
+			color,
+			kFillModeSolid
+		);
 	}
 }

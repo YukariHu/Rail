@@ -18,7 +18,8 @@ private:
 
 
 	bool isAiming;
-
 	int color;
+
+	float currentWidth;
 
 };

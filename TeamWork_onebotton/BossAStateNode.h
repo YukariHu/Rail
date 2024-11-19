@@ -108,6 +108,15 @@ private:
 	bool isMove;
 };
 
+class BeamFireState : public StateNode
+{
+	BeamFireState();
+	~BeamFireState() = default;
+
+	void onEnter() override;
+	void onUpdate() override;
+};
+
 class MoveBState : public StateNode
 {
 public:
