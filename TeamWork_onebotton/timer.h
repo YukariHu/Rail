@@ -58,6 +58,11 @@ public:
 	{
 		return pass_time;
 	}
+
+	float get_wait_time()
+	{
+		return wait_time;
+	}
 private:
 	float pass_time = 0;
 	float wait_time = 0;

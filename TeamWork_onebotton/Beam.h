@@ -12,5 +12,12 @@ public:
     void onDraw() override;
 
 private:
+	Timer aimTimer;
+	Timer lifeTimer;
+
+
+	bool isAiming;
+
+	int color;
 
 };

@@ -1,6 +1,7 @@
 #include "BossA.h"
 #include "BossAStateNode.h"
 #include "Bullet.h"
+#include "Beam.h"
 #define PI 3.1415926f
 extern std::vector<Bullet*> bulletList;
 

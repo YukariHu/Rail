@@ -23,5 +23,5 @@ protected:
 
 	std::function<void()> callback;
 public:
-	bool isCanRemove;
+	bool isCanRemove = false;
 };
