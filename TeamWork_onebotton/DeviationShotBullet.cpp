@@ -14,8 +14,8 @@ DeviationShotBullet::DeviationShotBullet(Vector2 firePos, Vector2 _dir)
 }
 void DeviationShotBullet::onUpdate()
 {
-	pos.x += velocity * dir.x;
-	pos.y += velocity * dir.y;
+	pos.x += velocity * cosf(dir.x);
+	pos.y += velocity * sinf(dir.y);
 
 	if (pos.x > windowWidth || pos.x < 0.0f || pos.y > windowHeight || pos.y < 0.0f)
 	{

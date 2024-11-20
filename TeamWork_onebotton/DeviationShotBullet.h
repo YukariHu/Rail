@@ -1,16 +1,18 @@
 #pragma once
 #include "MyVector2.h"
 #include <functional>
+#include "Bullet.h"
 
-class DeviationShotBullet
+class DeviationShotBullet : public Bullet
 {
 public:
-	DeviationShotBullet() = default;
 	DeviationShotBullet(Vector2 firePos, Vector2 dir);
 	~DeviationShotBullet() = default;
 
-	virtual void onUpdate();
-	virtual void onDraw();
+
+	void onUpdate() override;
+	void onDraw() override;
+
 protected:
 
 	Vector2 pos;

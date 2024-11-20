@@ -17,7 +17,7 @@ public:
 	void BeamFire(int bulletNum);
 	void MoveTo(Vector2 targetPos,float time);
 
-	void DeviationShot();
+	void DeviationFire();
 private:
 	
 
