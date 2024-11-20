@@ -28,14 +28,16 @@ void Player::onInput(char* keys, char* prekeys)
 		}
 	}
 
-	
 	if (keys[DIK_LSHIFT] != 0) {
 		velocity = { 1.0f / 100.0f, 1.0f / 100.0f };
 	} else {
 		velocity = { 1.0f / 180.0f, 1.0f / 180.0f };
 	}
 
-	
+	if (prekeys[DIK_1] == 0 && keys[DIK_1] != 0) {
+		lineShift = true;
+	}
+
 }
 
 void Player::onUpdate()
@@ -55,6 +57,35 @@ void Player::onUpdate()
 		}
 	} else {
 		t_ = 0.0f;
+
+		if (lineShift) {
+			lineShift = false;
+
+			
+			if (startLine.x == 0.0f) {
+				startLine.x = startPointX[1];
+				startLine2.x = startPointX[2];
+				endLine.x = endPointX[1];
+				endLine2.x = endPointX[2];
+
+				startLine.y = startPointY[2];
+				startLine2.y = startPointY[2];
+				endLine.y = endPointY[2];
+				endLine2.y = endPointY[2];
+
+				
+			} else {
+				startLine.x = startPointX[0];
+				startLine2.x = startPointX[0];
+				endLine.x = endPointX[0];
+				endLine2.x = endPointX[0];
+
+				startLine.y = startPointY[0];
+				startLine2.y = startPointY[1];
+				endLine.y = endPointY[0];
+				endLine2.y = endPointY[1];
+			}
+		}
 	}
 
 
