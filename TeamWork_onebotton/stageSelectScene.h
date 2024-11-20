@@ -10,7 +10,7 @@ class StageSelectScene : public Scene
 	void onEnter() override;
 	void onInput(char* keys,char* prekeys) override;
 	void update() override;
-	void draw() override;
+	void draw(const Camera& camera) override;
 	//void onExit() override;
 
 };

@@ -22,7 +22,9 @@ void Bullet::onUpdate()
 		isCanRemove = true;
 	}
 }
-void Bullet::onDraw()
+void Bullet::onDraw(const Camera& camera)
 {
-	Novice::DrawEllipse(static_cast<int>(pos.x), static_cast<int>(pos.y),static_cast<int>(size.x), static_cast<int>(size.y),0.0f,WHITE,kFillModeSolid);
+	(void)camera;
+	const Vector2& cameraPos = camera.GetPos();
+	Novice::DrawEllipse(static_cast<int>(pos.x - cameraPos.x), static_cast<int>(pos.y - cameraPos.y),static_cast<int>(size.x), static_cast<int>(size.y),0.0f,WHITE,kFillModeSolid);
 }

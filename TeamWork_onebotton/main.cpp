@@ -6,6 +6,7 @@ const char kWindowTitle[] = "5202_ヨケレール";
 
 SceneManager sceneManager;
 ResouresManager resouresManager;//画像と音声を管理
+Camera mainCamera;
 
 int windowHeight = 720;
 int windowWidth = 1280;
@@ -46,7 +47,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 		/// ↓描画処理ここから
 		///
-		sceneManager.draw();
+		sceneManager.draw(mainCamera);
 		///
 		/// ↑描画処理ここまで
 		///

@@ -38,12 +38,13 @@ void BossA::onUpdate()
 	Charactor::onUpdate();
 }
 
-void BossA::onDraw()
+void BossA::onDraw(const Camera& camera)
 {
-	Novice::DrawEllipse(static_cast<int>(pos.x), static_cast<int>(pos.y), static_cast<int>(size.x), static_cast<int>(size.x), 0.0f, color, kFillModeSolid);
-	//Novice::ScreenPrintf(0,30,"%f",target->GetSize().x);
+	const Vector2& cameraPos = camera.GetPos();
+	Novice::DrawEllipse(static_cast<int>(pos.x - cameraPos.x), static_cast<int>(pos.y - cameraPos.y), static_cast<int>(size.x), static_cast<int>(size.x), 0.0f, WHITE, kFillModeSolid);
     
 }
+
 
 void BossA::CircleFire(int bulletNum)
 {
