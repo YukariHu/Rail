@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Camera.h"
 class Scene
 {
 public:
@@ -12,7 +12,9 @@ public:
 		(void)prekeys;
 	}
 	virtual void update(){}
-	virtual void draw(){}
+	virtual void draw(const Camera& camera){
+		(void)camera;
+	}
 	virtual void onExit(){}//シーンが切り替わるときに呼ばれる
 
 

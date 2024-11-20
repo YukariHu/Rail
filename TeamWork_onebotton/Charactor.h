@@ -2,6 +2,7 @@
 #include "MyVector2.h"
 #include <Novice.h>
 #include "StateMachine.h"
+#include "Camera.h"
 class Charactor
 {
 public:
@@ -13,7 +14,7 @@ public:
 	(void)prekeys;
 	};
 	virtual void onUpdate();
-	virtual void onDraw();
+	virtual void onDraw(const Camera& camera);
 
 	virtual void onHurt(int damage);
 

@@ -14,7 +14,7 @@ public:
     void onEnter() override;
     void onInput(char* keys, char* prekeys) override;
     void update() override;
-    void draw() override;
+    void draw(const Camera& camera) override;
 
 private:
     TitleLine titleLine_;                        

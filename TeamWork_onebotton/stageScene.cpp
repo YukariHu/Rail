@@ -11,6 +11,8 @@ extern SceneManager sceneManager;
 extern int windowHeight;
 extern int windowWidth;
 
+extern Camera mainCamera;
+
 Charactor* boss = nullptr;
 Charactor* player = nullptr;
 std::vector<Bullet*> bulletList;
@@ -41,24 +43,32 @@ void StageScene::onInput(char* keys, char* prekeys)
 	{
 		sceneManager.switchScene(SceneManager::SceneType::StageSelect);
 	}
+
+	if (keys[DIK_SPACE] && !prekeys[DIK_SPACE])
+	{
+		mainCamera.Shack(5,0.3f);
+	}
 }
 
 void StageScene::update()
 {
+	mainCamera.onUpdate();
 	boss->onUpdate();
 	player->onUpdate();
 	BulletListUpdate();
 	//TODO:check collision
 }
 
-void StageScene::draw()
+void StageScene::draw(const Camera& camera)
 {
+	(void)camera;
+
 	Novice::DrawBox(0, 0, windowWidth, windowHeight, 0.0f, backGroundColor, kFillModeSolid);
 	Novice::ScreenPrintf(0, 0, "stage:%d", id);
 
-	boss->onDraw();
-	player->onDraw();
-	BulletListDraw();
+	boss->onDraw(camera);
+	player->onDraw(camera);
+	BulletListDraw(camera);
 }
 
 void StageScene::onExit()
@@ -96,11 +106,11 @@ void StageScene::BulletListUpdate()
 
 }
 
-void StageScene::BulletListDraw()
+void StageScene::BulletListDraw(const Camera& camera)
 {
 	for (auto bullet : bulletList)
 	{
-		bullet->onDraw();
+		bullet->onDraw(camera);
 	}
 }
 

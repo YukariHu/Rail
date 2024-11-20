@@ -12,14 +12,13 @@ public:
 
 
 	void onUpdate() override;
-    void onDraw() override;
+    void onDraw(const Camera& camera) override;
 
 private:
 	Timer aimTimer;
 	Timer lifeTimer;
 	Timer overTimer;
 
-	
 	bool isAiming;
 	bool isOver;
 	bool isEnable;//衝突判定を有効にするかどうか
@@ -28,6 +27,5 @@ private:
 	//int renderType;
 	Vector2 maxSize;
 
-	Vector2 cornerPos[4];
 
 };

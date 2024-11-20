@@ -1,4 +1,5 @@
 #include "SceneManager.h"
+#include "Camera.h"
 
 void SceneManager::init()
 {
@@ -21,9 +22,9 @@ void SceneManager::update()
 	currentScene->update();
 }
 
-void SceneManager::draw()
+void SceneManager::draw(const Camera& camera)
 {
-	currentScene->draw();
+	currentScene->draw(camera);
 }
 
 void SceneManager::setCurrentScene(Scene* scene)

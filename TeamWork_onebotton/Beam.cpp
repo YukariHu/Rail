@@ -75,8 +75,9 @@ void Beam::onUpdate()
 
 }
 
-void Beam::onDraw()
+void Beam::onDraw(const Camera& camera)
 {
+	(void)camera;
 	if (dir.x == 1.0f)
 	{
 		if (isAiming)
