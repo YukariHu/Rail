@@ -110,11 +110,20 @@ private:
 
 class BeamFireState : public StateNode
 {
+public:
 	BeamFireState();
 	~BeamFireState() = default;
 
 	void onEnter() override;
 	void onUpdate() override;
+
+private:
+	Timer timer;
+	//撃つ回数
+	int fireCount;
+	int currentFireCount;
+
+	bool isOver;
 };
 
 class MoveBState : public StateNode

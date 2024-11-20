@@ -5,6 +5,8 @@
 class Beam : public Bullet
 {
 public:
+	//水平または垂直にしか発射できない
+	//fireposは発射位置、dirは発射方向 x:水平、y:垂直
 	Beam(Vector2 firePos, Vector2 dir) ;
 	~Beam() = default;
 
@@ -15,11 +17,17 @@ public:
 private:
 	Timer aimTimer;
 	Timer lifeTimer;
+	Timer overTimer;
 
-
+	
 	bool isAiming;
+	bool isOver;
+	bool isEnable;//衝突判定を有効にするかどうか
 	int color;
 
-	float currentWidth;
+	//int renderType;
+	Vector2 maxSize;
+
+	Vector2 cornerPos[4];
 
 };

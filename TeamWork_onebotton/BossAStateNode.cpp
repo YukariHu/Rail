@@ -1,6 +1,7 @@
 #include "BossAStateNode.h"
 #include "BossA.h"
 #include "Bullet.h"
+#include "Beam.h"
 #include "Easing.h"
 
 extern Charactor* boss;
@@ -17,7 +18,7 @@ IdleState::IdleState()
 	timer.set_one_shot(true);
 	timer.set_on_timeout([&]()
 	{
-			boss->SwitchState("moveB");
+			boss->SwitchState("beamFire");
 	});
 	speed = 2.0f;
 	dir = 1;
@@ -25,7 +26,7 @@ IdleState::IdleState()
 }
 void IdleState::onEnter()
 {
-	timer.set_wait_time(2.0f);
+	timer.set_wait_time(1.0f);
 	timer.restart();
 	topPos = boss->Getposition() + Vector2(0,30.0f);
 	bottomPos = boss->Getposition() + Vector2(0, 30.0f);
@@ -179,6 +180,43 @@ void StraightLineFire::onUpdate()
 void StraightLineFire::onExit()
 {
 	currentFireCount = 0;
+}
+
+BeamFireState :: BeamFireState()
+{
+	fireCount = 3;
+	timer.set_one_shot(false);
+	timer.set_wait_time(0.5f);
+	timer.set_on_timeout([&]()
+	{
+		currentFireCount++;
+		//fire
+		//Beam* beam = new Beam({-20.0f, 20 + currentFireCount * 80.0f}, { 1.0f,0.0f, });
+		//bulletList.push_back(beam);
+		Beam* beam2 = new Beam({ windowWidth + 20.0f, 20 + currentFireCount * 120.0f }, { -1.0f,0.0f, });
+		bulletList.push_back(beam2);
+
+		//Beam* beam3 = new Beam({ 20.0f + currentFireCount * 100.0f, -20.0f }, { 0.0f,1.0f, });
+		//bulletList.push_back(beam3);
+	});
+}
+
+void BeamFireState::onEnter()
+{
+	isOver = false;
+	currentFireCount = 0;
+	
+}
+void BeamFireState::onUpdate()
+{
+	BossA* bossA = (BossA*)(boss);
+	timer.on_update(deltaTime);
+	//bossA->BeamFire();
+	if (currentFireCount >= fireCount)
+	{
+		bossA->SwitchState("idle");
+	}
+	
 }
 
 

@@ -6,72 +6,242 @@
 extern float deltaTime;
 Beam::Beam(Vector2 firePos, Vector2 _dir)
 {
-		this->pos = firePos;
 		this->dir = _dir;
+		this->pos = firePos;
+		
 
-		currentWidth = 0.0f;
-		size.x = 10.0f;//幅
-		size.y = 1300.0f;//長さ
+		maxSize.x = 1400.0f;//長さ
+		maxSize.y = 30.0f;//幅
+		size.x = 0.0f;//長さ
+		size.y = 0.0f;//幅
+
+
 		damage = 1;
 
 		color = WHITE;
 		
+		isEnable = false;
+
 
 		isAiming = true;
 		aimTimer.set_one_shot(true);
 		aimTimer.set_wait_time(1.0f);
 		aimTimer.set_on_timeout([&]() {
 			isAiming = false; 
+			isEnable = true;
 			});
 		
 		lifeTimer.set_one_shot(true);
 		lifeTimer.set_wait_time(1.0f);
 		lifeTimer.set_on_timeout([&]() {
-			isCanRemove = false;
+			isOver = true;
+			isEnable = false;
+			});
+
+		isOver = false;
+		overTimer.set_one_shot(true);
+		overTimer.set_wait_time(0.2f);
+		overTimer.set_on_timeout([&]() {
+			isCanRemove = true;
 			});
 }
 
 void Beam::onUpdate()
 {
+
+
 	//照準線表示
 	if (isAiming) {
 		aimTimer.on_update(deltaTime);
 
-		float t = Easing::EaseInOut(aimTimer.get_progress());
-		currentWidth = size.x * t;
+		float easT = Easing::EaseInOut(aimTimer.get_progress());
+
+		if (easT > 1.0f)
+		{
+			easT = 1.0f;
+		}
+		size.x = maxSize.x * easT * 10.0f;
+		size.y = maxSize.y * easT ;
 	}
 	else {
 		lifeTimer.on_update(deltaTime);
+		if (isOver)
+		{
+			overTimer.on_update(deltaTime);
+			float easT = Easing::EaseInOutCirc(overTimer.get_progress());
+			size.y = maxSize.y * (1 - easT);
+		}
 	}
+
 }
 
 void Beam::onDraw()
 {
-	if (isAiming)
+	if (dir.x == 1.0f)
 	{
-		//Novice::DrawLine(static_cast<int>(pos.x),static_cast<int>(pos.y),);
+		if (isAiming)
+		{
+			//Novice::DrawLine(static_cast<int>(pos.x),static_cast<int>(pos.y),);
 
-		//横のビーム
-		Novice::DrawBox(
-			static_cast<int>(pos.x * dir.normalize().x),
-			static_cast<int>(pos.y - currentWidth / 2 * dir.normalize().y),
-			static_cast<int>(size.y),
-			static_cast<int>(currentWidth),
-			0.0f,
-			color,
-			kFillModeWireFrame
-		);
+			//横のビーム
+			Novice::DrawBox(
+				static_cast<int>(pos.x),
+				static_cast<int>(pos.y - size.y / 2),
+				static_cast<int>(size.x),
+				static_cast<int>(size.y),
+				0.0f,
+				color,
+				kFillModeWireFrame
+
+			);
+		}
+		if (!isAiming && !isOver)
+		{
+			Novice::DrawBox(
+				static_cast<int>(pos.x),
+				static_cast<int>(pos.y - maxSize.y / 2),
+				static_cast<int>(maxSize.x),
+				static_cast<int>(maxSize.y),
+				0.0f,
+				color,
+				kFillModeSolid
+			);
+		}
+		if (isOver)
+		{
+			Novice::DrawBox(
+				static_cast<int>(pos.x),
+				static_cast<int>(pos.y - size.y / 2),
+				static_cast<int>(maxSize.x),
+				static_cast<int>(size.y),
+				0.0f,
+				color,
+				kFillModeSolid
+			);
+		}
 	}
 	else
 	{
-		Novice::DrawBox(
-			static_cast<int>(pos.x * dir.normalize().x),
-			static_cast<int>(pos.y - currentWidth / 2 * dir.normalize().y),
-			static_cast<int>(size.y),
-			static_cast<int>(currentWidth),
-			0.0f,
-			color,
-			kFillModeSolid
-		);
+		if (isAiming)
+		{
+			//Novice::DrawLine(static_cast<int>(pos.x),static_cast<int>(pos.y),);
+
+			//横のビーム
+			Novice::DrawBox(
+				static_cast<int>(pos.x - size.x),
+				static_cast<int>(pos.y - size.y / 2),
+				static_cast<int>(size.x),
+				static_cast<int>(size.y),
+				0.0f,
+				color,
+				kFillModeWireFrame
+
+			);
+		}
+		if (!isAiming && !isOver)
+		{
+			Novice::DrawBox(
+				static_cast<int>(pos.x - maxSize.x),
+				static_cast<int>(pos.y - maxSize.y / 2),
+				static_cast<int>(maxSize.x),
+				static_cast<int>(maxSize.y),
+				0.0f,
+				color,
+				kFillModeSolid
+			);
+		}
+		if (isOver)
+		{
+			Novice::DrawBox(
+				static_cast<int>(pos.x - maxSize.x),
+				static_cast<int>(pos.y - size.y / 2),
+				static_cast<int>(maxSize.x),
+				static_cast<int>(size.y),
+				0.0f,
+				color,
+				kFillModeSolid
+			);
+		}
 	}
+
+	if (dir.y == 1.0f)
+	{
+		if (isAiming) {
+		//縦のビーム
+			Novice::DrawBox(
+				static_cast<int>(pos.x - size.y / 2),
+				static_cast<int>(pos.y),
+				static_cast<int>(size.y),
+				static_cast<int>(size.x),
+				0.0f,
+				color,
+				kFillModeWireFrame
+			);
+		}
+		if (!isAiming && !isOver)
+		{
+			Novice::DrawBox(
+				static_cast<int>(pos.x - maxSize.y / 2),
+				static_cast<int>(pos.y),
+				static_cast<int>(maxSize.y),
+				static_cast<int>(maxSize.x),
+				0.0f,
+				color,
+				kFillModeSolid
+			);
+		}
+		if (isOver)
+		{
+			Novice::DrawBox(
+				static_cast<int>(pos.x - size.y / 2),
+				static_cast<int>(pos.y),
+				static_cast<int>(size.y),
+				static_cast<int>(maxSize.x),
+				0.0f,
+				color,
+				kFillModeSolid
+			);
+		}
+	}
+	else
+	{
+		if (isAiming) {
+			//縦のビーム
+			Novice::DrawBox(
+				static_cast<int>(pos.x - size.y / 2),
+				static_cast<int>(pos.y - size.x),
+				static_cast<int>(size.y),
+				static_cast<int>(size.x),
+				0.0f,
+				color,
+				kFillModeWireFrame
+			);
+		}
+		if (!isAiming && !isOver)
+		{
+			Novice::DrawBox(
+				static_cast<int>(pos.x - maxSize.y / 2),
+				static_cast<int>(pos.y - maxSize.x),
+				static_cast<int>(maxSize.y),
+				static_cast<int>(maxSize.x),
+				0.0f,
+				color,
+				kFillModeSolid
+			);
+		}
+		if (isOver)
+		{
+			Novice::DrawBox(
+				static_cast<int>(pos.x - size.y / 2),
+				static_cast<int>(pos.y - size.x),
+				static_cast<int>(size.y),
+				static_cast<int>(maxSize.x),
+				0.0f,
+				color,
+				kFillModeSolid
+			);
+		}
+	}
+	
+	
 }
