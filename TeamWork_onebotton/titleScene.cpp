@@ -30,7 +30,7 @@ void TitleScene::onInput(char* keys, char* prekeys)
     }
 
     if (h_ >= 1400) {
-        sceneManager.switchScene(SceneManager::SceneType::StageSelect);
+        sceneManager.switchScene(SceneManager::SceneType::Game);
     }
 }
 
