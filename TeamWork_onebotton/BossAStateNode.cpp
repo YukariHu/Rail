@@ -321,7 +321,7 @@ void RandomShottingMoveState::onUpdate()
 	passTime += deltaTime;
 	float t = passTime / totalTime;
 
-	float easeT = EaseInOut(t);
+	float easeT = Easing::EaseInOut(t);
 	boss->Setposition(startPos + (targetPos - startPos) * easeT);
 
 	if (t >= 1.0f)
@@ -415,7 +415,7 @@ void DeviationShotMoveState::onUpdate()
 	passTime += deltaTime;
 	float t = passTime / totalTime;
 
-	float easeT = EaseInOut(t);
+	float easeT = Easing::EaseInOut(t);
 	boss->Setposition(startPos + (targetPos - startPos) * easeT);
 
 	if (t >= 1.0f)
