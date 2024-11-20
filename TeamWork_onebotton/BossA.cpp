@@ -2,8 +2,12 @@
 #include "BossAStateNode.h"
 #include "Bullet.h"
 #include "Beam.h"
+#include "DeviationShotBullet.h"
+#include "Player.h"
+
 #define PI 3.1415926f
 extern std::vector<Bullet*> bulletList;
+extern Charactor* player;
 
 BossA::BossA()
 {
@@ -18,8 +22,12 @@ BossA::BossA()
 	stateMachine.RegisterState("beamFire",new BeamFireState());
 	stateMachine.RegisterState("StraightLineFire", new StraightLineFire());
 	stateMachine.RegisterState("moveB", new MoveBState());
+	stateMachine.RegisterState("RandomShotting", new RandomShotting());
+	stateMachine.RegisterState("RandomShottingMove", new RandomShottingMoveState());
+	stateMachine.RegisterState("DeviationShot", new DeviationShot());
+	stateMachine.RegisterState("DeviationShotMove", new DeviationShotMoveState());
 
-	stateMachine.SetEntry("idle");
+	stateMachine.SetEntry("DeviationShotMove");
 }
 
 
@@ -53,6 +61,29 @@ void BossA::StraightFire()
 	Bullet* bullet = new Bullet(pos, direction);
 	bulletList.push_back(bullet);
 }
+
+void BossA::RandomFire()
+{
+	Vector2 direction = { cosf(float(rand() % 180) * PI / float(rand() % 180)), sinf(float(rand() % 180)* PI / 180) };
+	Bullet* bullet = new Bullet(pos, direction);
+	bulletList.push_back(bullet);
+}
+
+void BossA::DeviationFire() {
+	
+	Vector2 playerPosition = player->Getposition(); 
+
+	float predictionTime = 3.0f;
+	Vector2 predictedPosition;
+	predictedPosition.x = playerPosition.x + 1.0f * predictionTime;
+	predictedPosition.y = playerPosition.y; 
+
+	float angle = atan2(predictedPosition.y - pos.y, predictedPosition.x - pos.x);
+
+	DeviationShotBullet* bullet = new DeviationShotBullet(pos, { angle, angle });
+	bulletList.push_back(bullet);
+}
+
 
 void BossA::BeamFire()
 {
