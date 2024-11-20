@@ -41,7 +41,6 @@ void Player::onInput(char* keys, char* prekeys)
 void Player::onUpdate()
 {
 	Charactor::onUpdate();
-	pos.x += 1.0f;
 
 
 	if (t_ < 1.0f) {

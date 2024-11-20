@@ -41,6 +41,7 @@ void StageScene::onInput(char* keys, char* prekeys)
 	{
 		sceneManager.switchScene(SceneManager::SceneType::StageSelect);
 	}
+	player->onInput(keys,prekeys);
 }
 
 void StageScene::update()
