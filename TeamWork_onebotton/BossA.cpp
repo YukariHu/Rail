@@ -73,7 +73,7 @@ void BossA::DeviationFire() {
 	Vector2 playerPosition = player->Getposition();
 	Vector2 playerVelocity = player->GetVelocity(); 
 
-	float predictionTime = 1.0f;
+	float predictionTime = 180.0f;
 	Vector2 predictedPosition;
 	predictedPosition.x = playerPosition.x + playerVelocity.x * predictionTime;
 	predictedPosition.y = playerPosition.y; 
