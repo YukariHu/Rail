@@ -22,7 +22,8 @@ void DeviationShotBullet::onUpdate()
 		isCanRemove = true;
 	}
 }
-void DeviationShotBullet::onDraw()
+void DeviationShotBullet::onDraw(const Camera& camera)
 {
-	Novice::DrawTriangle(static_cast<int>(pos.x ), static_cast<int>(pos.y + size.y), static_cast<int>(pos.x + size.x), static_cast<int>(pos.y - size.y), static_cast<int>(pos.x - size.x), static_cast<int>(pos.y - size.y), WHITE, kFillModeSolid);
+	const Vector2& cameraPos = camera.GetPos();
+	Novice::DrawTriangle(static_cast<int>(pos.x - cameraPos.x), static_cast<int>(pos.y + size.y - cameraPos.y), static_cast<int>(pos.x + size.x - cameraPos.x), static_cast<int>(pos.y - size.y - cameraPos.y), static_cast<int>(pos.x - size.x - cameraPos.x), static_cast<int>(pos.y - size.y - cameraPos.y), WHITE, kFillModeSolid);
 }

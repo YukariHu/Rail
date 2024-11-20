@@ -8,7 +8,7 @@ public:
 	~BossA() = default;
 
 	void onUpdate() override;
-	void onDraw() override;
+	void onDraw(const Camera& camera) override;
 
 	void CircleFire(int bulletNum);
 	void StraightFire();

@@ -10,9 +10,11 @@ void Charactor::onUpdate()
     }
 }
 
-void Charactor::onDraw()
+void Charactor::onDraw(const Camera& camera)
 {
-    Novice::DrawEllipse(static_cast<int>(pos.x),static_cast<int>(pos.y), static_cast<int>(size.x), static_cast<int>(size.x),0.0f,WHITE,kFillModeSolid);
+    (void)camera;
+    const Vector2& cameraPos = camera.GetPos();
+    Novice::DrawEllipse(static_cast<int>(pos.x - cameraPos.x),static_cast<int>(pos.y - cameraPos.y), static_cast<int>(size.x), static_cast<int>(size.x),0.0f,WHITE,kFillModeSolid);
 }
 
 void Charactor::onHurt(int damage)

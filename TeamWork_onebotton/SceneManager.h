@@ -23,7 +23,7 @@ public:
 	void onInput(char* keys, char* prekeys);
 	void update();
 	
-	void draw();
+	void draw(const Camera& camera);
 
 	void setCurrentScene(Scene* scene);
 

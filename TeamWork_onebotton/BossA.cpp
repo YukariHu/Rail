@@ -58,12 +58,13 @@ void BossA::onUpdate()
 
 }
 
-void BossA::onDraw()
+void BossA::onDraw(const Camera& camera)
 {
 	Novice::DrawEllipse(static_cast<int>(pos.x), static_cast<int>(pos.y), static_cast<int>(size.x), static_cast<int>(size.x), 0.0f, GetColor(255,255,255,alpha_), kFillModeSolid);
 	//Novice::ScreenPrintf(0,30,"%f",target->GetSize().x);
     
 }
+
 
 void BossA::CircleFire(int bulletNum)
 {

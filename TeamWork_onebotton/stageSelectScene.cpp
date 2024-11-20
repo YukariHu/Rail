@@ -41,8 +41,9 @@ void StageSelectScene::update()
 {
 }
 
-void StageSelectScene::draw()
+void StageSelectScene::draw(const Camera& camera)
 {
+	(void)camera;
 	Novice::DrawSprite(0,0, stageSelectBackground,1.0f,1.0f,0.0f,WHITE);
 	Novice::ScreenPrintf(0,0,"select:-> <- stageId %d", sceneManager.selectedStage);
 }

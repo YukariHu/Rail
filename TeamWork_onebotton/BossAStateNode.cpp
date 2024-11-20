@@ -13,6 +13,7 @@ extern int windowWidth;
 
 float deltaTime = 1.0f / 60.0f;
 
+#pragma region IdleState
 IdleState::IdleState()
 {
 	timer.set_one_shot(true);
@@ -45,6 +46,7 @@ void IdleState::onUpdate()
 
 
 }
+#pragma endregion
 
 #pragma region CircleFireState
 
@@ -85,8 +87,10 @@ void CircleFireState::onExit()
 	currentFireCount = 0;
 	bulletNum = 3;
 }
+#pragma endregion
 
 
+#pragma region MoveAState
 MoveAState::MoveAState()
 {
 	currentMoveIndex = 0;
@@ -143,6 +147,7 @@ void MoveAState::onExit()
 		currentMoveIndex = 0;
 	}
 }
+#pragma endregion
 
 #pragma endregion
 

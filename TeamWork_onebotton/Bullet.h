@@ -1,6 +1,7 @@
 #pragma once
 #include "MyVector2.h"
 #include <functional>
+#include "Camera.h"
 
 class Bullet
 {
@@ -10,7 +11,7 @@ public:
 	~Bullet() = default;
 
 	virtual void onUpdate();
-	virtual void onDraw();
+	virtual void onDraw(const Camera& camera);
 protected:
 
 	Vector2 pos;

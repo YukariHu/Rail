@@ -12,7 +12,7 @@ public:
 
 
 	void onUpdate() override;
-    void onDraw() override;
+    void onDraw(const Camera& camera) override;
 
 private:
 	Timer aimTimer;
