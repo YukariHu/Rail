@@ -1,4 +1,5 @@
 #pragma once
+#include "MyVector2.h"
 #include "Charactor.h"
 
 class Player : public Charactor
@@ -15,16 +16,16 @@ public:
 	bool lineChange_;
 
 	
-	float startLineX;
-	float startLineY;
-	float endLineX;
-	float endLineY;
+	Vector2 startLine;
+	Vector2 endLine;
 
-	float startLineX2;
-	float startLineY2;
-	float endLineX2;
-	float endLineY2;
+	Vector2 startLine2;
+	Vector2 endLine2;
 
+	float startPointX[3] = { 0.0f,150.0f,250.0f };
+	float startPointY[3] = { 500.0f,600.0f,0.0f };
+	float endPointX[3] = { 1280.0f,150.0f,250.0f };
+	float endPointY[3] = { 500.0f,600.0f,720.0f };
 	bool lineShift;
 
 private:

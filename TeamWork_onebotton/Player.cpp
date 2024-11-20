@@ -9,15 +9,10 @@ Player::Player()
 	t_ = 0.0f;
 	lineChange_ = false;
 
-	startLineX = 0.0f;
-	startLineY = 500.0f;
-	endLineX = 1280.0f;
-	endLineY = 500.0f;
-
-	startLineX2 = 0.0f;
-	startLineY2 = 600.0f;
-	endLineX2 = 1280.0f;
-	endLineY2 = 600.0f;
+	startLine = { 0.0f,500.0f };
+	endLine = { 1280.0f ,500.0f };
+	startLine2 = { 0.0f, 600.0f };
+	endLine2 = { 1280.0f ,600.0f };
 
 	lineShift = false;
 }
@@ -53,11 +48,11 @@ void Player::onUpdate()
 		t_ += velocity.x;
 
 		if (lineChange_ == false) {
-			pos.x = (1 - t_) * startLineX + t_ * endLineX;
-			pos.y = (1 - t_) * startLineY + t_ * endLineY;
+			pos.x = (1 - t_) * startLine.x + t_ * endLine.x;
+			pos.y = (1 - t_) * startLine.y + t_ * endLine.y;
 		} else {
-			pos.x = (1 - t_) * startLineX2 + t_ * endLineX2;
-			pos.y = (1 - t_) * startLineY2 + t_ * endLineY2;
+			pos.x = (1 - t_) * startLine2.x + t_ * endLine2.x;
+			pos.y = (1 - t_) * startLine2.y + t_ * endLine2.y;
 		}
 	} else {
 		t_ = 0.0f;
@@ -70,7 +65,7 @@ void Player::onDraw()
 {
 	Novice::DrawEllipse(static_cast<int>(pos.x), static_cast<int>(pos.y), static_cast<int>(size.x), static_cast<int>(size.x), 0.0f, color, kFillModeSolid);
 
-	Novice::DrawLine(static_cast<int>(startLineX), static_cast<int>(startLineY), static_cast<int>(endLineX), static_cast<int>(endLineY), WHITE);
-	Novice::DrawLine(static_cast<int>(startLineX2), static_cast<int>(startLineY2), static_cast<int>(endLineX2), static_cast<int>(endLineY2), WHITE);
+	Novice::DrawLine(static_cast<int>(startLine.x), static_cast<int>(startLine.y), static_cast<int>(endLine.x), static_cast<int>(endLine.y), WHITE);
+	Novice::DrawLine(static_cast<int>(startLine2.x), static_cast<int>(startLine2.y), static_cast<int>(endLine2.x), static_cast<int>(endLine2.y), WHITE);
 
 }
