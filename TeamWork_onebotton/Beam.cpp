@@ -4,11 +4,11 @@
 
 
 extern float deltaTime;
-Beam::Beam(Vector2 firePos, Vector2 _dir)
+Beam::Beam(Vector2 firePos, Vector2 _dir, float lifeTime)
 {
 		this->dir = _dir;
 		this->pos = firePos;
-		
+		this->lifeTime = lifeTime;
 
 		maxSize.x = 1400.0f;//長さ
 		maxSize.y = 30.0f;//幅
@@ -32,7 +32,7 @@ Beam::Beam(Vector2 firePos, Vector2 _dir)
 			});
 		
 		lifeTimer.set_one_shot(true);
-		lifeTimer.set_wait_time(1.0f);
+		lifeTimer.set_wait_time(lifeTime);
 		lifeTimer.set_on_timeout([&]() {
 			isOver = true;
 			isEnable = false;
@@ -60,7 +60,7 @@ void Beam::onUpdate()
 		{
 			easT = 1.0f;
 		}
-		size.x = maxSize.x * easT * 10.0f;
+		size.x = maxSize.x * easT * 3.0f;
 		size.y = maxSize.y * easT ;
 	}
 	else {
@@ -90,8 +90,8 @@ void Beam::onDraw()
 				static_cast<int>(size.x),
 				static_cast<int>(size.y),
 				0.0f,
-				color,
-				kFillModeWireFrame
+				0xFFFFFF08,
+				kFillModeSolid
 
 			);
 		}
@@ -133,8 +133,8 @@ void Beam::onDraw()
 				static_cast<int>(size.x),
 				static_cast<int>(size.y),
 				0.0f,
-				color,
-				kFillModeWireFrame
+				0xFFFFFF08,
+				kFillModeSolid
 
 			);
 		}
@@ -174,8 +174,8 @@ void Beam::onDraw()
 				static_cast<int>(size.y),
 				static_cast<int>(size.x),
 				0.0f,
-				color,
-				kFillModeWireFrame
+				0xFFFFFF08,
+				kFillModeSolid
 			);
 		}
 		if (!isAiming && !isOver)
@@ -213,8 +213,8 @@ void Beam::onDraw()
 				static_cast<int>(size.y),
 				static_cast<int>(size.x),
 				0.0f,
-				color,
-				kFillModeWireFrame
+				0xFFFFFF08,
+				kFillModeSolid
 			);
 		}
 		if (!isAiming && !isOver)

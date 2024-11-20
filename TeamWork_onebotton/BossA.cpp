@@ -9,6 +9,14 @@
 extern std::vector<Bullet*> bulletList;
 extern Charactor* player;
 
+
+int GetColor(unsigned int red, unsigned int  green, unsigned int blue, int  alpha)
+{
+	//unsigned char top = 0x;
+	int color = (red << 24) | (green << 16) | (blue << 8) | alpha;
+	return color;
+}
+
 BossA::BossA()
 {
 	color = 0xB6BBC4FF;
@@ -16,18 +24,24 @@ BossA::BossA()
 	pos = { 400.0f, 300.0f };
 	velocity = { 0.0f, 0.0f };
 
+	alpha_ = 255;
+
 	stateMachine.RegisterState("idle",new IdleState());
 	stateMachine.RegisterState("circlefire", new CircleFireState());
 	stateMachine.RegisterState("moveA",new MoveAState());
-	stateMachine.RegisterState("beamFire",new BeamFireState());
 	stateMachine.RegisterState("StraightLineFire", new StraightLineFire());
 	stateMachine.RegisterState("moveB", new MoveBState());
 	stateMachine.RegisterState("RandomShotting", new RandomShotting());
 	stateMachine.RegisterState("RandomShottingMove", new RandomShottingMoveState());
 	stateMachine.RegisterState("DeviationShot", new DeviationShot());
 	stateMachine.RegisterState("DeviationShotMove", new DeviationShotMoveState());
+	stateMachine.RegisterState("BeamLeftToRight", new BeamLeftToRightState());
+	stateMachine.RegisterState("BeamLeftToRightX", new BeamLeftToRightXState());
+	stateMachine.RegisterState("BeamRail", new BeamRailState());
+	stateMachine.RegisterState("BeamUpToDown", new BeamUpToDownState());
+	stateMachine.RegisterState("BeamCross", new BeamCrossState());
 
-	stateMachine.SetEntry("DeviationShotMove");
+	stateMachine.SetEntry("BeamCross");
 }
 
 
@@ -36,11 +50,17 @@ void BossA::onUpdate()
 {
 	stateMachine.onUpdate();
 	Charactor::onUpdate();
+
+	if (alpha_ <= 0) {
+
+		alpha_ = 0;
+	}
+
 }
 
 void BossA::onDraw()
 {
-	Novice::DrawEllipse(static_cast<int>(pos.x), static_cast<int>(pos.y), static_cast<int>(size.x), static_cast<int>(size.x), 0.0f, color, kFillModeSolid);
+	Novice::DrawEllipse(static_cast<int>(pos.x), static_cast<int>(pos.y), static_cast<int>(size.x), static_cast<int>(size.x), 0.0f, GetColor(255,255,255,alpha_), kFillModeSolid);
 	//Novice::ScreenPrintf(0,30,"%f",target->GetSize().x);
     
 }
@@ -89,7 +109,8 @@ void BossA::BeamFire()
 {
 	Vector2 direction = { 1.0f, 0.0f };
 	Vector2 firepos = {-30.0f,300.0f};
-	Beam* beam = new Beam(firepos, direction);
+	float lifeTime = 1.0f;
+	Beam* beam = new Beam(firepos, direction,lifeTime);
 	bulletList.push_back(beam);
 
 }

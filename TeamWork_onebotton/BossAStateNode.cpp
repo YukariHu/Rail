@@ -46,6 +46,8 @@ void IdleState::onUpdate()
 
 }
 
+#pragma region CircleFireState
+
 CircleFireState::CircleFireState()
 {
 	fireCount = 3;
@@ -142,6 +144,9 @@ void MoveAState::onExit()
 	}
 }
 
+#pragma endregion
+
+#pragma region StraightLineFire
 
 StraightLineFire::StraightLineFire()
 {
@@ -182,45 +187,6 @@ void StraightLineFire::onExit()
 	currentFireCount = 0;
 }
 
-BeamFireState :: BeamFireState()
-{
-	fireCount = 3;
-	timer.set_one_shot(false);
-	timer.set_wait_time(0.5f);
-	timer.set_on_timeout([&]()
-	{
-		currentFireCount++;
-		//fire
-		//Beam* beam = new Beam({-20.0f, 20 + currentFireCount * 80.0f}, { 1.0f,0.0f, });
-		//bulletList.push_back(beam);
-		Beam* beam2 = new Beam({ windowWidth + 20.0f, 20 + currentFireCount * 120.0f }, { -1.0f,0.0f, });
-		bulletList.push_back(beam2);
-
-		//Beam* beam3 = new Beam({ 20.0f + currentFireCount * 100.0f, -20.0f }, { 0.0f,1.0f, });
-		//bulletList.push_back(beam3);
-	});
-}
-
-void BeamFireState::onEnter()
-{
-	isOver = false;
-	currentFireCount = 0;
-	
-}
-void BeamFireState::onUpdate()
-{
-	BossA* bossA = (BossA*)(boss);
-	timer.on_update(deltaTime);
-	//bossA->BeamFire();
-	if (currentFireCount >= fireCount)
-	{
-		bossA->SwitchState("idle");
-	}
-	
-}
-
-
-
 MoveBState::MoveBState()
 {
 	currentMoveIndex = 0;
@@ -240,6 +206,8 @@ void MoveBState::onEnter()
 }
 void MoveBState::onUpdate()
 {
+	Novice::ScreenPrintf(0, 40, "%d", moveIndex);
+
 	passTime += deltaTime;
 	float t = passTime / totalTime;
 	if (t >= 1.0f)
@@ -259,6 +227,10 @@ void MoveBState::onUpdate()
 void MoveBState::onExit()
 {
 }
+
+#pragma endregion
+
+#pragma region RandomShotting
 
 RandomShotting::RandomShotting()
 {
@@ -353,6 +325,10 @@ void RandomShottingMoveState::onExit()
 	}
 }
 
+#pragma endregion
+
+#pragma region DeviationShot
+
 DeviationShot::DeviationShot()
 {
 	fireCount = 10;
@@ -446,3 +422,213 @@ void DeviationShotMoveState::onExit()
 		currentMoveIndex = 0;
 	}
 }
+
+#pragma endregion
+
+#pragma region BeamLeftToRightState
+
+BeamLeftToRightState::BeamLeftToRightState()
+{
+	fireCount = 40;
+	timer.set_one_shot(false);
+	timer.set_wait_time(0.1f);
+	timer.set_on_timeout([&]()
+		{
+			currentFireCount++;
+			//fire
+			Beam* beam2 = new Beam({ 5.0f + currentFireCount * 40.0f , windowHeight + 5.0f}, { 0.0f, -1.0f },1.0f);
+			bulletList.push_back(beam2);
+
+		});
+}
+
+void BeamLeftToRightState::onEnter()
+{
+	isOver = false;
+	currentFireCount = 0;
+}
+
+void BeamLeftToRightState::onUpdate()
+{
+	BossA* bossA = (BossA*)(boss);
+	timer.on_update(deltaTime);
+
+	if (currentFireCount >= fireCount)
+	{
+		bossA->SwitchState("idle");
+	}
+}
+
+#pragma endregion
+
+#pragma region BeamLeftToRightXState
+
+BeamLeftToRightXState::BeamLeftToRightXState()
+{
+	fireCount = 15;
+	timer.set_one_shot(false);
+	timer.set_wait_time(0.1f);
+	timer.set_on_timeout([&]()
+		{
+			currentFireCount++;
+			//fire
+			if (currentFireCount % 2 == 1) {
+				Beam* beam2 = new Beam({ -20.0f, -20.0f + currentFireCount * 50.0f }, { 1.0f, 0.0f }, 0.5f);
+
+				bulletList.push_back(beam2);
+
+			} 
+
+			if(currentFireCount % 2 == 0){
+				Beam* beam2 = new Beam({ windowWidth + 20.0f, -20.0f + currentFireCount * 50.0f }, { -1.0f, 0.0f }, 0.5f);
+
+				bulletList.push_back(beam2);
+
+			}
+		});
+}
+
+void BeamLeftToRightXState::onEnter()
+{
+	isOver = false;
+	currentFireCount = 0;
+}
+
+void BeamLeftToRightXState::onUpdate()
+{
+	BossA* bossA = (BossA*)(boss);
+	timer.on_update(deltaTime);
+
+	if (currentFireCount >= fireCount)
+	{
+		bossA->SwitchState("idle");
+	}
+}
+
+#pragma endregion
+
+#pragma region BeamRailState
+
+BeamRailState::BeamRailState()
+{
+	fireCount = 5;
+	timer.set_one_shot(false);
+	timer.set_wait_time(1.0f);
+	timer.set_on_timeout([&]()
+		{
+			currentFireCount++;
+			//fire
+			randCount = rand() % 2;
+
+			if (randCount == 0) {
+				Beam* beam2 = new Beam({ (windowWidth / 2.0f) + 100.0f , -20.0f }, { 0.0f, 1.0f }, 0.2f);
+
+				bulletList.push_back(beam2);
+
+			}
+
+			if (randCount == 1) {
+				Beam* beam2 = new Beam({ (windowWidth / 2.0f) - 100.0f , -20.0f }, { 0.0f, 1.0f }, 0.2f);
+
+				bulletList.push_back(beam2);
+
+			}
+		});
+
+}
+
+void BeamRailState::onEnter()
+{
+	isOver = false;
+	currentFireCount = 0;
+
+	randCount = rand() % 2;
+}
+
+void BeamRailState::onUpdate()
+{
+	BossA* bossA = (BossA*)(boss);
+	timer.on_update(deltaTime);
+
+	if (currentFireCount >= fireCount)
+	{
+		bossA->SwitchState("idle");
+	}
+
+}
+
+#pragma endregion
+
+#pragma region BeamUpToDownState
+
+BeamUpToDownState::BeamUpToDownState()
+{
+	fireCount = 40;
+	timer.set_one_shot(false);
+	timer.set_wait_time(0.1f);
+	timer.set_on_timeout([&]()
+		{
+			currentFireCount++;
+			//fire
+			Beam* beam2 = new Beam({ -10.0f + currentFireCount * 40.0f , -20.0f }, { 0.0f, 1.0f }, 0.2f);
+			bulletList.push_back(beam2);
+
+		});
+}
+
+void BeamUpToDownState::onEnter()
+{
+	isOver = false;
+	currentFireCount = 0;
+}
+
+void BeamUpToDownState::onUpdate()
+{
+	BossA* bossA = (BossA*)(boss);
+	timer.on_update(deltaTime);
+
+	if (currentFireCount >= fireCount)
+	{
+		bossA->SwitchState("idle");
+	}
+}
+
+#pragma endregion
+
+#pragma region BeamCrossState
+
+BeamCrossState::BeamCrossState()
+{
+	fireCount = 40;
+	timer.set_one_shot(false);
+	timer.set_wait_time(0.1f);
+	timer.set_on_timeout([&]()
+		{
+			currentFireCount++;
+			//fire
+			Beam* beam2 = new Beam({ -10.0f + currentFireCount * 40.0f , -20.0f }, { 0.0f, 1.0f }, 0.2f);
+			bulletList.push_back(beam2);
+
+			Beam* beam1 = new Beam({ -20.0f ,-10.0f + currentFireCount * 40.0f}, { 1.0f, 0.0f }, 0.2f);
+			bulletList.push_back(beam1);
+		});
+}
+
+void BeamCrossState::onEnter()
+{
+	isOver = false;
+	currentFireCount = 0;
+}
+
+void BeamCrossState::onUpdate()
+{
+	BossA* bossA = (BossA*)(boss);
+	timer.on_update(deltaTime);
+
+	if (currentFireCount >= fireCount)
+	{
+		bossA->SwitchState("idle");
+	}
+}
+
+#pragma endregion

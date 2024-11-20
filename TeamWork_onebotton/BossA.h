@@ -20,6 +20,6 @@ public:
 	void DeviationFire();
 private:
 	
-
+	int alpha_;
 	
 };

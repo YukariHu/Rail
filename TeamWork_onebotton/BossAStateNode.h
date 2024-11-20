@@ -108,23 +108,6 @@ private:
 	bool isMove;
 };
 
-class BeamFireState : public StateNode
-{
-public:
-	BeamFireState();
-	~BeamFireState() = default;
-
-	void onEnter() override;
-	void onUpdate() override;
-
-private:
-	Timer timer;
-	//撃つ回数
-	int fireCount;
-	int currentFireCount;
-
-	bool isOver;
-};
 
 class MoveBState : public StateNode
 {
@@ -237,4 +220,97 @@ private:
 	float passTime;
 	bool isMove;
 
+};
+
+class BeamLeftToRightState : public StateNode
+{
+public:
+	BeamLeftToRightState();
+	~BeamLeftToRightState() = default;
+
+	void onEnter() override;
+	void onUpdate() override;
+
+private:
+	Timer timer;
+	//撃つ回数
+	int fireCount;
+	int currentFireCount;
+
+	bool isOver;
+};
+
+class BeamLeftToRightXState : public StateNode
+{
+public:
+	BeamLeftToRightXState();
+	~BeamLeftToRightXState() = default;
+
+	void onEnter() override;
+	void onUpdate() override;
+
+private:
+	Timer timer;
+	//撃つ回数
+	int fireCount;
+	int currentFireCount;
+
+	bool isOver;
+};
+
+class BeamRailState : public StateNode
+{
+public:
+	BeamRailState();
+	~BeamRailState() = default;
+
+	void onEnter() override;
+	void onUpdate() override;
+
+private:
+	Timer timer;
+	//撃つ回数
+	int fireCount;
+	int currentFireCount;
+
+	bool isOver;
+
+	int randCount;
+};
+
+
+class BeamUpToDownState : public StateNode
+{
+public:
+	BeamUpToDownState();
+	~BeamUpToDownState() = default;
+
+	void onEnter() override;
+	void onUpdate() override;
+
+private:
+	Timer timer;
+	//撃つ回数
+	int fireCount;
+	int currentFireCount;
+
+	bool isOver;
+};
+
+class BeamCrossState : public StateNode
+{
+public:
+	BeamCrossState();
+	~BeamCrossState() = default;
+
+	void onEnter() override;
+	void onUpdate() override;
+
+private:
+	Timer timer;
+	//撃つ回数
+	int fireCount;
+	int currentFireCount;
+
+	bool isOver;
 };
