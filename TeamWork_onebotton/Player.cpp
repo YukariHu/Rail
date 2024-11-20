@@ -8,6 +8,10 @@ Player::Player()
 	velocity = { 0.0f, 0.0f };
 }
 
+void Player::onInput(char* keys, char* prekeys)
+{
+}
+
 void Player::onUpdate()
 {
 	Charactor::onUpdate();

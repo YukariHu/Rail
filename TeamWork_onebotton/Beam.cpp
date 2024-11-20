@@ -9,7 +9,6 @@ Beam::Beam(Vector2 firePos, Vector2 _dir)
 		this->dir = _dir;
 		this->pos = firePos;
 		
-
 		maxSize.x = 1400.0f;//長さ
 		maxSize.y = 30.0f;//幅
 		size.x = 0.0f;//長さ

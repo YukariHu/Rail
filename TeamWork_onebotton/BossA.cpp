@@ -27,7 +27,7 @@ BossA::BossA()
 	stateMachine.RegisterState("DeviationShot", new DeviationShot());
 	stateMachine.RegisterState("DeviationShotMove", new DeviationShotMoveState());
 
-	stateMachine.SetEntry("DeviationShotMove");
+	stateMachine.SetEntry("beamFire");
 }
 
 

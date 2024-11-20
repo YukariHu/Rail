@@ -193,11 +193,10 @@ BeamFireState :: BeamFireState()
 		//fire
 		//Beam* beam = new Beam({-20.0f, 20 + currentFireCount * 80.0f}, { 1.0f,0.0f, });
 		//bulletList.push_back(beam);
-		Beam* beam2 = new Beam({ windowWidth + 20.0f, 20 + currentFireCount * 120.0f }, { -1.0f,0.0f, });
-		bulletList.push_back(beam2);
-
-		//Beam* beam3 = new Beam({ 20.0f + currentFireCount * 100.0f, -20.0f }, { 0.0f,1.0f, });
-		//bulletList.push_back(beam3);
+		//Beam* beam2 = new Beam({ windowWidth + 20.0f, 20 + currentFireCount * 120.0f }, { -1.0f,0.0f, });
+		//bulletList.push_back(beam2);
+		Beam* beam3 = new Beam({ 20.0f + currentFireCount * 100.0f, -20.0f }, { 0.0f,1.0f, });
+		bulletList.push_back(beam3);
 	});
 }
 
