@@ -1,6 +1,7 @@
 #pragma once
 #include "MyVector2.h"
 #include "Charactor.h"
+#include "PlayerParticles.h"
 
 class Player : public Charactor
 {
@@ -15,10 +16,8 @@ public:
 	float t_;
 	bool lineChange_;
 
-	
 	Vector2 startLine;
 	Vector2 endLine;
-
 	Vector2 startLine2;
 	Vector2 endLine2;
 
@@ -27,6 +26,8 @@ public:
 	float endPointX[3] = { 1280.0f,150.0f,250.0f };
 	float endPointY[3] = { 500.0f,600.0f,720.0f };
 	bool lineShift;
+
+	PlayerParticles* particl_;
 
 private:
 

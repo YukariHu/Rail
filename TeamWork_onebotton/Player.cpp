@@ -15,6 +15,8 @@ Player::Player()
 	endLine2 = { 1280.0f ,600.0f };
 
 	lineShift = false;
+
+	particl_ = new PlayerParticles();
 }
 
 void Player::onInput(char* keys, char* prekeys)
@@ -43,7 +45,6 @@ void Player::onInput(char* keys, char* prekeys)
 void Player::onUpdate()
 {
 	Charactor::onUpdate();
-
 
 	if (t_ < 1.0f) {
 		t_ += velocity.x;
@@ -88,6 +89,8 @@ void Player::onUpdate()
 		}
 	}
 
+	particl_->Update(pos, startLine);
+
 
 }
 
@@ -98,4 +101,5 @@ void Player::onDraw()
 	Novice::DrawLine(static_cast<int>(startLine.x), static_cast<int>(startLine.y), static_cast<int>(endLine.x), static_cast<int>(endLine.y), WHITE);
 	Novice::DrawLine(static_cast<int>(startLine2.x), static_cast<int>(startLine2.y), static_cast<int>(endLine2.x), static_cast<int>(endLine2.y), WHITE);
 
+	particl_->Draw();
 }
