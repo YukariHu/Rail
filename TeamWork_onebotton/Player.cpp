@@ -10,6 +10,8 @@ Player::Player()
 
 void Player::onInput(char* keys, char* prekeys)
 {
+	(void)keys;
+	(void)prekeys;
 }
 
 void Player::onUpdate()
