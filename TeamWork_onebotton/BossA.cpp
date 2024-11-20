@@ -7,6 +7,7 @@
 
 #define PI 3.1415926f
 extern std::vector<Bullet*> bulletList;
+extern Charactor* player;
 
 BossA::BossA()
 {
@@ -68,14 +69,12 @@ void BossA::RandomFire()
 }
 
 void BossA::DeviationFire() {
-	Player *player = new Player();
+	
+	Vector2 playerPosition = player->Getposition(); 
 
-	Vector2 playerPosition = player->Getposition();
-	Vector2 playerVelocity = player->GetVelocity(); 
-
-	float predictionTime = 180.0f;
+	float predictionTime = 3.0f;
 	Vector2 predictedPosition;
-	predictedPosition.x = playerPosition.x + playerVelocity.x * predictionTime;
+	predictedPosition.x = playerPosition.x + 1.0f * predictionTime;
 	predictedPosition.y = playerPosition.y; 
 
 	float angle = atan2(predictedPosition.y - pos.y, predictedPosition.x - pos.x);

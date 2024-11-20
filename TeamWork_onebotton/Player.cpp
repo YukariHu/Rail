@@ -18,10 +18,3 @@ void Player::onDraw()
 {
 	Novice::DrawEllipse(static_cast<int>(pos.x), static_cast<int>(pos.y), static_cast<int>(size.x), static_cast<int>(size.x), 0.0f, color, kFillModeSolid);
 }
-
-Vector2 Player::GetVelocity() const {
-	Vector2 velo;
-	velo.x = velocity.x; 
-	velo.y = 0.0f; 
-	return velo;
-}

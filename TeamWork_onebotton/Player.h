@@ -10,7 +10,6 @@ public:
 
 	void onUpdate() override;
 	void onDraw() override;
-	Vector2 GetVelocity() const;
 private:
 
 };
