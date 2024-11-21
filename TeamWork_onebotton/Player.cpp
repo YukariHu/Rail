@@ -6,6 +6,7 @@ Player::Player()
 	size = { 30.0f, 30.0f };
 	pos = { 600.0f, 600.0f };
 	velocity = { 0.0f, 0.0f };
+	id = 0;
 }
 
 void Player::onInput(char* keys, char* prekeys)

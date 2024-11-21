@@ -21,6 +21,9 @@ protected:
 	float velocity;
 
 	int damage;
+
+	//0:player 1:boss
+	int target;
 	
 
 	std::function<void()> callback;

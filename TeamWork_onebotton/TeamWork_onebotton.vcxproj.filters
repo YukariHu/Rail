@@ -110,6 +110,9 @@
     <ClCompile Include="Beam.cpp">
       <Filter>Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="DeviationShotBullet.cpp">
+      <Filter>Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -245,6 +248,10 @@
     </ClInclude>
     <ClInclude Include="Easing.h" />
     <ClInclude Include="Beam.h">
+      <Filter>Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="DeviationShotBullet.h">
       <Filter>Bullet</Filter>
     </ClInclude>
   </ItemGroup>

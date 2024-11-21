@@ -15,6 +15,7 @@ BossA::BossA()
 	size = { 60.0f, 60.0f };
 	pos = { 400.0f, 300.0f };
 	velocity = { 0.0f, 0.0f };
+	id = 1;
 
 	stateMachine.RegisterState("idle",new IdleState());
 	stateMachine.RegisterState("circlefire", new CircleFireState());
