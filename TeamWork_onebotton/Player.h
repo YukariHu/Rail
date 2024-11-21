@@ -2,6 +2,7 @@
 #include "MyVector2.h"
 #include "Charactor.h"
 #include "PlayerParticles.h"
+#include "PlayerBullet.h"
 
 class Player : public Charactor
 {
@@ -28,6 +29,8 @@ public:
 	bool lineShift;
 
 	PlayerParticles* particl_;
+
+	PlayerBullet* bullet_;
 
 private:
 

@@ -17,6 +17,7 @@ Player::Player()
 	lineShift = false;
 
 	particl_ = new PlayerParticles();
+	bullet_ = new PlayerBullet();
 }
 
 void Player::onInput(char* keys, char* prekeys)
@@ -91,6 +92,8 @@ void Player::onUpdate()
 
 	particl_->Update(pos, startLine);
 
+	bullet_->Update(pos);
+
 
 }
 
@@ -102,4 +105,5 @@ void Player::onDraw()
 	Novice::DrawLine(static_cast<int>(startLine2.x), static_cast<int>(startLine2.y), static_cast<int>(endLine2.x), static_cast<int>(endLine2.y), WHITE);
 
 	particl_->Draw();
+	bullet_->Draw();
 }
