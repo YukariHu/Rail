@@ -6,7 +6,8 @@
 class DeviationShotBullet : public Bullet
 {
 public:
-	DeviationShotBullet(Vector2 firePos, Vector2 dir);
+	//targetIDはターゲットのID : 0 : player 1 : boss
+	DeviationShotBullet(Vector2 firePos, Vector2 dir,int targetID);
 	~DeviationShotBullet() = default;
 
 

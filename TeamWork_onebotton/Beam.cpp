@@ -4,18 +4,19 @@
 
 
 extern float deltaTime;
-Beam::Beam(Vector2 firePos, Vector2 _dir, float lifeTime)
+Beam::Beam(Vector2 firePos, Vector2 _dir, float lifeTime,int _targetID)
 {
 		this->dir = _dir;
 		this->pos = firePos;
 		this->lifeTime = lifeTime;
+		this->targetID = _targetID;
 
 		maxSize.x = 1400.0f;//長さ
 		maxSize.y = 30.0f;//幅
 		size.x = 0.0f;//長さ
 		size.y = 0.0f;//幅
 
-		targetID = 1;
+		
 		damage = 1;
 
 		color = WHITE;

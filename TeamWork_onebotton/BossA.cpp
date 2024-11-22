@@ -75,7 +75,8 @@ BossA::BossA()
 
 
 	//stateMachine.SetEntry("beamFire");
-		//bossの目
+	// 
+	//bossの目
 	maxEyeSize = { 15.0f, 20.0f };
 	eyeSize = { maxEyeSize.x, maxEyeSize.y };
 	eyePos = { 0.0f, 0.0f };
@@ -142,7 +143,7 @@ void BossA::CircleFire(int bulletNum)
 for (int i = 0; i < 360; i += 360/ bulletNum)
 	{
 		Vector2 direction = { cosf(i * PI / 180.0f), sinf(i * PI / 180.0f) };
-		Bullet* bullet = new Bullet(pos, direction);
+		Bullet* bullet = new Bullet(pos, direction,0);
 		bulletList.push_back(bullet);
 	}
 }
@@ -150,14 +151,14 @@ for (int i = 0; i < 360; i += 360/ bulletNum)
 void BossA::StraightFire()
 {
 	Vector2 direction = { -1.0f ,0.0f };
-	Bullet* bullet = new Bullet(pos, direction);
+	Bullet* bullet = new Bullet(pos, direction,0);
 	bulletList.push_back(bullet);
 }
 
 void BossA::RandomFire()
 {
 	Vector2 direction = { cosf(float(rand() % 180) * PI / float(rand() % 180)), sinf(float(rand() % 180)* PI / 180) };
-	Bullet* bullet = new Bullet(pos, direction);
+	Bullet* bullet = new Bullet(pos, direction,0);
 	bulletList.push_back(bullet);
 }
 
@@ -200,7 +201,7 @@ void BossA::DeviationFire() {
 
 	float angle = atan2(predictedPosition.y - pos.y, predictedPosition.x - pos.x);
 
-	DeviationShotBullet* bullet = new DeviationShotBullet(pos, { angle, angle });
+	DeviationShotBullet* bullet = new DeviationShotBullet(pos, { angle, angle },0);
 	bulletList.push_back(bullet);
 }
 
@@ -215,7 +216,7 @@ void BossA::BeamFire()
 	Vector2 direction = { 1.0f, 0.0f };
 	Vector2 firepos = {-30.0f,300.0f};
 	float lifeTime = 1.0f;
-	Beam* beam = new Beam(firepos, direction,lifeTime);
+	Beam* beam = new Beam(firepos, direction,lifeTime,0);
 	bulletList.push_back(beam);
 
 }
