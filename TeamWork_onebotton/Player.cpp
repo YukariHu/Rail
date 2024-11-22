@@ -1,5 +1,6 @@
 #include "Player.h"
-
+extern int windowHeight;
+extern int windowWidth;
 Player::Player()
 {
 	color = WHITE;
