@@ -9,15 +9,9 @@ Player::Player()
 	t_ = 0.0f;
 	lineChange_ = false;
 
-	startLine = { 0.0f,500.0f };
-	endLine = { 1280.0f ,500.0f };
-	startLine2 = { 0.0f, 600.0f };
-	endLine2 = { 1280.0f ,600.0f };
-
-	lineShift = false;
-
 	particl_ = new PlayerParticles();
 	bullet_ = new PlayerBullet();
+	lane_ = new PlayerLane();
 }
 
 void Player::onInput(char* keys, char* prekeys)
@@ -38,7 +32,7 @@ void Player::onInput(char* keys, char* prekeys)
 	}
 
 	if (prekeys[DIK_1] == 0 && keys[DIK_1] != 0) {
-		lineShift = true;
+		lane_->lineShift = true;
 	}
 
 }
@@ -51,46 +45,18 @@ void Player::onUpdate()
 		t_ += velocity.x;
 
 		if (lineChange_ == false) {
-			pos.x = (1 - t_) * startLine.x + t_ * endLine.x;
-			pos.y = (1 - t_) * startLine.y + t_ * endLine.y;
+			pos.x = (1 - t_) * lane_->startLine.x + t_ * lane_->endLine.x;
+			pos.y = (1 - t_) * lane_->startLine.y + t_ * lane_->endLine.y;
 		} else {
-			pos.x = (1 - t_) * startLine2.x + t_ * endLine2.x;
-			pos.y = (1 - t_) * startLine2.y + t_ * endLine2.y;
+			pos.x = (1 - t_) * lane_->startLine2.x + t_ * lane_->endLine2.x;
+			pos.y = (1 - t_) * lane_->startLine2.y + t_ * lane_->endLine2.y;
 		}
 	} else {
 		t_ = 0.0f;
-
-		if (lineShift) {
-			lineShift = false;
-
-			
-			if (startLine.x == 0.0f) {
-				startLine.x = startPointX[1];
-				startLine2.x = startPointX[2];
-				endLine.x = endPointX[1];
-				endLine2.x = endPointX[2];
-
-				startLine.y = startPointY[2];
-				startLine2.y = startPointY[2];
-				endLine.y = endPointY[2];
-				endLine2.y = endPointY[2];
-
-				
-			} else {
-				startLine.x = startPointX[0];
-				startLine2.x = startPointX[0];
-				endLine.x = endPointX[0];
-				endLine2.x = endPointX[0];
-
-				startLine.y = startPointY[0];
-				startLine2.y = startPointY[1];
-				endLine.y = endPointY[0];
-				endLine2.y = endPointY[1];
-			}
-		}
+		lane_->update();
 	}
 
-	particl_->Update(pos, startLine);
+	particl_->Update(pos, lane_->startLine);
 
 	bullet_->Update(pos);
 
@@ -101,9 +67,7 @@ void Player::onDraw()
 {
 	Novice::DrawEllipse(static_cast<int>(pos.x), static_cast<int>(pos.y), static_cast<int>(size.x), static_cast<int>(size.x), 0.0f, color, kFillModeSolid);
 
-	Novice::DrawLine(static_cast<int>(startLine.x), static_cast<int>(startLine.y), static_cast<int>(endLine.x), static_cast<int>(endLine.y), WHITE);
-	Novice::DrawLine(static_cast<int>(startLine2.x), static_cast<int>(startLine2.y), static_cast<int>(endLine2.x), static_cast<int>(endLine2.y), WHITE);
-
+	lane_->Draw();
 	particl_->Draw();
 	bullet_->Draw();
 }

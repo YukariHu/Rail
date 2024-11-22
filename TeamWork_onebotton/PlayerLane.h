@@ -9,7 +9,6 @@ public:
 	void update();
 	void Draw();
 
-	bool lineChange_;
 
 	Vector2 startLine;
 	Vector2 endLine;
