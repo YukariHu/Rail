@@ -23,8 +23,6 @@ BossA::BossA()
 	
 	currentStage = 1;
 
-
-
 	alpha_ = 255;
 
 	stateMachine.RegisterState("idle",new IdleState());
@@ -74,14 +72,13 @@ BossA::BossA()
 	} else if (idoleState->GetAttackNum() == 8) {
 		stateMachine.SetEntry("BeamCrossMove");
 	}*/
-}
-	stateMachine.SetEntry("beamFire");
 
 
-	//bossの目
+	//stateMachine.SetEntry("beamFire");
+		//bossの目
 	maxEyeSize = { 15.0f, 20.0f };
 	eyeSize = { maxEyeSize.x, maxEyeSize.y };
-	eyePos = { 0.0f, 0.0f};
+	eyePos = { 0.0f, 0.0f };
 	eyeColor = WHITE;
 	eyeAngle = 0.0f;
 	isBlink = false;
@@ -103,11 +100,8 @@ BossA::BossA()
 			eyeSize = maxEyeSize;
 		}
 	);
-
-
-
 }
-
+	
 
 
 void BossA::onUpdate()
