@@ -10,6 +10,7 @@ Camera mainCamera;
 
 int windowHeight = 720;
 int windowWidth = 1280;
+float deltaTime = 1.0f / 60.0f;
 
 
 // Windowsアプリでのエントリーポイント(main関数)
