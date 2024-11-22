@@ -109,6 +109,8 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BackParticle.cpp" />
+    <ClCompile Include="BackParticleManager.cpp" />
     <ClCompile Include="Beam.cpp" />
     <ClCompile Include="BossA.cpp" />
     <ClCompile Include="BossAStateNode.cpp" />
@@ -138,6 +140,8 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="titleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BackParticle.h" />
+    <ClInclude Include="BackParticleManager.h" />
     <ClInclude Include="Beam.h" />
     <ClInclude Include="BossA.h" />
     <ClInclude Include="BossAStateNode.h" />

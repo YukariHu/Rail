@@ -24,6 +24,7 @@ IdleState::IdleState()
 	speed = 2.0f;
 	dir = 1;
 
+	randNum = rand() % 9;
 }
 void IdleState::onEnter()
 {
@@ -87,10 +88,7 @@ void CircleFireState::onExit()
 	currentFireCount = 0;
 	bulletNum = 3;
 }
-#pragma endregion
 
-
-#pragma region MoveAState
 MoveAState::MoveAState()
 {
 	currentMoveIndex = 0;
@@ -149,8 +147,6 @@ void MoveAState::onExit()
 }
 #pragma endregion
 
-#pragma endregion
-
 #pragma region StraightLineFire
 
 StraightLineFire::StraightLineFire()
@@ -207,11 +203,11 @@ void MoveBState::onEnter()
 	startPos = boss->Getposition();
 	passTime = 0.0f;
 	isMove = true;
-	moveIndex = rand() % 2;
+	moveIndex = 2;
+	moveRand = rand() % 2;
 }
 void MoveBState::onUpdate()
 {
-	Novice::ScreenPrintf(0, 40, "%d", moveIndex);
 
 	passTime += deltaTime;
 	float t = passTime / totalTime;
@@ -221,7 +217,7 @@ void MoveBState::onUpdate()
 		isMove = false;
 	}
 	float easeT = Easing::EaseInOut(t);
-	boss->Setposition(startPos + (targetPos[moveIndex] - startPos) * easeT);
+	boss->Setposition(startPos + (targetPos[moveRand] - startPos) * easeT);
 
 	if (isMove == false)
 	{
@@ -231,6 +227,11 @@ void MoveBState::onUpdate()
 }
 void MoveBState::onExit()
 {
+	if (currentMoveIndex >= moveIndex)
+	{
+		//boss->SwitchState("idle");
+		currentMoveIndex = 0;
+	}
 }
 
 #pragma endregion
@@ -441,7 +442,7 @@ BeamLeftToRightState::BeamLeftToRightState()
 		{
 			currentFireCount++;
 			//fire
-			Beam* beam2 = new Beam({ 5.0f + currentFireCount * 40.0f , windowHeight + 5.0f}, { 0.0f, -1.0f },1.0f);
+			Beam* beam2 = new Beam({ 5.0f + currentFireCount * 40.0f , windowHeight + 20.0f}, { 0.0f, -1.0f },1.0f);
 			bulletList.push_back(beam2);
 
 		});
@@ -464,6 +465,60 @@ void BeamLeftToRightState::onUpdate()
 	}
 }
 
+
+
+BeamLeftToRightMoveState::BeamLeftToRightMoveState()
+{
+	currentMoveIndex = 0;
+	moveIndex = 1;
+
+	targetPos = Vector2(50.0f, windowHeight / 2.0f);
+	totalTime = 1.0f;
+
+}
+void BeamLeftToRightMoveState::onEnter()
+{
+	startPos = boss->Getposition();
+	passTime = 0.0f;
+	isMove = true;
+}
+
+void BeamLeftToRightMoveState::onUpdate()
+{
+	passTime += deltaTime;
+	float t = passTime / totalTime;
+
+	float easeT = Easing::EaseInOut(t);
+	boss->Setposition(startPos + (targetPos - startPos) * easeT);
+
+	if (t >= 1.0f)
+	{
+		t = 1.0f;
+		isMove = false;
+	}
+	if (isMove == false)
+	{
+
+		if (currentMoveIndex >= moveIndex)
+		{
+
+			boss->SwitchState("idle");
+		} else
+		{
+			boss->SwitchState("BeamLeftToRight");
+			currentMoveIndex++;
+		}
+
+	}
+}
+
+void BeamLeftToRightMoveState::onExit()
+{
+	if (currentMoveIndex >= moveIndex)
+	{
+		currentMoveIndex = 0;
+	}
+}
 #pragma endregion
 
 #pragma region BeamLeftToRightXState
@@ -507,6 +562,60 @@ void BeamLeftToRightXState::onUpdate()
 	if (currentFireCount >= fireCount)
 	{
 		bossA->SwitchState("idle");
+	}
+}
+
+
+BeamLeftToRightXMoveState::BeamLeftToRightXMoveState()
+{
+	currentMoveIndex = 0;
+	moveIndex = 1;
+
+	targetPos = Vector2(400.0f, 100.0f);
+	totalTime = 1.0f;
+
+}
+void BeamLeftToRightXMoveState::onEnter()
+{
+	startPos = boss->Getposition();
+	passTime = 0.0f;
+	isMove = true;
+}
+
+void BeamLeftToRightXMoveState::onUpdate()
+{
+	passTime += deltaTime;
+	float t = passTime / totalTime;
+
+	float easeT = Easing::EaseInOut(t);
+	boss->Setposition(startPos + (targetPos - startPos) * easeT);
+
+	if (t >= 1.0f)
+	{
+		t = 1.0f;
+		isMove = false;
+	}
+	if (isMove == false)
+	{
+
+		if (currentMoveIndex >= moveIndex)
+		{
+
+			boss->SwitchState("idle");
+		} else
+		{
+			boss->SwitchState("BeamLeftToRightX");
+			currentMoveIndex++;
+		}
+
+	}
+}
+
+void BeamLeftToRightXMoveState::onExit()
+{
+	if (currentMoveIndex >= moveIndex)
+	{
+		currentMoveIndex = 0;
 	}
 }
 
@@ -598,6 +707,60 @@ void BeamUpToDownState::onUpdate()
 	}
 }
 
+
+BeamUpToDownMoveState::BeamUpToDownMoveState()
+{
+	currentMoveIndex = 0;
+	moveIndex = 1;
+
+	targetPos = Vector2(100.0f, windowHeight / 2.0f);
+	totalTime = 1.0f;
+
+}
+void BeamUpToDownMoveState::onEnter()
+{
+	startPos = boss->Getposition();
+	passTime = 0.0f;
+	isMove = true;
+}
+
+void BeamUpToDownMoveState::onUpdate()
+{
+	passTime += deltaTime;
+	float t = passTime / totalTime;
+
+	float easeT = Easing::EaseInOut(t);
+	boss->Setposition(startPos + (targetPos - startPos) * easeT);
+
+	if (t >= 1.0f)
+	{
+		t = 1.0f;
+		isMove = false;
+	}
+	if (isMove == false)
+	{
+
+		if (currentMoveIndex >= moveIndex)
+		{
+
+			boss->SwitchState("idle");
+		} else
+		{
+			boss->SwitchState("BeamUpToDown");
+			currentMoveIndex++;
+		}
+
+	}
+}
+
+void BeamUpToDownMoveState::onExit()
+{
+	if (currentMoveIndex >= moveIndex)
+	{
+		currentMoveIndex = 0;
+	}
+}
+
 #pragma endregion
 
 #pragma region BeamCrossState
@@ -633,6 +796,61 @@ void BeamCrossState::onUpdate()
 	if (currentFireCount >= fireCount)
 	{
 		bossA->SwitchState("idle");
+	}
+}
+
+
+
+BeamCrossMoveState::BeamCrossMoveState()
+{
+	currentMoveIndex = 0;
+	moveIndex = 1;
+
+	targetPos = Vector2(100.0f, 100.0f);
+	totalTime = 1.0f;
+
+}
+void BeamCrossMoveState::onEnter()
+{
+	startPos = boss->Getposition();
+	passTime = 0.0f;
+	isMove = true;
+}
+
+void BeamCrossMoveState::onUpdate()
+{
+	passTime += deltaTime;
+	float t = passTime / totalTime;
+
+	float easeT = Easing::EaseInOut(t);
+	boss->Setposition(startPos + (targetPos - startPos) * easeT);
+
+	if (t >= 1.0f)
+	{
+		t = 1.0f;
+		isMove = false;
+	}
+	if (isMove == false)
+	{
+
+		if (currentMoveIndex >= moveIndex)
+		{
+
+			boss->SwitchState("idle");
+		} else
+		{
+			boss->SwitchState("BeamCross");
+			currentMoveIndex++;
+		}
+
+	}
+}
+
+void BeamCrossMoveState::onExit()
+{
+	if (currentMoveIndex >= moveIndex)
+	{
+		currentMoveIndex = 0;
 	}
 }
 

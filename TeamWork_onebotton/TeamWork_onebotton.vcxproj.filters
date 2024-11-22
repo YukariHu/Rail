@@ -32,6 +32,9 @@
     <Filter Include="Bullet">
       <UniqueIdentifier>{ed4a29be-b5fb-45fb-a642-af46a7e4ae09}</UniqueIdentifier>
     </Filter>
+    <Filter Include="BackParticle">
+      <UniqueIdentifier>{e9412073-ea03-4877-813a-a3ebdafc8aac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp">
@@ -109,6 +112,15 @@
     </ClCompile>
     <ClCompile Include="Beam.cpp">
       <Filter>Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviationShotBullet.cpp">
+      <Filter>Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="BackParticle.cpp">
+      <Filter>BackParticle</Filter>
+    </ClCompile>
+    <ClCompile Include="BackParticleManager.cpp">
+      <Filter>BackParticle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -246,6 +258,16 @@
     <ClInclude Include="Easing.h" />
     <ClInclude Include="Beam.h">
       <Filter>Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="DeviationShotBullet.h">
+      <Filter>Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="BackParticle.h">
+      <Filter>BackParticle</Filter>
+    </ClInclude>
+    <ClInclude Include="BackParticleManager.h">
+      <Filter>BackParticle</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

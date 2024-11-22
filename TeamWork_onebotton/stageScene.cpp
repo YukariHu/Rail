@@ -4,7 +4,7 @@
 #include <Novice.h>
 #include <vector>
 #include "Bullet.h"
-
+#include "BackParticleManager.h"
 
 
 extern SceneManager sceneManager;
@@ -17,6 +17,7 @@ Charactor* boss = nullptr;
 Charactor* player = nullptr;
 std::vector<Bullet*> bulletList;
 
+BackParticleManager backParticle;
 
 StageScene::StageScene(int _id)
 {
@@ -57,6 +58,15 @@ void StageScene::update()
 	player->onUpdate();
 	BulletListUpdate();
 	//TODO:check collision
+
+	backParticle.Update();
+
+	//**********particle
+	particleTime--;
+	if (particleTime <= 0) {
+		backParticle.Create({ -1.0f, 1.0f });
+		particleTime = 5;
+	}
 }
 
 void StageScene::draw(const Camera& camera)
@@ -65,6 +75,8 @@ void StageScene::draw(const Camera& camera)
 
 	Novice::DrawBox(0, 0, windowWidth, windowHeight, 0.0f, backGroundColor, kFillModeSolid);
 	Novice::ScreenPrintf(0, 0, "stage:%d", id);
+
+	backParticle.Draw();
 
 	boss->onDraw(camera);
 	player->onDraw(camera);

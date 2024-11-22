@@ -8,14 +8,7 @@
 #define PI 3.1415926f
 extern std::vector<Bullet*> bulletList;
 extern Charactor* player;
-
-
-int GetColor(unsigned int red, unsigned int  green, unsigned int blue, int  alpha)
-{
-	//unsigned char top = 0x;
-	int color = (red << 24) | (green << 16) | (blue << 8) | alpha;
-	return color;
-}
+//extern IdleState* idoleState;
 
 BossA::BossA()
 {
@@ -27,21 +20,52 @@ BossA::BossA()
 	alpha_ = 255;
 
 	stateMachine.RegisterState("idle",new IdleState());
+	
 	stateMachine.RegisterState("circlefire", new CircleFireState());
 	stateMachine.RegisterState("moveA",new MoveAState());
+	
 	stateMachine.RegisterState("StraightLineFire", new StraightLineFire());
 	stateMachine.RegisterState("moveB", new MoveBState());
+	
 	stateMachine.RegisterState("RandomShotting", new RandomShotting());
 	stateMachine.RegisterState("RandomShottingMove", new RandomShottingMoveState());
+	
 	stateMachine.RegisterState("DeviationShot", new DeviationShot());
 	stateMachine.RegisterState("DeviationShotMove", new DeviationShotMoveState());
-	stateMachine.RegisterState("BeamLeftToRight", new BeamLeftToRightState());
-	stateMachine.RegisterState("BeamLeftToRightX", new BeamLeftToRightXState());
-	stateMachine.RegisterState("BeamRail", new BeamRailState());
-	stateMachine.RegisterState("BeamUpToDown", new BeamUpToDownState());
-	stateMachine.RegisterState("BeamCross", new BeamCrossState());
 
-	stateMachine.SetEntry("BeamCross");
+	stateMachine.RegisterState("BeamLeftToRight", new BeamLeftToRightState());
+	stateMachine.RegisterState("BeamLeftToRightMove", new BeamLeftToRightMoveState());
+
+	stateMachine.RegisterState("BeamLeftToRightX", new BeamLeftToRightXState());
+	stateMachine.RegisterState("BeamLeftToRightXMove", new BeamLeftToRightXMoveState());
+
+	stateMachine.RegisterState("BeamRail", new BeamRailState());
+
+	stateMachine.RegisterState("BeamUpToDown", new BeamUpToDownState());
+	stateMachine.RegisterState("BeamUpToDownMove", new BeamUpToDownMoveState());
+
+	stateMachine.RegisterState("BeamCross", new BeamCrossState());
+	stateMachine.RegisterState("BeamCrossMove", new BeamCrossMoveState());
+
+	/*if (idoleState->GetAttackNum() == 0) {
+		stateMachine.SetEntry("moveA");
+	} else if (idoleState->GetAttackNum() == 1) {
+		stateMachine.SetEntry("moveB");
+	} else if (idoleState->GetAttackNum() == 2) {
+		stateMachine.SetEntry("RandomShottingMove");
+	} else if (idoleState->GetAttackNum() == 3) {
+		stateMachine.SetEntry("DeviationShotMove");
+	} else if (idoleState->GetAttackNum() == 4) {
+		stateMachine.SetEntry("BeamLeftToRightMove");
+	} else if (idoleState->GetAttackNum() == 5) {
+		stateMachine.SetEntry("BeamLeftToRightXMove");
+	} else if (idoleState->GetAttackNum() == 6) {
+		stateMachine.SetEntry("BeamRail");
+	} else if (idoleState->GetAttackNum() == 7) {
+		stateMachine.SetEntry("BeamUpToDownMove");
+	} else if (idoleState->GetAttackNum() == 8) {
+		stateMachine.SetEntry("BeamCrossMove");
+	}*/
 }
 
 
@@ -60,7 +84,7 @@ void BossA::onUpdate()
 
 void BossA::onDraw(const Camera& camera)
 {
-	Novice::DrawEllipse(static_cast<int>(pos.x), static_cast<int>(pos.y), static_cast<int>(size.x), static_cast<int>(size.x), 0.0f, GetColor(255,255,255,alpha_), kFillModeSolid);
+	Novice::DrawEllipse(static_cast<int>(pos.x+ camera.GetPos().x), static_cast<int>(pos.y + camera.GetPos().y), static_cast<int>(size.x), static_cast<int>(size.x), 0.0f, 0xFFFFFFFF, kFillModeSolid);
 	//Novice::ScreenPrintf(0,30,"%f",target->GetSize().x);
     
 }

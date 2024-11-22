@@ -13,6 +13,8 @@ public:
 	void onEnter() override;
 	void onUpdate() override;
 
+	int GetAttackNum() { return randNum; };
+
 private:
 	Timer timer;
 
@@ -21,6 +23,7 @@ private:
 	float speed;
 	float dir;
 
+	int randNum;
 };
 
 //class MoveToCenter
@@ -129,7 +132,7 @@ private:
 	float totalTime;
 	float passTime;
 	bool isMove;
-
+	int moveRand;
 };
 
 class RandomShotting : public StateNode
@@ -240,6 +243,30 @@ private:
 	bool isOver;
 };
 
+
+class BeamLeftToRightMoveState : public StateNode
+{
+public:
+	BeamLeftToRightMoveState();
+	~BeamLeftToRightMoveState() = default;
+
+	void onEnter() override;
+	void onUpdate() override;
+	void onExit() override;
+private:
+
+	int moveIndex;
+	int currentMoveIndex;
+
+	Vector2 targetPos;
+	Vector2 startPos;
+
+	float totalTime;
+	float passTime;
+	bool isMove;
+
+};
+
 class BeamLeftToRightXState : public StateNode
 {
 public:
@@ -256,6 +283,29 @@ private:
 	int currentFireCount;
 
 	bool isOver;
+};
+
+class BeamLeftToRightXMoveState : public StateNode
+{
+public:
+	BeamLeftToRightXMoveState();
+	~BeamLeftToRightXMoveState() = default;
+
+	void onEnter() override;
+	void onUpdate() override;
+	void onExit() override;
+private:
+
+	int moveIndex;
+	int currentMoveIndex;
+
+	Vector2 targetPos;
+	Vector2 startPos;
+
+	float totalTime;
+	float passTime;
+	bool isMove;
+
 };
 
 class BeamRailState : public StateNode
@@ -278,7 +328,6 @@ private:
 	int randCount;
 };
 
-
 class BeamUpToDownState : public StateNode
 {
 public:
@@ -297,6 +346,30 @@ private:
 	bool isOver;
 };
 
+class BeamUpToDownMoveState : public StateNode
+{
+public:
+	BeamUpToDownMoveState();
+	~BeamUpToDownMoveState() = default;
+
+	void onEnter() override;
+	void onUpdate() override;
+	void onExit() override;
+private:
+
+	int moveIndex;
+	int currentMoveIndex;
+
+	Vector2 targetPos;
+	Vector2 startPos;
+
+	float totalTime;
+	float passTime;
+	bool isMove;
+
+};
+
+
 class BeamCrossState : public StateNode
 {
 public:
@@ -313,4 +386,28 @@ private:
 	int currentFireCount;
 
 	bool isOver;
+};
+
+
+class BeamCrossMoveState : public StateNode
+{
+public:
+	BeamCrossMoveState();
+	~BeamCrossMoveState() = default;
+
+	void onEnter() override;
+	void onUpdate() override;
+	void onExit() override;
+private:
+
+	int moveIndex;
+	int currentMoveIndex;
+
+	Vector2 targetPos;
+	Vector2 startPos;
+
+	float totalTime;
+	float passTime;
+	bool isMove;
+
 };
