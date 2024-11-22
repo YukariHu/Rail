@@ -7,13 +7,18 @@ Player::Player()
 	size = { 30.0f, 30.0f };
 	pos = { 600.0f, 600.0f };
 	velocity = { 2.0f, 0.0f };
+	id = 0;
+}
+
+void Player::onInput(char* keys, char* prekeys)
+{
+	(void)keys;
+	(void)prekeys;
 }
 
 void Player::onUpdate()
 {
 	Charactor::onUpdate();
-
-
 	if (pos.x > windowWidth || pos.x < 0)
 	{
 		velocity.x *= -1;

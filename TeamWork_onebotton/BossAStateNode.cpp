@@ -11,7 +11,7 @@ extern std::vector<Bullet*> bulletList;
 extern int windowHeight;
 extern int windowWidth;
 
-float deltaTime = 1.0f / 60.0f;
+extern float deltaTime;
 
 #pragma region IdleState
 IdleState::IdleState()
