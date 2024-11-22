@@ -12,6 +12,7 @@ public:
 
 
 	void onUpdate() override;
+	bool checkCollision(Vector2 targertPos, Vector2 targertSize) override;
     void onDraw(const Camera& camera) override;
 
 private:
@@ -21,7 +22,6 @@ private:
 
 	bool isAiming;
 	bool isOver;
-	bool isEnable;//衝突判定を有効にするかどうか
 	int color;
 
 	//int renderType;

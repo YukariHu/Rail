@@ -13,20 +13,6 @@ public:
 	void onUpdate() override;
 	void onDraw(const Camera& camera) override;
 
-protected:
-
-	Vector2 pos;
-	Vector2 size;
-
-	Vector2 dir;
-	float velocity;
-
-	int damage;
-
-	std::function<void()> callback;
-public:
-	bool isCanRemove = false;
-
 
 };
 

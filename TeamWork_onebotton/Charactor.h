@@ -16,6 +16,8 @@ public:
 	virtual void onUpdate();
 	virtual void onDraw(const Camera& camera);
 
+	virtual void Collision();
+
 	virtual void onHurt(int damage);
 
 	int GetHp();
@@ -41,7 +43,7 @@ protected:
 	int hp;
 	bool isDead = false;
 
-	bool isEnableCollisionBox = true;//当たり判定を有効にするか
+	bool isEnableCollision = true;//当たり判定を有効にするか
 
 	Charactor* target = nullptr;
 

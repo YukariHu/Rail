@@ -9,6 +9,8 @@ public:
 
 	void onUpdate() override;
 	void onDraw(const Camera& camera) override;
+	void onHurt(int damage) override;
+
 
 	void CircleFire(int bulletNum);
 	void StraightFire();

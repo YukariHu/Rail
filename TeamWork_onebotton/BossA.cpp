@@ -46,6 +46,15 @@ void BossA::onDraw(const Camera& camera)
     
 }
 
+void BossA::onHurt(int damage)
+{
+	hp -= damage;
+	if (hp <= 0)
+	{
+		isDead = true;
+	}
+}
+
 
 void BossA::CircleFire(int bulletNum)
 {

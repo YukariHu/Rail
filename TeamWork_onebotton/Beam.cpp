@@ -14,12 +14,12 @@ Beam::Beam(Vector2 firePos, Vector2 _dir)
 		size.x = 0.0f;//長さ
 		size.y = 0.0f;//幅
 
-
+		targetID = 1;
 		damage = 1;
 
 		color = WHITE;
-		
-		isEnable = false;
+
+		isEnableCollision = false;
 
 
 		isAiming = true;
@@ -27,14 +27,14 @@ Beam::Beam(Vector2 firePos, Vector2 _dir)
 		aimTimer.set_wait_time(1.0f);
 		aimTimer.set_on_timeout([&]() {
 			isAiming = false; 
-			isEnable = true;
+			isEnableCollision = true;
 			});
 		
 		lifeTimer.set_one_shot(true);
 		lifeTimer.set_wait_time(1.0f);
 		lifeTimer.set_on_timeout([&]() {
 			isOver = true;
-			isEnable = false;
+			isEnableCollision = false;
 			});
 
 		isOver = false;
@@ -72,6 +72,34 @@ void Beam::onUpdate()
 		}
 	}
 
+}
+
+bool Beam::checkCollision(Vector2 targertPos, Vector2 targertSize)
+{
+	if (isEnableCollision)
+	{
+		if (dir.x != 0.0f)
+		{
+			if (/*pos.x + size.x / 2 > targertPos.x - targertSize.x / 2 &&
+				pos.x - size.x / 2 < targertPos.x + targertSize.x / 2 &&*/
+				pos.y + size.y / 2 > targertPos.y - targertSize.y / 2 &&
+				pos.y - size.y / 2 < targertPos.y + targertSize.y / 2)
+			{
+				
+				return true;
+			}
+		}
+		if (dir.y != 0.0f)
+		{
+			if (pos.x + size.y / 2 > targertPos.x - targertSize.y / 2 &&
+				pos.x - size.y / 2 < targertPos.x + targertSize.y / 2)
+			{
+
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 void Beam::onDraw(const Camera& camera)
