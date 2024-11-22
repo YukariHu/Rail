@@ -119,6 +119,9 @@
     <ClCompile Include="PlayerBullet.cpp">
       <Filter>Charactor</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerLane.cpp">
+      <Filter>Charactor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -261,6 +264,9 @@
       <Filter>Charactor</Filter>
     </ClInclude>
     <ClInclude Include="PlayerBullet.h">
+      <Filter>Charactor</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerLane.h">
       <Filter>Charactor</Filter>
     </ClInclude>
   </ItemGroup>
