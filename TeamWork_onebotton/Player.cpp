@@ -1,17 +1,24 @@
 #include "Player.h"
-
+extern int windowHeight;
+extern int windowWidth;
 Player::Player()
 {
 	color = WHITE;
 	size = { 30.0f, 30.0f };
 	pos = { 600.0f, 600.0f };
-	velocity = { 0.0f, 0.0f };
+	velocity = { 2.0f, 0.0f };
 }
 
 void Player::onUpdate()
 {
 	Charactor::onUpdate();
-	pos.x += 1.0f;
+
+
+	if (pos.x > windowWidth || pos.x < 0)
+	{
+		velocity.x *= -1;
+	}
+	pos.x += velocity.x;
 }
 
 void Player::onDraw(const Camera& camera)
