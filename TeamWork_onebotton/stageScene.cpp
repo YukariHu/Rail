@@ -36,6 +36,11 @@ void StageScene::onEnter()
 
 	boss->SetTarget(player);
 
+
+	for (int i = 0; i < 20; ++i) {  
+		backParticle.Create({ -1.0f, 0.0f });  
+	}
+	isStart = true;
 }
 
 void StageScene::onInput(char* keys, char* prekeys)
@@ -66,7 +71,9 @@ void StageScene::update()
 	if (particleTime <= 0) {
 		backParticle.Create({ -1.0f, 1.0f });
 		particleTime = 5;
+		
 	}
+
 }
 
 void StageScene::draw(const Camera& camera)

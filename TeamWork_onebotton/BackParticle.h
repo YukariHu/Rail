@@ -21,5 +21,6 @@ private:
     bool alive_;
     int randNum_;
     int color_;
+
 };
 

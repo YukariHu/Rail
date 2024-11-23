@@ -47,25 +47,7 @@ BossA::BossA()
 	stateMachine.RegisterState("BeamCross", new BeamCrossState());
 	stateMachine.RegisterState("BeamCrossMove", new BeamCrossMoveState());
 
-	/*if (idoleState->GetAttackNum() == 0) {
-		stateMachine.SetEntry("moveA");
-	} else if (idoleState->GetAttackNum() == 1) {
-		stateMachine.SetEntry("moveB");
-	} else if (idoleState->GetAttackNum() == 2) {
-		stateMachine.SetEntry("RandomShottingMove");
-	} else if (idoleState->GetAttackNum() == 3) {
-		stateMachine.SetEntry("DeviationShotMove");
-	} else if (idoleState->GetAttackNum() == 4) {
-		stateMachine.SetEntry("BeamLeftToRightMove");
-	} else if (idoleState->GetAttackNum() == 5) {
-		stateMachine.SetEntry("BeamLeftToRightXMove");
-	} else if (idoleState->GetAttackNum() == 6) {
-		stateMachine.SetEntry("BeamRail");
-	} else if (idoleState->GetAttackNum() == 7) {
-		stateMachine.SetEntry("BeamUpToDownMove");
-	} else if (idoleState->GetAttackNum() == 8) {
-		stateMachine.SetEntry("BeamCrossMove");
-	}*/
+	stateMachine.SetEntry("idle");
 }
 
 
@@ -80,6 +62,41 @@ void BossA::onUpdate()
 		alpha_ = 0;
 	}
 
+	if (stateMachine.GetCurrentStateName() == "idle") {
+		// 次の攻撃を乱数で決定
+		int attackChoice = rand() % 9; // 0〜8 の間でランダムな整数を取得
+
+		// 乱数に応じて次の攻撃を決定
+		switch (attackChoice) {
+		case 0:
+			stateMachine.SetEntry("moveA");
+			break;
+		case 1:
+			stateMachine.SetEntry("moveB");
+			break;
+		case 2:
+			stateMachine.SetEntry("RandomShottingMove");
+			break;
+		case 3:
+			stateMachine.SetEntry("DeviationShotMove");
+			break;
+		case 4:
+			stateMachine.SetEntry("BeamLeftToRightMove");
+			break;
+		case 5:
+			stateMachine.SetEntry("BeamLeftToRightXMove");
+			break;
+		case 6:
+			stateMachine.SetEntry("BeamRail");
+			break;
+		case 7:
+			stateMachine.SetEntry("BeamUpToDownMove");
+			break;
+		case 8:
+			stateMachine.SetEntry("BeamCrossMove");
+			break;
+		}
+	}
 }
 
 void BossA::onDraw(const Camera& camera)

@@ -2,14 +2,21 @@
 #include <Novice.h>
 #include <cstdlib>
 #include <cmath>
+#include "stageScene.h"
+StageScene stageScene;
 
 BackParticle::BackParticle()
-    : pos_({ 0, 0 }), direction_({ -1.0f, 0.3f }), rad_(5.0f), velocity_(7.0f), oscillation_(0.0f), alive_(true), randNum_(rand() % 3 + 1),color_(){}
+    : pos_({ float(rand() % 1280), float(rand() % 720) }), direction_({ -1.0f, 0.3f }), rad_(5.0f), velocity_(7.0f), oscillation_(0.0f), alive_(true), randNum_(rand() % 3 + 1),color_(){}
 
 BackParticle::~BackParticle() {}
 
 void BackParticle::Init(const Vector2& direction) {
-    pos_ = { float (rand() % 1280), float(rand() % 720)};
+    if (!stageScene.GetIsStart()) {
+        pos_ = { float(rand() % 1280), float(rand() % 720) };
+    } else {
+        pos_ = { 1320.0f, float(rand() % 720) };
+
+    }
     direction_ = direction;
     rad_ = 5.0f * randNum_;
     velocity_ = 1.0f * randNum_ + 3.0f;
@@ -20,6 +27,7 @@ void BackParticle::Init(const Vector2& direction) {
 }
 
 void BackParticle::Update() {
+
     pos_.x += direction_.x * velocity_;
   
     oscillation_ += 0.3f;
@@ -27,6 +35,8 @@ void BackParticle::Update() {
     if (pos_.x < -rad_) {
         alive_ = false;
     }
+
+    Novice::ScreenPrintf(0,20,"%d",stageScene.GetIsStart());
 }
 
 void BackParticle::Draw() {

@@ -22,12 +22,15 @@ class StageScene : public Scene
 		void BulletListUpdate();
 		void BulletListDraw(const Camera& camera);
 
+		bool GetIsStart() const{ return isStart; };
+
 	private:
 
 		int id;
 		int backGroundColor = 0x363636FF;
 
 		int particleTime = 5;
+		bool isStart = false;
 		
 
 
