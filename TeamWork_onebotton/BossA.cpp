@@ -53,29 +53,9 @@ BossA::BossA()
 	stateMachine.RegisterState("BeamCross", new BeamCrossState());
 	stateMachine.RegisterState("BeamCrossMove", new BeamCrossMoveState());
 
-	/*if (idoleState->GetAttackNum() == 0) {
-		stateMachine.SetEntry("moveA");
-	} else if (idoleState->GetAttackNum() == 1) {
-		stateMachine.SetEntry("moveB");
-	} else if (idoleState->GetAttackNum() == 2) {
-		stateMachine.SetEntry("RandomShottingMove");
-	} else if (idoleState->GetAttackNum() == 3) {
-		stateMachine.SetEntry("DeviationShotMove");
-	} else if (idoleState->GetAttackNum() == 4) {
-		stateMachine.SetEntry("BeamLeftToRightMove");
-	} else if (idoleState->GetAttackNum() == 5) {
-		stateMachine.SetEntry("BeamLeftToRightXMove");
-	} else if (idoleState->GetAttackNum() == 6) {
-		stateMachine.SetEntry("BeamRail");
-	} else if (idoleState->GetAttackNum() == 7) {
-		stateMachine.SetEntry("BeamUpToDownMove");
-	} else if (idoleState->GetAttackNum() == 8) {
-		stateMachine.SetEntry("BeamCrossMove");
-	}*/
 
-
-	//stateMachine.SetEntry("beamFire");
-	// 
+	stateMachine.SetEntry("BeamUpToDownMove");
+	 
 	//bossの目
 	maxEyeSize = { 15.0f, 20.0f };
 	eyeSize = { maxEyeSize.x, maxEyeSize.y };
