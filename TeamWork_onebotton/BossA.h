@@ -20,7 +20,7 @@ public:
 	void EyeUpdate();
 
 	void BeamFire();
-	//void MoveTo(Vector2 targetPos,float time);
+	void MoveTo(Vector2 targetPos,float time);
 
 	void DeviationFire();
 	
