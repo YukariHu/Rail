@@ -52,7 +52,7 @@ void StageScene::onInput(char* keys, char* prekeys)
 
 	if (keys[DIK_SPACE] && !prekeys[DIK_SPACE])
 	{
-		mainCamera.Shack(5,0.3f);
+		mainCamera.Shack(4,0.3f);
 	}
 }
 
@@ -78,7 +78,6 @@ void StageScene::update()
 
 void StageScene::draw(const Camera& camera)
 {
-	(void)camera;
 
 	Novice::DrawBox(0, 0, windowWidth, windowHeight, 0.0f, backGroundColor, kFillModeSolid);
 	Novice::ScreenPrintf(0, 0, "stage:%d", id);

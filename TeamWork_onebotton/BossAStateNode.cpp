@@ -11,7 +11,7 @@ extern std::vector<Bullet*> bulletList;
 extern int windowHeight;
 extern int windowWidth;
 
-float deltaTime = 1.0f / 60.0f;
+extern float deltaTime;
 
 #pragma region IdleState
 IdleState::IdleState()
@@ -442,7 +442,7 @@ BeamLeftToRightState::BeamLeftToRightState()
 		{
 			currentFireCount++;
 			//fire
-			Beam* beam2 = new Beam({ 5.0f + currentFireCount * 40.0f , windowHeight + 20.0f}, { 0.0f, -1.0f },1.0f);
+			Beam* beam2 = new Beam({ 5.0f + currentFireCount * 40.0f , windowHeight + 20.0f}, { 0.0f, -1.0f },1.0f,0);
 			bulletList.push_back(beam2);
 
 		});
@@ -533,14 +533,14 @@ BeamLeftToRightXState::BeamLeftToRightXState()
 			currentFireCount++;
 			//fire
 			if (currentFireCount % 2 == 1) {
-				Beam* beam2 = new Beam({ -20.0f, -20.0f + currentFireCount * 50.0f }, { 1.0f, 0.0f }, 0.5f);
+				Beam* beam2 = new Beam({ -20.0f, -20.0f + currentFireCount * 50.0f }, { 1.0f, 0.0f }, 0.5f,0);
 
 				bulletList.push_back(beam2);
 
 			} 
 
 			if(currentFireCount % 2 == 0){
-				Beam* beam2 = new Beam({ windowWidth + 20.0f, -20.0f + currentFireCount * 50.0f }, { -1.0f, 0.0f }, 0.5f);
+				Beam* beam2 = new Beam({ windowWidth + 20.0f, -20.0f + currentFireCount * 50.0f }, { -1.0f, 0.0f }, 0.5f,0);
 
 				bulletList.push_back(beam2);
 
@@ -635,14 +635,14 @@ BeamRailState::BeamRailState()
 			randCount = rand() % 2;
 
 			if (randCount == 0) {
-				Beam* beam2 = new Beam({ (windowWidth / 2.0f) + 100.0f , -20.0f }, { 0.0f, 1.0f }, 0.2f);
+				Beam* beam2 = new Beam({ (windowWidth / 2.0f) + 100.0f , -20.0f }, { 0.0f, 1.0f }, 0.2f,0);
 
 				bulletList.push_back(beam2);
 
 			}
 
 			if (randCount == 1) {
-				Beam* beam2 = new Beam({ (windowWidth / 2.0f) - 100.0f , -20.0f }, { 0.0f, 1.0f }, 0.2f);
+				Beam* beam2 = new Beam({ (windowWidth / 2.0f) - 100.0f , -20.0f }, { 0.0f, 1.0f }, 0.2f,0);
 
 				bulletList.push_back(beam2);
 
@@ -684,7 +684,7 @@ BeamUpToDownState::BeamUpToDownState()
 		{
 			currentFireCount++;
 			//fire
-			Beam* beam2 = new Beam({ -10.0f + currentFireCount * 40.0f , -20.0f }, { 0.0f, 1.0f }, 0.2f);
+			Beam* beam2 = new Beam({ -10.0f + currentFireCount * 40.0f , -20.0f }, { 0.0f, 1.0f }, 0.2f,0);
 			bulletList.push_back(beam2);
 
 		});
@@ -774,10 +774,10 @@ BeamCrossState::BeamCrossState()
 		{
 			currentFireCount++;
 			//fire
-			Beam* beam2 = new Beam({ -10.0f + currentFireCount * 40.0f , -20.0f }, { 0.0f, 1.0f }, 0.2f);
+			Beam* beam2 = new Beam({ -10.0f + currentFireCount * 40.0f , -20.0f }, { 0.0f, 1.0f }, 0.2f,0);
 			bulletList.push_back(beam2);
 
-			Beam* beam1 = new Beam({ -20.0f ,-10.0f + currentFireCount * 40.0f}, { 1.0f, 0.0f }, 0.2f);
+			Beam* beam1 = new Beam({ -20.0f ,-10.0f + currentFireCount * 40.0f}, { 1.0f, 0.0f }, 0.2f,0);
 			bulletList.push_back(beam1);
 		});
 }

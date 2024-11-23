@@ -3,7 +3,7 @@
 
 extern int windowHeight;
 extern int windowWidth;
-DeviationShotBullet::DeviationShotBullet(Vector2 firePos, Vector2 _dir)
+DeviationShotBullet::DeviationShotBullet(Vector2 firePos, Vector2 _dir, int _targetID)
 {
 	pos = firePos;
 	dir = _dir;
@@ -11,6 +11,8 @@ DeviationShotBullet::DeviationShotBullet(Vector2 firePos, Vector2 _dir)
 	velocity = 10.0f;
 	damage = 1;
 	isCanRemove = false;
+
+	this->targetID = _targetID;
 }
 void DeviationShotBullet::onUpdate()
 {
