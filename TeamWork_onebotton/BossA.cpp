@@ -115,42 +115,6 @@ void BossA::onUpdate()
 
 		alpha_ = 0;
 	}
-
-	if (stateMachine.GetCurrentStateName() == "idle") {
-		// 次の攻撃を乱数で決定
-		int attackChoice = rand() % 9; // 0〜8 の間でランダムな整数を取得
-
-		// 乱数に応じて次の攻撃を決定
-		switch (attackChoice) {
-		case 0:
-			stateMachine.SetEntry("moveA");
-			break;
-		case 1:
-			stateMachine.SetEntry("moveB");
-			break;
-		case 2:
-			stateMachine.SetEntry("RandomShottingMove");
-			break;
-		case 3:
-			stateMachine.SetEntry("DeviationShotMove");
-			break;
-		case 4:
-			stateMachine.SetEntry("BeamLeftToRightMove");
-			break;
-		case 5:
-			stateMachine.SetEntry("BeamLeftToRightXMove");
-			break;
-		case 6:
-			stateMachine.SetEntry("BeamRail");
-			break;
-		case 7:
-			stateMachine.SetEntry("BeamUpToDownMove");
-			break;
-		case 8:
-			stateMachine.SetEntry("BeamCrossMove");
-			break;
-		}
-	}
 }
 
 void BossA::onDraw(const Camera& camera)
