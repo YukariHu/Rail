@@ -84,8 +84,8 @@ bool Beam::checkCollision(Vector2 targertPos, Vector2 targertSize)
 		{
 			if (/*pos.x + size.x / 2 > targertPos.x - targertSize.x / 2 &&
 				pos.x - size.x / 2 < targertPos.x + targertSize.x / 2 &&*/
-				pos.y + size.y / 2 > targertPos.y - targertSize.y / 2 &&
-				pos.y - size.y / 2 < targertPos.y + targertSize.y / 2)
+				pos.y + maxSize.y / 2 > targertPos.y - targertSize.y / 2 &&
+				pos.y - maxSize.y / 2 < targertPos.y + targertSize.y / 2)
 			{
 				
 				return true;
@@ -93,8 +93,8 @@ bool Beam::checkCollision(Vector2 targertPos, Vector2 targertSize)
 		}
 		if (dir.y != 0.0f)
 		{
-			if (pos.x + size.y / 2 > targertPos.x - targertSize.y / 2 &&
-				pos.x - size.y / 2 < targertPos.x + targertSize.y / 2)
+			if (pos.x + maxSize.y / 2 > targertPos.x - targertSize.y / 2 &&
+				pos.x - maxSize.y / 2 < targertPos.x + targertSize.y / 2)
 			{
 
 				return true;

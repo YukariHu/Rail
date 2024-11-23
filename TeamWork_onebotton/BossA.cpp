@@ -55,7 +55,7 @@ BossA::BossA()
 	stateMachine.RegisterState("BeamCrossMove", new BeamCrossMoveState());
 
 
-	stateMachine.SetEntry("DeviationShot");
+	stateMachine.SetEntry("BeamCross");
 	 
 	//bossの目
 	maxEyeSize = { 15.0f, 20.0f };
