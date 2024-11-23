@@ -126,6 +126,9 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="DeviationShotBullet.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerBullet.cpp" />
+    <ClCompile Include="PlayerLane.cpp" />
+    <ClCompile Include="PlayerParticles.cpp" />
     <ClCompile Include="ResouresManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="stageScene.cpp" />
@@ -179,6 +182,9 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="Easing.h" />
     <ClInclude Include="MyVector2.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerBullet.h" />
+    <ClInclude Include="PlayerLane.h" />
+    <ClInclude Include="PlayerParticles.h" />
     <ClInclude Include="read_csv.h" />
     <ClInclude Include="ResouresManager.h" />
     <ClInclude Include="scene.h" />

@@ -125,6 +125,18 @@
     <ClCompile Include="DeviationShotBullet.cpp">
       <Filter>Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="DeviationShotBullet.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerParticles.cpp">
+      <Filter>Charactor</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBullet.cpp">
+      <Filter>Charactor</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerLane.cpp">
+      <Filter>Charactor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -261,6 +273,16 @@
     <ClInclude Include="Easing.h" />
     <ClInclude Include="Beam.h">
       <Filter>Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviationShotBullet.h" />
+    <ClInclude Include="PlayerParticles.h">
+      <Filter>Charactor</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBullet.h">
+      <Filter>Charactor</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerLane.h">
+      <Filter>Charactor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -49,6 +49,7 @@ void StageScene::onInput(char* keys, char* prekeys)
 	{
 		sceneManager.switchScene(SceneManager::SceneType::StageSelect);
 	}
+	player->onInput(keys,prekeys);
 
 	if (keys[DIK_SPACE] && !prekeys[DIK_SPACE])
 	{
