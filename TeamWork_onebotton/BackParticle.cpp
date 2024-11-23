@@ -35,8 +35,6 @@ void BackParticle::Update() {
     if (pos_.x < -rad_) {
         alive_ = false;
     }
-
-    Novice::ScreenPrintf(0,20,"%d",stageScene.GetIsStart());
 }
 
 void BackParticle::Draw() {

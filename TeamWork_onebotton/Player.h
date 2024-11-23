@@ -13,7 +13,7 @@ public:
 
 	void onInput(char* keys, char* prekeys) override;
 	void onUpdate() override;
-	void onDraw(const Camera& camera) override override;
+	void onDraw(const Camera& camera) override;
 
 	float t_;
 	bool lineChange_;
