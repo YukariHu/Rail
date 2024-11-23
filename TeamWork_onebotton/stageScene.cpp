@@ -60,11 +60,10 @@ void StageScene::onInput(char* keys, char* prekeys)
 void StageScene::update()
 {
 	mainCamera.onUpdate();
+	BulletListUpdate();
 	boss->onUpdate();
 	player->onUpdate();
-	BulletListUpdate();
-	//TODO:check collision
-
+	
 	backParticle.Update();
 
 	//**********particle
@@ -81,13 +80,16 @@ void StageScene::draw(const Camera& camera)
 {
 
 	Novice::DrawBox(0, 0, windowWidth, windowHeight, 0.0f, backGroundColor, kFillModeSolid);
-	Novice::ScreenPrintf(0, 0, "stage:%d", id);
+	
 
 	backParticle.Draw();
-
+	BulletListDraw(camera);
 	boss->onDraw(camera);
 	player->onDraw(camera);
-	BulletListDraw(camera);
+	
+
+	Novice::ScreenPrintf(0, 0, "PlayerHP:%d", player->GetHp());
+	Novice::ScreenPrintf(0, 20, "BossHP:%d", boss->GetHp());
 }
 
 void StageScene::onExit()

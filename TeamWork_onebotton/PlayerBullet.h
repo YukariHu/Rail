@@ -1,6 +1,7 @@
 #pragma once
 #include "MyVector2.h"
 
+//使わない
 class PlayerBullet
 {
 public:

@@ -20,6 +20,7 @@ BossA::BossA()
 	pos = { 400.0f, 300.0f };
 	velocity = { 0.0f, 0.0f };
 	id = 1;
+	hp = 100;
 	
 	currentStage = 1;
 
@@ -54,7 +55,7 @@ BossA::BossA()
 	stateMachine.RegisterState("BeamCrossMove", new BeamCrossMoveState());
 
 
-	stateMachine.SetEntry("BeamUpToDownMove");
+	stateMachine.SetEntry("DeviationShot");
 	 
 	//bossの目
 	maxEyeSize = { 15.0f, 20.0f };
@@ -189,7 +190,7 @@ int BossA::GetCurrentStage()
 	return currentStage;
 }
 
-
+//使っていない
 void BossA::BeamFire()
 {
 	Vector2 direction = { 1.0f, 0.0f };

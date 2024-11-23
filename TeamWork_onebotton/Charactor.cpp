@@ -4,7 +4,7 @@ extern std::vector<Bullet*> bulletList;
 
 void Charactor::onUpdate()
 {
-    
+    Collision();
     if (hp <= 0)
     {
         isDead = true;

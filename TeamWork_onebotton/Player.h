@@ -4,6 +4,7 @@
 #include "PlayerParticles.h"
 #include "PlayerBullet.h"
 #include "PlayerLane.h"
+#include "timer.h"
 
 class Player : public Charactor
 {
@@ -18,12 +19,15 @@ public:
 	float t_;
 	bool lineChange_;
 
-	PlayerParticles* particl_;
 
-	PlayerBullet* bullet_;
-
-	PlayerLane* lane_;
+	PlayerParticles* particl_ = nullptr;
+	PlayerLane* lane_ = nullptr;
 
 private:
+	//射撃クールダウン管理
+	bool isCanFire;
+	Timer fireCoolTimer;
+	float fireCoolTime;
+	bool isFireDown = false;
 
 };

@@ -20,9 +20,10 @@ protected:
 
 	Vector2 pos;
 	Vector2 size;
-	
 	Vector2 dir;
-	float velocity;
+	Vector2 velocity;
+	//float velocity;
+	float speed;
 
 	int damage;
 
