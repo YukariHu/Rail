@@ -4,17 +4,30 @@
 class PlayerParticles
 {
 public:
-	struct Particl
+	struct MoveParticl
 	{
 		Vector2 pos;
 		int speed;
 		int radius;
 		bool isAlive;
 	};
-	Particl particl[100] = {};
+	MoveParticl moveParticl[100] = {};
+
+	struct ChangeParticl
+	{
+		Vector2 pos;
+		Vector2 direction;
+		int speed;
+		int radius;
+		float radian;
+		bool isAlive;
+	};
+	ChangeParticl changeParticl[5] = {};
+
 
 	PlayerParticles();
 
+	void CreateChangeParticl(Vector2 pos);
 	void Update(Vector2 pos, Vector2 startLine);
 	void Draw();
 

@@ -23,6 +23,8 @@ void Player::onInput(char* keys, char* prekeys)
 		} else {
 			lineChange_ = true;
 		}
+
+		particl_->CreateChangeParticl(pos);
 	}
 
 	if (keys[DIK_LSHIFT] != 0) {
