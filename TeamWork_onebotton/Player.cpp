@@ -79,9 +79,9 @@ void Player::onUpdate()
 		}
 	} else {
 		t_ = 0.0f;
-		lane_->update();
+		
 	}
-
+	lane_->update();
 	particl_->Update(pos, lane_->startLine);
 
 	if (isFireDown)

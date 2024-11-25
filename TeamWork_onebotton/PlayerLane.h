@@ -21,5 +21,6 @@ public:
 	float endPointY[3] = { 500.0f,600.0f,720.0f };
 	bool lineShift;
 
+	int alpha_;
 };
 
