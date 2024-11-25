@@ -149,6 +149,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="BackParticleManager.h" />
     <ClInclude Include="Bar.h" />
     <ClInclude Include="Beam.h" />
+    <ClInclude Include="Blend.h" />
     <ClInclude Include="BossA.h" />
     <ClInclude Include="BossAStateNode.h" />
     <ClInclude Include="Bullet.h" />

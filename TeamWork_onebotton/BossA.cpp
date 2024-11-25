@@ -20,7 +20,8 @@ BossA::BossA()
 	pos = { 400.0f, 300.0f };
 	velocity = { 0.0f, 0.0f };
 	id = 1;
-	hp = 100;
+	maxHp = 100;
+	hp = maxHp;
 	
 	currentStage = 1;
 

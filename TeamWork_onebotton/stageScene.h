@@ -2,6 +2,7 @@
 #include <Scene.h>
 #include "BossA.h"
 #include "Player.h"
+#include "Bar.h"
 
 
 class StageScene : public Scene
@@ -34,4 +35,12 @@ class StageScene : public Scene
 		
 
 
+		//UI
+		Bar* bossHpBar = nullptr;
+		Vector2 bossHpBarPos;
+		Vector2 bossHpBarSize;
+
+		Bar* playerHpBar = nullptr;
+		Vector2 playerHpBarPos;
+		Vector2 playerHpBarSize;
 };

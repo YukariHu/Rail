@@ -25,6 +25,7 @@ public:
 	const Vector2& Getposition();
 	void SetSize(const Vector2& _size);
 	const Vector2& GetSize();
+	const int GetColor() const { return color; }
 
 	void SetTarget(Charactor* _target);
 
@@ -41,6 +42,7 @@ protected:
 
 	int color;//キャラクターの色
 	int hp;
+	int maxHp;
 	bool isDead = false;
 
 	bool isEnableCollision = true;//当たり判定を有効にするか

@@ -10,7 +10,8 @@ Player::Player()
 	size = { 15.0f, 15.0f };
 	pos = { 600.0f, 600.0f };
 	velocity = { 1.0f / 180.0f, 1.0f / 180.0f };
-	hp = 100;
+	maxHp = 100;
+	hp = maxHp;
 
 
 	t_ = 0.0f;
