@@ -31,7 +31,5 @@ class StageScene : public Scene
 
 		int particleTime = 5;
 		bool isStart = false;
-		
-
 
 };

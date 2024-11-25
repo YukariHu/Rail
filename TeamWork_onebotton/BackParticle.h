@@ -12,6 +12,9 @@ public:
     void Draw();
     bool IsAlive() const;
 
+    void SetIsStart(bool isStart) { isStart_ = isStart; };
+    bool GetIsStart() const { return isStart_; };
+
 private:
     Vector2 pos_;
     Vector2 direction_;
@@ -21,6 +24,6 @@ private:
     bool alive_;
     int randNum_;
     int color_;
-
+    bool isStart_;
 };
 

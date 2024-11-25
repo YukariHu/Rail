@@ -25,5 +25,5 @@ private:
     int lineLength_;
     int h_;
     int hF_;
-
+    bool isStart = false;
 };

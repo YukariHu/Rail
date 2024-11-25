@@ -8,12 +8,17 @@ TitleParticle::TitleParticle()
 
 TitleParticle::~TitleParticle() {}
 
-void TitleParticle::Init(const Vector2& direction) {
-    pos_ = { 1300.0f, float(rand() % 720)};
-    direction_ = direction; 
-    rad_ = 4.0f;           
-    velocity_ = 6.0f + float(rand() % 3);  
-    oscillation_ = float(rand() % 360);   
+void TitleParticle::Init(const Vector2& direction, bool isStart) {
+    if (!isStart) {
+        pos_ = { float(rand() % 1280), float(rand() % 720) }; 
+    } else {
+        pos_ = { 1300.0f, float(rand() % 720) }; 
+    }
+
+    direction_ = direction;
+    rad_ = 4.0f;
+    velocity_ = 6.0f + float(rand() % 3);
+    oscillation_ = float(rand() % 360);
     alive_ = true;
 }
 

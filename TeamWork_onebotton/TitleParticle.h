@@ -6,7 +6,7 @@ public:
     TitleParticle();
     ~TitleParticle();
 
-    void Init(const Vector2& direction);
+    void Init(const Vector2& direction,bool isStart);
     void Update();
     void Draw();
     bool IsAlive() const;

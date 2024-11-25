@@ -12,7 +12,7 @@ public:
     void Update();
     void Draw();
     void Finalize();
-    void Create(const Vector2& direction);  
+    void Create(const Vector2& direction, bool isStart);
 
 private:
     void DeleteParticle();

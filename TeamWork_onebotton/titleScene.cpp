@@ -14,11 +14,16 @@ void TitleScene::onEnter()
 {
     titleLine_.Init();
     player_.Init();
-    titleSceneParticleTime_ = 100;
+    titleSceneParticleTime_ = 5;
     titleScenePlayerParticleTime_ = 100;
     lineLength_ = 0;
     h_ = 0;
     hF_ = false;
+
+    for (int i = 0; i < 20; ++i) {
+        titleParticle_.Create({ -1.0f, 0.0f }, isStart);
+    }
+    isStart = true;
 }
 
 void TitleScene::onInput(char* keys, char* prekeys)
@@ -40,8 +45,8 @@ void TitleScene::update()
     titleSceneParticleTime_--;
 
     if (titleSceneParticleTime_ <= 0) {
-        titleParticle_.Create({ -1.0f, 1.0f }); 
-        titleSceneParticleTime_ = 5; 
+        titleParticle_.Create({ -1.0f, 1.0f }, isStart);
+        titleSceneParticleTime_ = 5;
     }
 
     lineLength_ += 50;

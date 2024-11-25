@@ -33,11 +33,13 @@ void BackParticleManager::Draw() {
     }
 }
 
-void BackParticleManager::Create(const Vector2& direction) {
+void BackParticleManager::Create(const Vector2& direction, bool isStart) {
     BackParticle* newParticle = new BackParticle();
+    newParticle->SetIsStart(isStart);
     newParticle->Init(direction);
     mpParticle_.push_back(newParticle);
 }
+
 
 void BackParticleManager::Finalize() {
     for (auto& particle : mpParticle_) {

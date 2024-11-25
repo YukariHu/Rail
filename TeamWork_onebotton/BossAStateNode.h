@@ -3,7 +3,6 @@
 #include "StateNode.h"
 #include "MyVector2.h"
 
-
 class IdleState : public StateNode
 {
 public:
@@ -49,7 +48,7 @@ private:
 	float totalTime;
 	float passTime;
 	bool isMove;
-
+	bool attackCompleted;
 };
 
 
@@ -131,6 +130,7 @@ private:
 	float passTime;
 	bool isMove;
 	int moveRand;
+	bool attackCompleted;
 };
 
 class RandomShotting : public StateNode

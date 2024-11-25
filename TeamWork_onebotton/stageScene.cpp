@@ -37,10 +37,13 @@ void StageScene::onEnter()
 	boss->SetTarget(player);
 
 
-	for (int i = 0; i < 20; ++i) {  
-		backParticle.Create({ -1.0f, 0.0f });  
+	for (int i = 0; i < 20; ++i) {
+		backParticle.Create({ -1.0f, 0.0f }, isStart);  
 	}
 	isStart = true;
+
+	particleTime = 5;
+	
 }
 
 void StageScene::onInput(char* keys, char* prekeys)
@@ -70,18 +73,16 @@ void StageScene::update()
 	//**********particle
 	particleTime--;
 	if (particleTime <= 0) {
-		backParticle.Create({ -1.0f, 1.0f });
+		backParticle.Create({ -1.0f, 1.0f },isStart);
 		particleTime = 5;
 		
 	}
-
 }
 
 void StageScene::draw(const Camera& camera)
 {
 
 	Novice::DrawBox(0, 0, windowWidth, windowHeight, 0.0f, backGroundColor, kFillModeSolid);
-	Novice::ScreenPrintf(0, 0, "stage:%d", id);
 
 	backParticle.Draw();
 

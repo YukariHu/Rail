@@ -54,7 +54,7 @@ BossA::BossA()
 	stateMachine.RegisterState("BeamCrossMove", new BeamCrossMoveState());
 
 
-	stateMachine.SetEntry("BeamUpToDownMove");
+	stateMachine.SetEntry("idle");
 	 
 	//bossの目
 	maxEyeSize = { 15.0f, 20.0f };
@@ -199,11 +199,4 @@ void BossA::BeamFire()
 	bulletList.push_back(beam);
 
 }
-
-//void BossA::MoveTo(Vector2 targetPos,float time)
-//{
-//	//使用缓动函数移动到目标位置
-//	
-//	 
-//}
 

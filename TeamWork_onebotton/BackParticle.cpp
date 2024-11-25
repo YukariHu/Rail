@@ -11,7 +11,7 @@ BackParticle::BackParticle()
 BackParticle::~BackParticle() {}
 
 void BackParticle::Init(const Vector2& direction) {
-    if (!stageScene.GetIsStart()) {
+    if (!isStart_) {
         pos_ = { float(rand() % 1280), float(rand() % 720) };
     } else {
         pos_ = { 1320.0f, float(rand() % 720) };
@@ -41,6 +41,8 @@ void BackParticle::Draw() {
     if (alive_) {
         Novice::DrawEllipse((int)pos_.x, (int)pos_.y, (int)rad_, (int)rad_, 0.0f, color_, kFillModeSolid);
     }
+
+    Novice::ScreenPrintf(0, 0, "%d", stageScene.GetIsStart());
 }
 
 bool BackParticle::IsAlive() const {

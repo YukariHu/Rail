@@ -274,7 +274,6 @@
     <ClInclude Include="Beam.h">
       <Filter>Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="DeviationShotBullet.h" />
     <ClInclude Include="PlayerParticles.h">
       <Filter>Charactor</Filter>
     </ClInclude>
@@ -283,6 +282,16 @@
     </ClInclude>
     <ClInclude Include="PlayerLane.h">
       <Filter>Charactor</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="BackParticleManager.h">
+      <Filter>BackParticle</Filter>
+    </ClInclude>
+    <ClInclude Include="BackParticle.h">
+      <Filter>BackParticle</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviationShotBullet.h">
+      <Filter>Bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

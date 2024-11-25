@@ -13,7 +13,7 @@ void TitleParticleManager::Update() {
     for (auto itr = mpParticle_.begin(); itr != mpParticle_.end();) {
         if ((*itr) != nullptr) {
             (*itr)->Update();
-            if (!(*itr)->IsAlive()) { 
+            if (!(*itr)->IsAlive()) {
                 delete (*itr);
                 itr = mpParticle_.erase(itr);
             } else {
@@ -25,6 +25,7 @@ void TitleParticleManager::Update() {
     }
 }
 
+
 void TitleParticleManager::Draw() {
     for (auto& particle : mpParticle_) {
         if (particle != nullptr) {
@@ -33,9 +34,9 @@ void TitleParticleManager::Draw() {
     }
 }
 
-void TitleParticleManager::Create(const Vector2& direction) {
+void TitleParticleManager::Create(const Vector2& direction, bool isStart) {
     TitleParticle* newParticle = new TitleParticle();
-    newParticle->Init(direction);
+    newParticle->Init(direction, isStart);
     mpParticle_.push_back(newParticle);
 }
 

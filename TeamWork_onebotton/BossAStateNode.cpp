@@ -14,40 +14,78 @@ extern int windowWidth;
 extern float deltaTime;
 
 #pragma region IdleState
+
 IdleState::IdleState()
 {
 	timer.set_one_shot(true);
 	timer.set_on_timeout([&]()
-	{
-			boss->SwitchState("beamFire");
-	});
+		{
+			// Idle状態からランダムにMoveStateを選択
+			int moveStateIndex = rand() % 4; // 4つのMoveStateのいずれかを選択
+			switch (moveStateIndex)
+			{
+			case 0:
+				boss->SwitchState("moveA");
+				break;
+			case 1:
+				boss->SwitchState("moveB");
+				break;
+			case 2:
+				boss->SwitchState("RandomShotting");
+				break;
+			case 3:
+				boss->SwitchState("DeviationShot");
+				break;
+			default:
+				boss->SwitchState("moveA");
+				break;
+			}
+		});
+
 	speed = 2.0f;
 	dir = 1;
-
-	randNum = rand() % 9;
 }
+
 void IdleState::onEnter()
 {
 	timer.set_wait_time(1.0f);
 	timer.restart();
-	topPos = boss->Getposition() + Vector2(0,30.0f);
+	topPos = boss->Getposition() + Vector2(0, 30.0f);
 	bottomPos = boss->Getposition() + Vector2(0, 30.0f);
 
+	int moveStateIndex = rand() % 4; // 4つのMoveStateのいずれかを選択
+	switch (moveStateIndex)
+	{
+	case 0:
+		boss->SwitchState("moveA");
+		break;
+	case 1:
+		boss->SwitchState("moveB");
+		break;
+	case 2:
+		boss->SwitchState("RandomShotting");
+		break;
+	case 3:
+		boss->SwitchState("DeviationShot");
+		break;
+	default:
+		boss->SwitchState("moveA");
+		break;
+	}
 }
+
 void IdleState::onUpdate()
 {
-	//Vector2 velocity = { 0,3.0f };
 	timer.on_update(deltaTime);
-	//让boss在topPos和bottomPos间移动
-	boss->Setposition(boss->Getposition() + Vector2(0, speed)* dir);
+	boss->Setposition(boss->Getposition() + Vector2(0, speed) * dir);
 	if (boss->Getposition().y > bottomPos.y || boss->Getposition().y < topPos.y)
 	{
 		dir *= -1;
 	}
-
-
 }
+
 #pragma endregion
+
 
 #pragma region CircleFireState
 
@@ -55,16 +93,16 @@ CircleFireState::CircleFireState()
 {
 	fireCount = 3;
 	currentFireCount = 0;
-	
+
 	timer.set_one_shot(false);
 	timer.set_on_timeout([&]()
-	{
-		currentFireCount++;
-		bulletNum += 1;
-		//fire
-		BossA* bossA = (BossA*)(boss);
-		bossA->CircleFire(bulletNum);
-	});
+		{
+			currentFireCount++;
+			bulletNum += 1;
+			//fire
+			BossA* bossA = (BossA*)(boss);
+			bossA->CircleFire(bulletNum);
+		});
 
 }
 void CircleFireState::onEnter()
@@ -89,11 +127,12 @@ void CircleFireState::onExit()
 	bulletNum = 3;
 }
 
+#pragma region MoveAState
 MoveAState::MoveAState()
 {
 	currentMoveIndex = 0;
 	moveIndex = 4;
-	
+
 	targetPos[0] = Vector2(200, 150);
 	targetPos[1] = Vector2(200, static_cast<float>(windowHeight - 150));
 	targetPos[2] = Vector2(static_cast<float>(windowWidth - 150), static_cast<float>(windowHeight - 150));
@@ -122,20 +161,21 @@ void MoveAState::onUpdate()
 		t = 1.0f;
 		isMove = false;
 	}
+
 	if (isMove == false)
 	{
-		
-		if(currentMoveIndex >= moveIndex)
+		if (currentMoveIndex >= moveIndex)
 		{
-			
-			boss->SwitchState("idle");
-		}
-		else
+			// 移動が終わったら攻撃を行う
+			BossA* bossA = (BossA*)(boss);
+			int bulletNum = 3;
+			bossA->CircleFire(bulletNum);  // ここで攻撃を呼び出す
+			boss->SwitchState("idle");  // 攻撃後にIdle状態に戻る
+		} else
 		{
-			boss->SwitchState("circlefire");
+			boss->SwitchState("moveB");  // 次の移動状態に切り替える
 			currentMoveIndex++;
 		}
-		
 	}
 }
 void MoveAState::onExit()
@@ -145,6 +185,64 @@ void MoveAState::onExit()
 		currentMoveIndex = 0;
 	}
 }
+#pragma endregion
+
+#pragma region MoveBState
+
+MoveBState::MoveBState()
+{
+	currentMoveIndex = 0;
+	targetPos[0] = Vector2(1180, 600.0f);
+	targetPos[1] = Vector2(1180, 400.0f);
+	totalTime = 0.5f;
+}
+
+void MoveBState::onEnter()
+{
+	startPos = boss->Getposition();
+	passTime = 0.0f;
+	isMove = true;
+	attackCompleted = false;
+	moveIndex = 2;
+	moveRand = rand() % 2;
+}
+
+void MoveBState::onUpdate()
+{
+	passTime += deltaTime;
+	float t = passTime / totalTime;
+	if (t >= 1.0f)
+	{
+		t = 1.0f;
+		isMove = false;
+	}
+
+	float easeT = Easing::EaseInOut(t);
+	boss->Setposition(startPos + (targetPos[moveRand] - startPos) * easeT);
+
+	if (isMove == false)
+	{
+		if (!attackCompleted)
+		{
+			attackCompleted = true;
+			BossA* bossA = (BossA*)(boss);
+			bossA->StraightFire();  // 攻撃を実行
+		} else
+		{
+			// 攻撃後にIdleに戻る
+			boss->SwitchState("idle");
+		}
+	}
+}
+
+void MoveBState::onExit()
+{
+	if (currentMoveIndex >= moveIndex)
+	{
+		currentMoveIndex = 0;
+	}
+}
+
 #pragma endregion
 
 #pragma region StraightLineFire
@@ -187,54 +285,6 @@ void StraightLineFire::onExit()
 {
 	currentFireCount = 0;
 }
-
-MoveBState::MoveBState()
-{
-	currentMoveIndex = 0;
-
-	targetPos[0] = Vector2(1180, 600.0f);
-	targetPos[1] = Vector2(1180, 400.0f);
-
-	totalTime = 0.5f;
-
-}
-void MoveBState::onEnter()
-{
-	startPos = boss->Getposition();
-	passTime = 0.0f;
-	isMove = true;
-	moveIndex = 2;
-	moveRand = rand() % 2;
-}
-void MoveBState::onUpdate()
-{
-
-	passTime += deltaTime;
-	float t = passTime / totalTime;
-	if (t >= 1.0f)
-	{
-		t = 1.0f;
-		isMove = false;
-	}
-	float easeT = Easing::EaseInOut(t);
-	boss->Setposition(startPos + (targetPos[moveRand] - startPos) * easeT);
-
-	if (isMove == false)
-	{
-		currentMoveIndex++;
-		boss->SwitchState("StraightLineFire");
-	}
-}
-void MoveBState::onExit()
-{
-	if (currentMoveIndex >= moveIndex)
-	{
-		//boss->SwitchState("idle");
-		currentMoveIndex = 0;
-	}
-}
-
-#pragma endregion
 
 #pragma region RandomShotting
 
