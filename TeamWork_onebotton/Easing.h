@@ -21,4 +21,8 @@ namespace Easing {
 	inline float EaseInOutCirc(float x) {
 		return x < 0.5 ? 8 * x * x * x * x : 1 - float(pow(-2 * x + 2, 4) / 2);
 	}
+
+	inline float EaseOutExpo(float x){
+		return x == 1 ? 1 : float(1 - pow(2, -10 * x));
+	}
 }

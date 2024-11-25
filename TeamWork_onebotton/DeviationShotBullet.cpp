@@ -8,7 +8,9 @@ DeviationShotBullet::DeviationShotBullet(Vector2 firePos, Vector2 _dir, int _tar
 	pos = firePos;
 	dir = _dir;
 	size = { 10.0f,10.0f };
-	velocity = 10.0f;
+	speed = 10.0f;
+	velocity.x = speed * cosf(dir.x);
+	velocity.y = speed * sinf(dir.y);
 	damage = 1;
 	isCanRemove = false;
 
@@ -16,13 +18,9 @@ DeviationShotBullet::DeviationShotBullet(Vector2 firePos, Vector2 _dir, int _tar
 }
 void DeviationShotBullet::onUpdate()
 {
-	pos.x += velocity * cosf(dir.x);
-	pos.y += velocity * sinf(dir.y);
+	
+	Bullet::onUpdate();
 
-	if (pos.x > windowWidth || pos.x < 0.0f || pos.y > windowHeight || pos.y < 0.0f)
-	{
-		isCanRemove = true;
-	}
 }
 void DeviationShotBullet::onDraw(const Camera& camera)
 {

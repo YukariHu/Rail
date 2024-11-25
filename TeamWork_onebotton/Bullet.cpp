@@ -8,7 +8,10 @@ Bullet::Bullet(Vector2 firePos, Vector2 _dir)
 	pos = firePos;
 	dir = _dir;
 	size = { 10.0f,10.0f };
-	velocity = 10.0f;
+	speed = 10.0f;
+
+	velocity = { speed * dir.x,speed * dir.y };
+	
 	damage = 1;
 	isCanRemove = false;
 	targetID = 0;
@@ -18,15 +21,17 @@ Bullet::Bullet(Vector2 firePos, Vector2 dir, int _targertID)
 	pos = firePos;
 	dir = dir;
 	size = { 10.0f,10.0f };
-	velocity = 10.0f;
+	speed = 10.0f;
+
+	velocity = { speed * dir.x,speed * dir.y };
 	damage = 1;
 	isCanRemove = false;
 	targetID = _targertID;
 }
 void Bullet::onUpdate()
 {
-	pos.x += velocity * dir.x;
-	pos.y += velocity * dir.y;
+	pos.x += velocity.x;
+	pos.y += velocity.y;
 
 	if (pos.x > windowWidth || pos.x < 0.0f || pos.y > windowHeight || pos.y < 0.0f)
 	{
@@ -37,7 +42,7 @@ bool Bullet::checkCollision(Vector2 targertPos, Vector2 targertSize)
 {
 	if (isEnableCollision)
 	{
-		if ((pos - targertPos).length() <= targertSize.x /2 + size.x /2)
+		if ((pos - targertPos).length() <= targertSize.x + size.x)
 		{
 			isCanRemove = true;
 			return true;

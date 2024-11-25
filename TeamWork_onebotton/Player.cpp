@@ -1,18 +1,37 @@
 #include "Player.h"
+#include "PlayerBu.h"
 extern int windowHeight;
 extern int windowWidth;
+extern float deltaTime;
+extern std::vector<Bullet*> bulletList;
 Player::Player()
 {
 	color = WHITE;
 	size = { 15.0f, 15.0f };
 	pos = { 600.0f, 600.0f };
 	velocity = { 1.0f / 180.0f, 1.0f / 180.0f };
+	maxHp = 100;
+	hp = maxHp;
+
+
 	t_ = 0.0f;
 	lineChange_ = false;
 
+
 	particl_ = new PlayerParticles();
-	bullet_ = new PlayerBullet();
 	lane_ = new PlayerLane();
+
+	
+	//射撃クールダウン管理
+	fireCoolTime = 0.08f;
+	isCanFire = false;
+	fireCoolTimer.set_one_shot(true);
+	fireCoolTimer.set_wait_time(fireCoolTime);
+	fireCoolTimer.set_on_timeout([&]() {
+		isCanFire = true;
+		fireCoolTimer.restart();
+	});
+
 }
 
 void Player::onInput(char* keys, char* prekeys)
@@ -36,11 +55,17 @@ void Player::onInput(char* keys, char* prekeys)
 		lane_->lineShift = true;
 	}
 
+	//射撃
+	if (Novice::IsPressMouse(0))
+	{
+		isFireDown = true;
+	}
+
 }
 
 void Player::onUpdate()
 {
-	Charactor::onUpdate();
+	
 
 	if (t_ < 1.0f) {
 		t_ += velocity.x;
@@ -59,8 +84,28 @@ void Player::onUpdate()
 
 	particl_->Update(pos, lane_->startLine);
 
-	bullet_->Update(pos);
+	if (isFireDown)
+	{
+		if (isCanFire)
+		{
+			isCanFire = false;
+			int mousePosX, mousePosY;
+			Novice::GetMousePosition(&mousePosX, &mousePosY);
+			Vector2 mousePos = { static_cast<float>(mousePosX), static_cast<float>(mousePosY) };
+			PlayerBu* playerBullet = new PlayerBu(pos, mousePos);
+			bulletList.push_back(playerBullet);
 
+		}
+	}
+
+	if (!isCanFire)
+	{
+		fireCoolTimer.on_update(deltaTime);
+	}
+
+
+	isFireDown = false;
+	Charactor::onUpdate();
 
 }
 
@@ -71,5 +116,4 @@ void Player::onDraw(const Camera& camera)
 	
 	lane_->Draw();
 	particl_->Draw();
-	bullet_->Draw();
 }

@@ -20,6 +20,8 @@ BossA::BossA()
 	pos = { 400.0f, 300.0f };
 	velocity = { 0.0f, 0.0f };
 	id = 1;
+	maxHp = 100;
+	hp = maxHp;
 	
 	currentStage = 1;
 
@@ -189,7 +191,7 @@ int BossA::GetCurrentStage()
 	return currentStage;
 }
 
-
+//使っていない
 void BossA::BeamFire()
 {
 	Vector2 direction = { 1.0f, 0.0f };

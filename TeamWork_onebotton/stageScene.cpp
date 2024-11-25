@@ -5,7 +5,7 @@
 #include <vector>
 #include "Bullet.h"
 #include "BackParticleManager.h"
-
+#include "Blend.h"
 
 extern SceneManager sceneManager;
 extern int windowHeight;
@@ -22,6 +22,11 @@ BackParticleManager backParticle;
 StageScene::StageScene(int _id)
 {
 	id = _id;
+	bossHpBarPos = { 5.0f,0.0f };
+	bossHpBarSize = { windowWidth - 10.0f,20.0f };
+
+	playerHpBarPos = { 30.0f,windowHeight - 30.0f };
+	playerHpBarSize = { 120.0f,15.0f };
 }
 
 StageScene::~StageScene()
@@ -33,6 +38,8 @@ void StageScene::onEnter()
 {
 	boss = new BossA();
 	player = new Player();
+	bossHpBar = new Bar(bossHpBarPos,bossHpBarSize,boss->GetHp(), GetColor(255, 48, 48, 255), WHITE,4);//  255, 106, 106
+	playerHpBar = new Bar(playerHpBarPos, playerHpBarSize, player->GetHp(), GetColor(0, 205,102, 255));//0, 255,127
 
 	boss->SetTarget(player);
 
@@ -63,14 +70,15 @@ void StageScene::onInput(char* keys, char* prekeys)
 void StageScene::update()
 {
 	mainCamera.onUpdate();
+	BulletListUpdate();
 	boss->onUpdate();
 	player->onUpdate();
-	BulletListUpdate();
-	//TODO:check collision
-
-	backParticle.Update();
+	
+	bossHpBar->Update(boss->GetHp());
+	playerHpBar->Update(player->GetHp());
 
 	//**********particle
+	backParticle.Update();
 	particleTime--;
 	if (particleTime <= 0) {
 		backParticle.Create({ -1.0f, 1.0f },isStart);
@@ -85,10 +93,15 @@ void StageScene::draw(const Camera& camera)
 	Novice::DrawBox(0, 0, windowWidth, windowHeight, 0.0f, backGroundColor, kFillModeSolid);
 
 	backParticle.Draw();
-
+	BulletListDraw(camera);
 	boss->onDraw(camera);
 	player->onDraw(camera);
-	BulletListDraw(camera);
+	
+	bossHpBar->Draw();
+	playerHpBar->Draw();
+
+	Novice::ScreenPrintf(0, 0, "PlayerHP:%d", player->GetHp());
+	Novice::ScreenPrintf(0, 20, "BossHP:%d", boss->GetHp());
 }
 
 void StageScene::onExit()
@@ -97,6 +110,14 @@ void StageScene::onExit()
 	boss = nullptr;
 	delete player;
 	player = nullptr;
+
+	delete bossHpBar;
+	bossHpBar = nullptr;
+
+	delete playerHpBar;
+	playerHpBar = nullptr;
+
+
 
 	for (auto bullet : bulletList)
 	{

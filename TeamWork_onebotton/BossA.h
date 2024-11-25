@@ -19,8 +19,8 @@ public:
 
 	void EyeUpdate();
 
-	void BeamFire();
-	void MoveTo(Vector2 targetPos,float time);
+	void BeamFire();//使っていない
+	void MoveTo(Vector2 targetPos,float time);//使っていない
 
 	void DeviationFire();
 	

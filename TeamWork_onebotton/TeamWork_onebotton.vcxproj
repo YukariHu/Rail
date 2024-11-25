@@ -111,6 +111,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
   <ItemGroup>
     <ClCompile Include="BackParticle.cpp" />
     <ClCompile Include="BackParticleManager.cpp" />
+    <ClCompile Include="Bar.cpp" />
     <ClCompile Include="Beam.cpp" />
     <ClCompile Include="BossA.cpp" />
     <ClCompile Include="BossAStateNode.cpp" />
@@ -126,6 +127,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="DeviationShotBullet.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerBu.cpp" />
     <ClCompile Include="PlayerBullet.cpp" />
     <ClCompile Include="PlayerLane.cpp" />
     <ClCompile Include="PlayerParticles.cpp" />
@@ -145,7 +147,9 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
   <ItemGroup>
     <ClInclude Include="BackParticle.h" />
     <ClInclude Include="BackParticleManager.h" />
+    <ClInclude Include="Bar.h" />
     <ClInclude Include="Beam.h" />
+    <ClInclude Include="Blend.h" />
     <ClInclude Include="BossA.h" />
     <ClInclude Include="BossAStateNode.h" />
     <ClInclude Include="Bullet.h" />
@@ -182,6 +186,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="Easing.h" />
     <ClInclude Include="MyVector2.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerBu.h" />
     <ClInclude Include="PlayerBullet.h" />
     <ClInclude Include="PlayerLane.h" />
     <ClInclude Include="PlayerParticles.h" />
