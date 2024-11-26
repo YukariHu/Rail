@@ -32,6 +32,25 @@ Player::Player()
 		fireCoolTimer.restart();
 	});
 
+	//ダッシュ管理
+	dashCount = maxDashCount;
+	dashVelocity = { 1.0f / 60.0f, 1.0f / 60.0f };
+	dashCoolTimer.set_one_shot(true);
+	dashCoolTimer.set_wait_time(dashCoolTime);
+	dashCoolTimer.set_on_timeout([&]() {
+		dashCount++;
+		dashCoolTimer.restart();
+		});
+
+	dashTimer.set_one_shot(true);
+	dashTimer.set_wait_time(dashTime);
+	dashTimer.set_on_timeout([&]() {
+		velocity = { 1.0f / 180.0f, 1.0f / 180.0f };
+		isDash = false;
+		isEnableCollision = true;
+		dashTimer.restart();
+		});
+
 }
 
 void Player::onInput(char* keys, char* prekeys)
@@ -47,10 +66,15 @@ void Player::onInput(char* keys, char* prekeys)
 		particl_->CreateChangeParticl(pos);
 	}
 
-	if (keys[DIK_LSHIFT] != 0) {
-		velocity = { 1.0f / 100.0f, 1.0f / 100.0f };
-	} else {
-		velocity = { 1.0f / 180.0f, 1.0f / 180.0f };
+	//if (keys[DIK_LSHIFT] != 0) {
+	//	velocity = { 1.0f / 100.0f, 1.0f / 100.0f };
+	//} else {
+	//	velocity = { 1.0f / 180.0f, 1.0f / 180.0f };
+	//}
+
+	if (keys[DIK_C] != 0 && prekeys[DIK_C] == 0)
+	{
+		isDashDown = true;
 	}
 
 	if (prekeys[DIK_1] == 0 && keys[DIK_1] != 0) {
@@ -68,6 +92,26 @@ void Player::onInput(char* keys, char* prekeys)
 void Player::onUpdate()
 {
 	
+	if (isDashDown && !isDash)
+	{
+		if (dashCount > 0)
+		{
+			dashCount--;
+			isDash = true;
+			isEnableCollision = false;
+		}
+	}
+
+	if (isDash)
+	{
+		velocity = dashVelocity;
+		dashTimer.on_update(deltaTime);
+	}
+
+	if (dashCount < maxDashCount)
+	{
+		dashCoolTimer.on_update(deltaTime);
+	}
 
 	if (t_ < 1.0f) {
 		t_ += velocity.x;
@@ -107,14 +151,21 @@ void Player::onUpdate()
 
 
 	isFireDown = false;
+	isDashDown = false;
 	Charactor::onUpdate();
 
 }
 
 void Player::onDraw(const Camera& camera)
 {
+
 	const Vector2& cameraPos = camera.GetPos();
-	Novice::DrawEllipse(static_cast<int>(pos.x - cameraPos.x), static_cast<int>(pos.y - cameraPos.y), static_cast<int>(size.x), static_cast<int>(size.x), 0.0f, WHITE, kFillModeSolid);
+
+	if (isEnableCollision)
+	{
+		Novice::DrawEllipse(static_cast<int>(pos.x - cameraPos.x), static_cast<int>(pos.y - cameraPos.y), static_cast<int>(size.x), static_cast<int>(size.x), 0.0f, WHITE, kFillModeSolid);
+	}
+	
 	
 	lane_->Draw();
 	particl_->Draw();

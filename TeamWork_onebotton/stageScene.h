@@ -41,4 +41,8 @@ class StageScene : public Scene
 		Bar* playerHpBar = nullptr;
 		Vector2 playerHpBarPos;
 		Vector2 playerHpBarSize;
+
+		Bar* dashBar = nullptr;
+		Vector2 dashBarPos;
+		Vector2 dashBarSize;
 };
