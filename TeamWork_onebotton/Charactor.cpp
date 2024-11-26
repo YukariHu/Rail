@@ -20,10 +20,6 @@ void Charactor::onDraw(const Camera& camera)
 
 void Charactor::Collision()
 {
-    if (!isEnableCollision)
-    {
-		return;
-	}
     for (auto& bullet : bulletList)
     {
         if (id!= bullet->targetID)

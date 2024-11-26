@@ -12,8 +12,6 @@ public:
 	void Update(int _value);
 	void Draw();
 
-	void SetrecoveryTime(float _recoveryTime) { recoveryTime = _recoveryTime; }
-
 private:
 	float maxValue;
 	float value;
@@ -30,22 +28,12 @@ private:
 	int barColor;
 	int backColor;
 	int borderColor;
-
 	Timer residualTimer;//残存hpのバーを表示する時間
-	bool isResidualTimeStart;
-
 	Timer moveTimer;//残存hpのバーを移動する時間
-	bool isMoveStart;
 
 	Timer recoveryTimer;//回復する時間
-	bool isRecoveryTimeStart;
-	float recoveryTime = 0.2f;
-	float startbarSize = 0.0f;
-	float targetBarSize = 0.0f;
-	
 
-	//回復パーティクル 制作中
-	Timer recoveryParticleTimer;
-	bool isRecoveryParticleStart = false;
+	bool isResidualTimeStart;
+	bool isMoveStart;
 
 };

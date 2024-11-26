@@ -16,8 +16,6 @@ public:
 	void onUpdate() override;
 	void onDraw(const Camera& camera) override;
 
-	const int GetDashCount() const { return dashCount; }
-
 	float t_;
 	bool lineChange_;
 
@@ -31,17 +29,5 @@ private:
 	Timer fireCoolTimer;
 	float fireCoolTime;
 	bool isFireDown = false;
-
-	//ダッシュ管理
-	int maxDashCount = 5;
-	int dashCount;
-	Timer dashCoolTimer;
-	float dashCoolTime = 1.0f;
-	
-	Timer dashTimer;
-	float dashTime = 0.05f;
-	bool isDash = false;
-	bool isDashDown = false;
-	Vector2 dashVelocity;
 
 };

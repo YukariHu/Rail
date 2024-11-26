@@ -25,13 +25,8 @@ StageScene::StageScene(int _id)
 	bossHpBarPos = { 5.0f,0.0f };
 	bossHpBarSize = { windowWidth - 10.0f,20.0f };
 
-	playerHpBarPos = { 30.0f,windowHeight - 50.0f };
+	playerHpBarPos = { 30.0f,windowHeight - 30.0f };
 	playerHpBarSize = { 120.0f,15.0f };
-
-	dashBarPos = { 25.0f,windowHeight - 30.0f };
-	dashBarSize = { 180.0f,15.0f };
-
-	
 }
 
 StageScene::~StageScene()
@@ -45,11 +40,8 @@ void StageScene::onEnter()
 	player = new Player();
 	bossHpBar = new Bar(bossHpBarPos,bossHpBarSize,boss->GetHp(), GetColor(255, 48, 48, 255), WHITE,4);//  255, 106, 106
 	playerHpBar = new Bar(playerHpBarPos, playerHpBarSize, player->GetHp(), GetColor(0, 205,102, 255));//0, 255,127
-	
-	dashBar = new Bar(dashBarPos, dashBarSize, dynamic_cast<Player*>(player)->GetDashCount(), GetColor(255,215, 0, 255), GetColor(0, 205, 102, 000),1);//0, 255,127
-	
+
 	boss->SetTarget(player);
-	//player.ge
 
 
 	for (int i = 0; i < 20; ++i) {
@@ -71,7 +63,7 @@ void StageScene::onInput(char* keys, char* prekeys)
 
 	if (keys[DIK_SPACE] && !prekeys[DIK_SPACE])
 	{
-		//mainCamera.Shack(4,0.3f);
+		mainCamera.Shack(4,0.3f);
 	}
 }
 
@@ -82,11 +74,8 @@ void StageScene::update()
 	boss->onUpdate();
 	player->onUpdate();
 	
-
-	//*********bar
 	bossHpBar->Update(boss->GetHp());
 	playerHpBar->Update(player->GetHp());
-	dashBar->Update(dynamic_cast<Player*>(player)->GetDashCount());
 
 	//**********particle
 	backParticle.Update();
@@ -110,7 +99,6 @@ void StageScene::draw(const Camera& camera)
 	
 	bossHpBar->Draw();
 	playerHpBar->Draw();
-	dashBar->Draw();
 
 	Novice::ScreenPrintf(0, 0, "PlayerHP:%d", player->GetHp());
 	Novice::ScreenPrintf(0, 20, "BossHP:%d", boss->GetHp());
@@ -129,8 +117,6 @@ void StageScene::onExit()
 	delete playerHpBar;
 	playerHpBar = nullptr;
 
-	delete dashBar;
-	dashBar = nullptr;
 
 
 	for (auto bullet : bulletList)
