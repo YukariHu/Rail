@@ -81,6 +81,14 @@ BossA::BossA()
 			eyeSize = maxEyeSize;
 		}
 	);
+
+	fireRespawnTimer.set_wait_time(fireRespawnInterval);
+	fireRespawnTimer.set_one_shot(false);
+	fireRespawnTimer.set_on_timeout([&]() {
+
+		fireParticles.push_back(FireParticle({ pos.x,pos.y + 2.0f }, { size.x + 5.0f,size.y + 5.0f }, 60));
+		});
+
 }
 	
 
@@ -99,14 +107,34 @@ void BossA::onUpdate()
 		}
 	}
 
+
+
+	fireRespawnTimer.on_update(deltaTime);
+	//火焰粒子更新并检查是否销毁
+	auto it = fireParticles.begin();
+	while (it != fireParticles.end()) {
+		it->Update();
+		if (it->isOver) {
+
+			it = fireParticles.erase(it); // 删除并更新迭代器
+		}
+		else {
+			++it;
+		}
+	}
+
 }
 
 void BossA::onDraw(const Camera& camera)
 {
 	const Vector2& cameraPos = camera.GetPos();
+	for (auto& fireParticle : fireParticles)
+	{
+		fireParticle.Draw();
+	}
 	Novice::DrawEllipse(static_cast<int>(pos.x - cameraPos.x), static_cast<int>(pos.y - cameraPos.y), static_cast<int>(size.x), static_cast<int>(size.x), 0.0f, color, kFillModeSolid);
 	Novice::DrawEllipse(static_cast<int>(pos.x + eyePos.x - cameraPos.x), static_cast<int>(pos.y + eyePos.y - cameraPos.y), static_cast<int>(eyeSize.x), static_cast<int>(eyeSize.y), eyeAngle, eyeColor, kFillModeSolid);
-    
+
 }
 
 void BossA::onHurt(int damage)

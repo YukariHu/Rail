@@ -1,6 +1,7 @@
 #pragma once
 #include "Charactor.h"
 #include "timer.h"
+#include <FireParticle.h>
 
 class BossA : public Charactor
 {
@@ -43,8 +44,11 @@ private:
 	Timer blinkInterval;//まばたきの間隔
 	bool isBlink;
 
-	
+	//fire Particle
+	std::vector<FireParticle> fireParticles;
 
+	Timer fireRespawnTimer;
+	float fireRespawnInterval = 0.08f;
 
 	
 };
