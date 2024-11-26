@@ -1,6 +1,4 @@
 #include "FireFlowerManager.h"
-#include <cstdlib>
-#include <cmath>
 
 FireFlowerManager::FireFlowerManager() : fireFlower_() {}
 
@@ -8,7 +6,8 @@ FireFlowerManager::~FireFlowerManager() {
     Finalize();
 }
 
-void FireFlowerManager::Init() {}
+void FireFlowerManager::Init() {
+}
 
 void FireFlowerManager::Update() {
     for (auto itr = fireFlower_.begin(); itr != fireFlower_.end();) {
@@ -34,20 +33,10 @@ void FireFlowerManager::Draw() {
     }
 }
 
-void FireFlowerManager::Create()
-{
-    int numParticles = 15;
-    for (int i = 0; i < numParticles; i++) {
-        float angle = i * 360.0f / numParticles;
-        Vector2 direction = { cosf(angle * PI / 180.0f), sinf(angle * PI / 180.0f) };
-        
-        float randomX = 1280.0f /2.0f;
-        float randomY = 360.0f ;
-
-        FireFlower* fireFlower = new FireFlower();
-        fireFlower->Init(direction, randomX, randomY);
-        fireFlower_.push_back(fireFlower);
-    }
+void FireFlowerManager::Create(const Vector2& direction) {
+    FireFlower* newParticle = new FireFlower();
+    newParticle->Init(direction);
+    fireFlower_.push_back(newParticle);
 }
 
 void FireFlowerManager::Finalize() {

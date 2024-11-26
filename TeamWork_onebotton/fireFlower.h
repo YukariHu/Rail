@@ -6,7 +6,7 @@ public:
     FireFlower();
     ~FireFlower();
 
-    void Init(Vector2 direction, float xPosition, float yPosition);
+    void Init(const Vector2& direction);
     void Update();
     void Draw();
     bool IsAlive() const;
@@ -16,7 +16,6 @@ private:
     Vector2 direction_;
     float rad_;
     float velocity_;
-    float expandRate_;
-    int time_;
+    float oscillation_;
     bool alive_;
 };

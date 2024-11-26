@@ -12,12 +12,10 @@ public:
     void Update();
     void Draw();
     void Finalize();
-    void Create();
+    void Create(const Vector2& direction);
 
 private:
     std::list<FireFlower*> fireFlower_;
-
-    float PI = 3.14f;
 };
 
 
