@@ -3,7 +3,7 @@
 
 #include <Scene.h>
 #include <TitleScene.h>
-#include <StageSelectScene.h>
+#include <ClearScene.h>
 #include <stageScene.h>
 #include <vector>
 class SceneManager

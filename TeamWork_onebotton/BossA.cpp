@@ -5,11 +5,14 @@
 #include "DeviationShotBullet.h"
 #include "Player.h"
 #include "Easing.h"
+#include "SceneManager.h"
 
 #define PI 3.1415926f
 extern std::vector<Bullet*> bulletList;
 extern Charactor* player;
 //extern IdleState* idoleState;
+
+extern SceneManager sceneManager;
 
 extern float deltaTime;
 
@@ -105,6 +108,7 @@ void BossA::onUpdate()
 
 			alpha_ = 0;
 		}
+
 	}
 
 
