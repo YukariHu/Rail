@@ -6,7 +6,7 @@ void SceneManager::init()
 	tieleScene = new TitleScene();
 	stageSelectScene = new ClearScene();
 	stageScene.push_back(new StageScene(0));
-	setCurrentScene(stageScene[0]);
+	setCurrentScene(stageSelectScene);
 	//setCurrentScene(stageScene[1]);
 }
 
