@@ -23,6 +23,8 @@ private:
 	float dir;
 
 	int randNum;
+
+	int moveStateIndex;
 };
 
 //class MoveToCenter
@@ -131,6 +133,7 @@ private:
 	bool isMove;
 	int moveRand;
 	bool attackCompleted;
+	int count;
 };
 
 class RandomShotting : public StateNode

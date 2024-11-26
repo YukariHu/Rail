@@ -8,7 +8,7 @@ DeviationShotBullet::DeviationShotBullet(Vector2 firePos, Vector2 _dir, int _tar
 	pos = firePos;
 	dir = _dir;
 	size = { 10.0f,10.0f };
-	speed = 10.0f;
+	speed = 15.0f;
 	velocity.x = speed * cosf(dir.x);
 	velocity.y = speed * sinf(dir.y);
 	damage = 1;

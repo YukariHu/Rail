@@ -21,29 +21,27 @@ IdleState::IdleState()
 	timer.set_on_timeout([&]()
 		{
 			// Idle状態からランダムにMoveStateを選択
-			int moveStateIndex = rand() % 4; // 4つのMoveStateのいずれかを選択
-			switch (moveStateIndex)
-			{
-			case 0:
-				boss->SwitchState("moveA");
-				break;
-			case 1:
-				boss->SwitchState("moveB");
-				break;
-			case 2:
-				boss->SwitchState("RandomShotting");
-				break;
-			case 3:
-				boss->SwitchState("DeviationShot");
-				break;
-			default:
-				boss->SwitchState("moveA");
-				break;
-			}
+			//int moveStateIndex = rand() % 4; // 4つのMoveStateのいずれかを選択
+			//switch (moveStateIndex)
+			//{
+			//case 0:
+			//	boss->SwitchState("moveA");
+			//	break;
+			//case 1:
+			//	boss->SwitchState("moveB");
+			//	break;
+			//case 2:
+			//	boss->SwitchState("RandomShottingMove");
+			//	break;
+			//case 3:
+			//	boss->SwitchState("DeviationShotMove");
+			//	break;
+			//}
 		});
 
 	speed = 2.0f;
 	dir = 1;
+	moveStateIndex = 0;
 }
 
 void IdleState::onEnter()
@@ -53,25 +51,7 @@ void IdleState::onEnter()
 	topPos = boss->Getposition() + Vector2(0, 30.0f);
 	bottomPos = boss->Getposition() + Vector2(0, 30.0f);
 
-	int moveStateIndex = rand() % 4; // 4つのMoveStateのいずれかを選択
-	switch (moveStateIndex)
-	{
-	case 0:
-		boss->SwitchState("moveA");
-		break;
-	case 1:
-		boss->SwitchState("moveB");
-		break;
-	case 2:
-		boss->SwitchState("RandomShotting");
-		break;
-	case 3:
-		boss->SwitchState("DeviationShot");
-		break;
-	default:
-		boss->SwitchState("moveA");
-		break;
-	}
+	moveStateIndex = rand() % 7;
 }
 
 void IdleState::onUpdate()
@@ -82,6 +62,34 @@ void IdleState::onUpdate()
 	{
 		dir *= -1;
 	}
+
+	switch (moveStateIndex)
+	{
+	case 0:
+		boss->SwitchState("moveB");
+		break;
+	case 1:
+		boss->SwitchState("RandomShottingMove");
+		break;
+	case 2:
+		boss->SwitchState("DeviationShotMove");
+		break;
+	case 3:
+		boss->SwitchState("BeamCrossMove");
+		break;
+	case 4:
+		boss->SwitchState("BeamLeftToRightMove");
+		break;
+	case 5:
+		boss->SwitchState("BeamLeftToRightXMove");
+		break;
+	case 6:
+		boss->SwitchState("BeamUpToDownMove");
+		break;
+
+	}
+
+	Novice::ScreenPrintf(0, 60, "MoveState : %d", moveStateIndex);
 }
 
 #pragma endregion
@@ -117,7 +125,7 @@ void CircleFireState::onUpdate()
 
 	if (currentFireCount >= fireCount)
 	{
-		boss->SwitchState("moveA");
+		boss->SwitchState("idle");
 	}
 
 }
@@ -166,15 +174,11 @@ void MoveAState::onUpdate()
 	{
 		if (currentMoveIndex >= moveIndex)
 		{
-			// 移動が終わったら攻撃を行う
+			
 			BossA* bossA = (BossA*)(boss);
 			int bulletNum = 3;
-			bossA->CircleFire(bulletNum);  // ここで攻撃を呼び出す
-			boss->SwitchState("idle");  // 攻撃後にIdle状態に戻る
-		} else
-		{
-			boss->SwitchState("moveB");  // 次の移動状態に切り替える
-			currentMoveIndex++;
+			bossA->CircleFire(bulletNum); 
+			boss->SwitchState("CircleFire"); 
 		}
 	}
 }
@@ -192,9 +196,10 @@ void MoveAState::onExit()
 MoveBState::MoveBState()
 {
 	currentMoveIndex = 0;
-	targetPos[0] = Vector2(1180, 600.0f);
-	targetPos[1] = Vector2(1180, 400.0f);
+	targetPos[0] = Vector2(1180, 650.0f);
+	targetPos[1] = Vector2(1180, 500.0f);
 	totalTime = 0.5f;
+	count = 0;
 }
 
 void MoveBState::onEnter()
@@ -205,6 +210,7 @@ void MoveBState::onEnter()
 	attackCompleted = false;
 	moveIndex = 2;
 	moveRand = rand() % 2;
+	
 }
 
 void MoveBState::onUpdate()
@@ -220,18 +226,33 @@ void MoveBState::onUpdate()
 	float easeT = Easing::EaseInOut(t);
 	boss->Setposition(startPos + (targetPos[moveRand] - startPos) * easeT);
 
-	if (isMove == false)
+	if (!isMove && !attackCompleted) // 移動が完了したら攻撃
 	{
-		if (!attackCompleted)
+		attackCompleted = true;
+		BossA* bossA = (BossA*)(boss);
+		bossA->StraightFire(); 
+	}
+
+	if (attackCompleted)
+	{
+		
+		if (count < 5) 
 		{
-			attackCompleted = true;
-			BossA* bossA = (BossA*)(boss);
-			bossA->StraightFire();  // 攻撃を実行
+			
+			boss->SwitchState("moveB");
+			count++;
+			attackCompleted = false;  
 		} else
 		{
-			// 攻撃後にIdleに戻る
 			boss->SwitchState("idle");
+			count = 0;
 		}
+	}
+
+	if (!isMove && attackCompleted)  
+	{
+		count++; 
+		attackCompleted = false;
 	}
 }
 
@@ -240,7 +261,9 @@ void MoveBState::onExit()
 	if (currentMoveIndex >= moveIndex)
 	{
 		currentMoveIndex = 0;
+		
 	}
+
 }
 
 #pragma endregion
@@ -290,7 +313,7 @@ void StraightLineFire::onExit()
 
 RandomShotting::RandomShotting()
 {
-	fireCount = 60;
+	fireCount = 20;
 	currentFireCount = 0;
 
 	timer.set_one_shot(false);
@@ -387,7 +410,7 @@ void RandomShottingMoveState::onExit()
 
 DeviationShot::DeviationShot()
 {
-	fireCount = 10;
+	fireCount = 5;
 	currentFireCount = 0;
 
 	timer.set_one_shot(false);
@@ -405,7 +428,7 @@ void DeviationShot::onEnter()
 {
 	passTime = 0.0f;
 	isMove = true;
-	timer.set_wait_time(1.0f);
+	timer.set_wait_time(0.5f);
 	timer.restart();
 }
 
