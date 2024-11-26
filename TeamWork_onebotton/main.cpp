@@ -13,6 +13,12 @@ int windowWidth = 1280;
 float deltaTime = 1.0f / 60.0f;
 
 
+//レティクル
+int aimPosX = 0;
+int aimPosY = 0;
+int aimLength = 6;
+
+
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
@@ -39,6 +45,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 		/// ↓更新処理ここから
 		///
+		Novice::SetMouseCursorVisibility(0);
+		Novice::GetMousePosition(&aimPosX, &aimPosY);
 		sceneManager.onInput(keys, preKeys);
 		sceneManager.update();
 		///
@@ -49,6 +57,16 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		/// ↓描画処理ここから
 		///
 		sceneManager.draw(mainCamera);
+
+		// レティクル 
+		
+		Novice::DrawBox(aimPosX - aimLength, aimPosY, aimLength, 2, 0.0f, 0xff0000ff, kFillModeSolid);
+		Novice::DrawBox(aimPosX + aimLength, aimPosY, aimLength, 2, 0.0f, 0xff0000ff, kFillModeSolid);
+		Novice::DrawBox(aimPosX + 2, aimPosY + aimLength - 2, 2, aimLength, 0.0f, 0xff0000ff, kFillModeSolid);
+		Novice::DrawBox(aimPosX + 2, aimPosY - aimLength - 2, 2, aimLength, 0.0f, 0xff0000ff, kFillModeSolid);
+
+		
+		
 		///
 		/// ↑描画処理ここまで
 		///
