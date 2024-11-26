@@ -70,7 +70,7 @@ BossA::BossA()
 	eyeAngle = 0.0f;
 	isBlink = false;
 	blinkInterval.set_one_shot(true);
-	blinkInterval.set_wait_time(3.0f);
+	blinkInterval.set_wait_time(4.0f);
 	blinkInterval.set_on_timeout(
 		[this]() {
 			isBlink = true;
@@ -194,6 +194,8 @@ for (int i = 0; i < 360; i += 360/ bulletNum)
 
 void BossA::StraightFire()
 {
+	isBlink = true;
+	blinkTimer.restart();
 	Vector2 direction = { -1.0f ,0.0f };
 	Bullet* bullet = new Bullet(pos, direction,0);
 	bulletList.push_back(bullet);
