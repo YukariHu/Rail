@@ -11,7 +11,7 @@ FireFlower::~FireFlower()
 
 void FireFlower::Init(const Vector2& direction)
 {
-	pos_ = {};
+	pos_ = {direction};
 }
 
 void FireFlower::Update()
