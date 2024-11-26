@@ -43,10 +43,11 @@ void StageScene::onEnter()
 {
 	boss = new BossA();
 	player = new Player();
-	bossHpBar = new Bar(bossHpBarPos,bossHpBarSize,boss->GetHp(), GetColor(255, 48, 48, 255), WHITE,4);//  255, 106, 106
+
+	bossHpBar = new Bar(bossHpBarPos,bossHpBarSize,boss->GetHp(), GetColor(255, 48, 48, 255), WHITE,4, 1.0f);//  255, 106, 106
 	playerHpBar = new Bar(playerHpBarPos, playerHpBarSize, player->GetHp(), GetColor(0, 205,102, 255));//0, 255,127
 	
-	dashBar = new Bar(dashBarPos, dashBarSize, dynamic_cast<Player*>(player)->GetDashCount(), GetColor(255,215, 0, 255), GetColor(0, 205, 102, 000),1);//0, 255,127
+	dashBar = new Bar(dashBarPos, dashBarSize, dynamic_cast<Player*>(player)->GetDashCount(), GetColor(255,215, 0, 255), GetColor(0, 205, 102, 000),1,0.2f);//0, 255,127
 	
 	boss->SetTarget(player);
 	//player.ge
@@ -114,6 +115,10 @@ void StageScene::update()
 	if (boss->GetIsDead() || player->GetIsDead())
 	{
 		isOver = true;
+		//当たり判定無効にする
+		player->SetIsEnableCollision(false);
+		boss->SetIsEnableCollision(false);
+		
 	}
 
 }

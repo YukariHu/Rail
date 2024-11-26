@@ -6,7 +6,7 @@ class Bar
 {
 public:
 	Bar(Vector2 _pos ,Vector2 _borderSize, int _maxValue,int barColor);
-	Bar(Vector2 _pos, Vector2 _borderSize, int _maxValue, int barColor , int _borderColor, int _borderWidth);
+	Bar(Vector2 _pos, Vector2 _borderSize, int _maxValue, int barColor , int _borderColor, int _borderWidth, float _recoveryTime);
 	~Bar() = default;
 
 	void Update(int _value);

@@ -27,6 +27,7 @@ public:
 	const Vector2& GetSize();
 	const int GetColor() const { return color; }
 	const bool GetIsDead() const { return isDead; }
+	void SetIsEnableCollision(bool _isEnableCollision);
 
 	void SetTarget(Charactor* _target);
 

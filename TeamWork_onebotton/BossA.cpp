@@ -23,7 +23,7 @@ BossA::BossA()
 	pos = { 400.0f, 300.0f };
 	velocity = { 0.0f, 0.0f };
 	id = 1;
-	maxHp = 100;
+	maxHp = 10;
 	hp = maxHp;
 
 	alpha_ = 255;

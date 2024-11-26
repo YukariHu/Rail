@@ -62,7 +62,7 @@ Bar::Bar(Vector2 _pos, Vector2 _borderSize, int _maxValue , int _barColor)
 
 }
 
-Bar::Bar(Vector2 _pos, Vector2 _borderSize, int _maxValue, int _barColor, int _borderColor, int _borderWidth)
+Bar::Bar(Vector2 _pos, Vector2 _borderSize, int _maxValue, int _barColor, int _borderColor, int _borderWidth ,float _recoveryTime)
 {
 	pos = _pos;
 
@@ -72,6 +72,9 @@ Bar::Bar(Vector2 _pos, Vector2 _borderSize, int _maxValue, int _barColor, int _b
 	preResidualBarSize = residualBarSize;
 	borderWidth = _borderWidth;
 	borderColor = _borderColor;
+	recoveryTime = _recoveryTime;
+
+
 	maxValue = float(_maxValue);
 	value = maxValue;
 

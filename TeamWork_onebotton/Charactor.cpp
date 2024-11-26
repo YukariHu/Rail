@@ -67,6 +67,11 @@ const Vector2& Charactor::GetSize()
     return size;
 }
 
+void Charactor::SetIsEnableCollision(bool _isEnableCollision)
+{
+	this->isEnableCollision = _isEnableCollision;
+}
+
 void Charactor::SetTarget(Charactor* _target)
 {
 	this->target = _target;
