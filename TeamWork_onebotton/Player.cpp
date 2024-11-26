@@ -4,6 +4,8 @@ extern int windowHeight;
 extern int windowWidth;
 extern float deltaTime;
 extern std::vector<Bullet*> bulletList;
+
+
 Player::Player()
 {
 	color = WHITE;

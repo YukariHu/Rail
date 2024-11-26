@@ -1,7 +1,7 @@
 #include "Charactor.h"
 #include "Bullet.h"
 extern std::vector<Bullet*> bulletList;
-
+extern Camera mainCamera;
 void Charactor::onUpdate()
 {
     Collision();
@@ -37,6 +37,7 @@ void Charactor::Collision()
 void Charactor::onHurt(int damage)
 {
 	hp -= damage;
+    mainCamera.Shack(5.0f,0.3f);
     if (hp <= 0)
     {
         isDead = true;
