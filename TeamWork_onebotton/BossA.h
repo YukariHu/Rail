@@ -24,14 +24,13 @@ public:
 
 	void DeviationFire();
 	
-	int GetCurrentStage();
+	bool GetisPhase1() { return isphase1; }
 private:
 	
 	int alpha_;
 	//Bossの階段
 	//Boss当前前的阶段
-	int currentStage;
-	int maxStage = 2;
+	bool isphase1 = true;
 	
 	//eye
 	Vector2 eyePos;

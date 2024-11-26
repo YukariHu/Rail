@@ -22,8 +22,6 @@ BossA::BossA()
 	id = 1;
 	maxHp = 100;
 	hp = maxHp;
-	
-	currentStage = 1;
 
 	alpha_ = 255;
 
@@ -89,14 +87,18 @@ BossA::BossA()
 
 void BossA::onUpdate()
 {
-	stateMachine.onUpdate();
-	EyeUpdate();
-	Charactor::onUpdate();
+	if (!isDead)
+	{
+		stateMachine.onUpdate();
+		EyeUpdate();
+		Charactor::onUpdate();
 
-	if (alpha_ <= 0) {
+		if (alpha_ <= 0) {
 
-		alpha_ = 0;
+			alpha_ = 0;
+		}
 	}
+
 }
 
 void BossA::onDraw(const Camera& camera)
@@ -112,8 +114,16 @@ void BossA::onHurt(int damage)
 	hp -= damage;
 	if (hp <= 0)
 	{
+		if (isphase1)
+		{
+			isphase1 = false;
+			hp = maxHp;
+		}
+		else
+		{
+			isDead = true;
+		}
 		
-		isDead = true;
 	}
 
 }
@@ -186,10 +196,6 @@ void BossA::DeviationFire() {
 	bulletList.push_back(bullet);
 }
 
-int BossA::GetCurrentStage()
-{
-	return currentStage;
-}
 
 //使っていない
 void BossA::BeamFire()

@@ -9,7 +9,9 @@ Player::Player()
 	color = WHITE;
 	size = { 15.0f, 15.0f };
 	pos = { 600.0f, 600.0f };
-	velocity = { 1.0f / 180.0f, 1.0f / 180.0f };
+	basicVelocity = { 1.0f / 200.0f, 1.0f / 200.0f };
+
+	velocity = basicVelocity;
 	maxHp = 100;
 	hp = maxHp;
 
@@ -34,7 +36,7 @@ Player::Player()
 
 	//ダッシュ管理
 	dashCount = maxDashCount;
-	dashVelocity = { 1.0f / 60.0f, 1.0f / 60.0f };
+	dashVelocity = { 1.0f / 80.0f, 1.0f / 80.0f };
 	dashCoolTimer.set_one_shot(true);
 	dashCoolTimer.set_wait_time(dashCoolTime);
 	dashCoolTimer.set_on_timeout([&]() {
@@ -45,7 +47,7 @@ Player::Player()
 	dashTimer.set_one_shot(true);
 	dashTimer.set_wait_time(dashTime);
 	dashTimer.set_on_timeout([&]() {
-		velocity = { 1.0f / 180.0f, 1.0f / 180.0f };
+		velocity = { basicVelocity };
 		isDash = false;
 		isEnableCollision = true;
 		dashTimer.restart();
@@ -92,6 +94,11 @@ void Player::onInput(char* keys, char* prekeys)
 void Player::onUpdate()
 {
 	
+	if (isDead)
+	{
+		return;
+	}
+
 	if (isDashDown && !isDash)
 	{
 		if (dashCount > 0)
