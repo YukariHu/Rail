@@ -26,6 +26,9 @@ public:
 	PlayerLane* lane_ = nullptr;
 
 private:
+	Vector2 basicVelocity;
+
+
 	//射撃クールダウン管理
 	bool isCanFire;
 	Timer fireCoolTimer;
@@ -39,7 +42,7 @@ private:
 	float dashCoolTime = 1.0f;
 	
 	Timer dashTimer;
-	float dashTime = 0.05f;
+	float dashTime = 0.1f;
 	bool isDash = false;
 	bool isDashDown = false;
 	Vector2 dashVelocity;

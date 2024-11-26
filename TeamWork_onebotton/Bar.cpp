@@ -128,6 +128,10 @@ void Bar::Update(int _value)
 	value = float(_value);
 	
 
+	if (value < 0)
+	{
+		value = 0;
+	}
 
 	//残存hpのバーの処理
 	if (preValue > value/* && !isMoveStart*/)
@@ -181,20 +185,6 @@ void Bar::Update(int _value)
 		}
 	}
 
-
-	
-
-	
-
-
-	
-
-	
-
-	if (value < 0)
-	{
-		value = 0;
-	}
 	
 }
 
