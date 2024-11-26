@@ -125,6 +125,8 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="C:\KamataEngine\Adapter\Novice.cpp" />
     <ClCompile Include="Charactor.cpp" />
     <ClCompile Include="DeviationShotBullet.cpp" />
+    <ClCompile Include="FireFlower.cpp" />
+    <ClCompile Include="FireFlowerManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerBu.cpp" />
@@ -134,8 +136,9 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="ResouresManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="stageScene.cpp" />
-    <ClCompile Include="stageSelectScene.cpp" />
+    <ClCompile Include="ClearScene.cpp" />
     <ClCompile Include="TitleLine.cpp" />
+    <ClCompile Include="titleName.cpp" />
     <ClCompile Include="TitleParticle.cpp" />
     <ClCompile Include="TitleParticleManager.cpp" />
     <ClCompile Include="TitlePlayer.cpp" />
@@ -190,6 +193,8 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="PlayerBullet.h" />
     <ClInclude Include="PlayerLane.h" />
     <ClInclude Include="PlayerParticles.h" />
+    <ClInclude Include="FireFlower.h" />
+    <ClInclude Include="FireFlowerManager.h" />
     <ClInclude Include="read_csv.h" />
     <ClInclude Include="ResouresManager.h" />
     <ClInclude Include="scene.h" />
@@ -198,8 +203,10 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="stageSelectScene.h" />
     <ClInclude Include="StateMachine.h" />
     <ClInclude Include="StateNode.h" />
+    <ClInclude Include="ClearScene.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="TitleLine.h" />
+    <ClInclude Include="titleName.h" />
     <ClInclude Include="TitleParticle.h" />
     <ClInclude Include="TitleParticleManager.h" />
     <ClInclude Include="TitlePlayer.h" />

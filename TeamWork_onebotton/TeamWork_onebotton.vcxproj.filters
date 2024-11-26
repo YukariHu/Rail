@@ -41,6 +41,9 @@
     <Filter Include="Tool">
       <UniqueIdentifier>{607b4b4e-16b9-4206-86da-f37e52186821}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\Clear">
+      <UniqueIdentifier>{4b7d7626-6342-4e07-939c-27e190da9313}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp">
@@ -64,9 +67,6 @@
     </ClCompile>
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\StringUtility.cpp">
       <Filter>KamataEngine\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="stageSelectScene.cpp">
-      <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="stageScene.cpp">
       <Filter>Scene</Filter>
@@ -149,6 +149,18 @@
     <ClCompile Include="PlayerBu.cpp">
       <Filter>Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="titleName.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="ClearScene.cpp">
+      <Filter>Scene\Clear</Filter>
+    </ClCompile>
+    <ClCompile Include="FireFlower.cpp">
+      <Filter>Scene\Clear</Filter>
+    </ClCompile>
+    <ClCompile Include="FireFlowerManager.cpp">
+      <Filter>Scene\Clear</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -224,9 +236,6 @@
     </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="stageSelectScene.h">
-      <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="scene.h">
       <Filter>Scene</Filter>
@@ -330,6 +339,16 @@
     </ClInclude>
     <ClInclude Include="MyVector2.h">
       <Filter>Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="titleName.h" />
+    <ClInclude Include="ClearScene.h">
+      <Filter>Scene\Clear</Filter>
+    </ClInclude>
+    <ClInclude Include="FireFlower.h">
+      <Filter>Scene\Clear</Filter>
+    </ClInclude>
+    <ClInclude Include="FireFlowerManager.h">
+      <Filter>Scene\Clear</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

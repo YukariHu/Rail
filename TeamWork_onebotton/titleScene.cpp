@@ -15,6 +15,8 @@ void TitleScene::onEnter()
     titleLine_.Init();
     player_.Init();
     titleSceneParticleTime_ = 5;
+    titleName_.Init();
+    titleSceneParticleTime_ = 100;
     titleScenePlayerParticleTime_ = 100;
     lineLength_ = 0;
     h_ = 0;
@@ -58,6 +60,8 @@ void TitleScene::update()
 
     player_.Update();
 
+    titleName_.Update();
+
     /*if (hF_) {
 
         h_ += 1;
@@ -76,9 +80,9 @@ void TitleScene::draw(const Camera& camera)
     (void)camera;
     Novice::DrawBox(0, 0, 1280, 720, 0.0f, 0x161A30FF, kFillModeSolid);
 
-    Novice::ScreenPrintf(0, 0, "%d", h_);
-
     titleParticle_.Draw();
+
+    titleName_.Draw();
 
     Novice::DrawEllipse(1280, 720 / 2, h_, h_, 0.0f, WHITE, kFillModeSolid);
 
