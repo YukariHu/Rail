@@ -114,13 +114,13 @@ void BossA::onUpdate()
 
 
 	fireRespawnTimer.on_update(deltaTime);
-	//火焰粒子更新并检查是否销毁
+	//火焰粒子更新并检查是否销毁 日语：火の粒子を更新し、破壊されたかどうかを確認します
 	auto it = fireParticles.begin();
 	while (it != fireParticles.end()) {
 		it->Update();
 		if (it->isOver) {
 
-			it = fireParticles.erase(it); // 删除并更新迭代器
+			it = fireParticles.erase(it);
 		}
 		else {
 			++it;
@@ -149,6 +149,7 @@ void BossA::onHurt(int damage)
 		if (isphase1)
 		{
 			isphase1 = false;
+			dynamic_cast<Player*>(player)->lane_->lineShift = true;
 			hp = maxHp;
 		}
 		else
