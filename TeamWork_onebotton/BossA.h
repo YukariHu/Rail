@@ -27,7 +27,7 @@ public:
 	
 	bool GetisPhase1() { return isphase1; }
 
-	
+
 private:
 	
 	int alpha_;
@@ -42,9 +42,11 @@ private:
 	Vector2 maxEyeSize;
 	int eyeColor;
 	float eyeAngle;
+
 	Timer blinkTimer;//まばたきのタイマー
-	Timer blinkInterval;//まばたきの間隔
 	bool isBlink;
+	Timer blinkInterval;//まばたきの間隔
+	
 
 	//fire Particle
 	std::vector<FireParticle> fireParticles;
