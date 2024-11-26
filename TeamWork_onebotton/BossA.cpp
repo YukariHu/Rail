@@ -20,7 +20,7 @@ BossA::BossA()
 {
 	color = 0x008B8BFF;
 	size = { 60.0f, 60.0f };
-	pos = { 400.0f, 300.0f };
+	pos = { 1280.0f / 2.0f, -100.0f };
 	velocity = { 0.0f, 0.0f };
 	id = 1;
 	maxHp = 100;
@@ -56,10 +56,13 @@ BossA::BossA()
 	stateMachine.RegisterState("BeamCross", new BeamCrossState());
 	stateMachine.RegisterState("BeamCrossMove", new BeamCrossMoveState());
 
+	stateMachine.RegisterState("First", new FirstState());
+
+
 	stateMachine.RegisterState("Dead",new DeadState());
 
 
-	stateMachine.SetEntry("idle");
+	stateMachine.SetEntry("First");
 
 	 
 	//bossの目

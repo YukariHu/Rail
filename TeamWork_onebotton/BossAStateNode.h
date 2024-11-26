@@ -68,6 +68,32 @@ private:
 	Timer timer;
 };
 
+
+class FirstState : public StateNode
+{
+public:
+	FirstState();
+	~FirstState() = default;
+
+	void onEnter() override;
+	void onUpdate() override;
+	void onExit() override;
+private:
+
+	int moveIndex;
+	int currentMoveIndex;
+
+	Vector2 targetPos;
+	Vector2 startPos;
+
+	float totalTime;
+	float passTime;
+	bool isMove;
+	bool attackCompleted;
+};
+
+
+
 class CircleFireState : public StateNode
 {
 public:

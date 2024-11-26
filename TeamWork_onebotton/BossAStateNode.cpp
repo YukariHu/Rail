@@ -24,23 +24,7 @@ IdleState::IdleState()
 	timer.set_one_shot(true);
 	timer.set_on_timeout([&]()
 		{
-			// Idle状態からランダムにMoveStateを選択
-			//int moveStateIndex = rand() % 4; // 4つのMoveStateのいずれかを選択
-			//switch (moveStateIndex)
-			//{
-			//case 0:
-			//	boss->SwitchState("moveA");
-			//	break;
-			//case 1:
-			//	boss->SwitchState("moveB");
-			//	break;
-			//case 2:
-			//	boss->SwitchState("RandomShottingMove");
-			//	break;
-			//case 3:
-			//	boss->SwitchState("DeviationShotMove");
-			//	break;
-			//}
+			
 		});
 
 	speed = 2.0f;
@@ -105,6 +89,51 @@ void IdleState::onUpdate()
 
 #pragma endregion
 
+FirstState::FirstState()
+{
+	currentMoveIndex = 0;
+	targetPos = Vector2(1280.0f / 2.0f, 100.0f);
+	totalTime = 5.0f;
+}
+
+void FirstState::onEnter()
+{
+	startPos = boss->Getposition();
+	passTime = 0.0f;
+	isMove = true;
+	attackCompleted = false;
+	moveIndex = 2;
+	
+}
+
+void FirstState::onUpdate()
+{
+	passTime += deltaTime;
+	float t = passTime / totalTime;
+	if (t >= 1.0f)
+	{
+		t = 1.0f;
+		isMove = false;
+	}
+
+	float easeT = Easing::EaseInOut(t);
+	boss->Setposition(startPos + (targetPos - startPos) * easeT);
+
+	if (!isMove && !attackCompleted) // 移動が完了したら攻撃
+	{
+		attackCompleted = true;
+		boss->SwitchState("idle");
+	}
+}
+
+void FirstState::onExit()
+{
+	if (currentMoveIndex >= moveIndex)
+	{
+		currentMoveIndex = 0;
+	}
+
+}
 
 #pragma region CircleFireState
 

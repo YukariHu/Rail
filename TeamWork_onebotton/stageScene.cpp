@@ -74,19 +74,6 @@ void StageScene::onEnter()
 void StageScene::onInput(char* keys, char* prekeys)
 {
 	player->onInput(keys, prekeys);
-
-	if (keys[DIK_SPACE] && !prekeys[DIK_SPACE])
-	{
-		//mainCamera.Shack(4,0.3f);
-		if (isOver)
-		{
-
-			if(player->GetIsDead())
-			{
-				sceneManager.switchScene(SceneManager::SceneType::Title);
-			}
-		}
-	}
 }
 
 void StageScene::update()
@@ -133,7 +120,7 @@ void StageScene::update()
 
 	//***************
 	if (boss && boss->GetHp() <= 0 || player && player->GetHp() <= 0) {
-		alpha_+= 3;
+		alpha_+= 2;
 		if (alpha_ >= 255) {
 			alpha_ = 255;
 		}

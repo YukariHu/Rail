@@ -54,13 +54,13 @@ void ClearScene::draw(const Camera& camera)
 {
     Novice::DrawBox(0, 0, 1280, 720, 0.0f, 0x707147FF, kFillModeSolid);
 
-    Novice::DrawLine(0, 720 / 2, 1280, 720 / 2, WHITE);
+    Novice::DrawLine(0, 720 / 2 + 200, 1280, 720 / 2 + 200, WHITE);
     
     fireFlower_.Draw();
 
     clearName_.Draw();
 
-    Novice::DrawEllipse(1280 / 2 + (int)camera.GetPos().x, 720 / 2, 20, 20, 0.0f, WHITE, kFillModeSolid);
+    Novice::DrawEllipse(1280 / 2 + (int)camera.GetPos().x, 720 / 2 + 200, 20, 20, 0.0f, WHITE, kFillModeSolid);
 
     Novice::DrawBox(0, 0, 1280, 720, 0.0f, GetColor(255, 255, 255, alpha_), kFillModeSolid);
 }

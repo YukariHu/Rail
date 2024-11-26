@@ -76,13 +76,9 @@ void Player::onInput(char* keys, char* prekeys)
 	//	velocity = { 1.0f / 180.0f, 1.0f / 180.0f };
 	//}
 
-	if (keys[DIK_C] != 0 && prekeys[DIK_C] == 0)
+	if (keys[DIK_C] != 0 && prekeys[DIK_C] == 0 || keys[DIK_LSHIFT] != 0 && prekeys[DIK_LSHIFT] == 0)
 	{
 		isDashDown = true;
-	}
-
-	if (prekeys[DIK_1] == 0 && keys[DIK_1] != 0) {
-		lane_->lineShift = true;
 	}
 
 	//射撃
