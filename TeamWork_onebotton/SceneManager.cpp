@@ -4,9 +4,9 @@
 void SceneManager::init()
 {
 	tieleScene = new TitleScene();
-	stageSelectScene = new ClearScene();
+	clearSCene = new ClearScene();
 	stageScene.push_back(new StageScene(0));
-	setCurrentScene(stageSelectScene);
+	setCurrentScene(tieleScene);
 	//setCurrentScene(stageScene[1]);
 }
 
@@ -40,8 +40,8 @@ void SceneManager::switchScene(SceneType type)
 	case SceneManager::SceneType::Title:
 		currentScene = tieleScene;
 		break;
-	case SceneManager::SceneType::StageSelect:
-		currentScene = stageSelectScene;
+	case SceneManager::SceneType::Claer:
+		currentScene = clearSCene;
 		break;
 	case SceneManager::SceneType::Game:
 		currentScene = stageScene[selectedStage];

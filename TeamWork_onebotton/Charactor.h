@@ -26,6 +26,7 @@ public:
 	void SetSize(const Vector2& _size);
 	const Vector2& GetSize();
 	const int GetColor() const { return color; }
+	const bool GetIsDead() const { return isDead; }
 
 	void SetTarget(Charactor* _target);
 

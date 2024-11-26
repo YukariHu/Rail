@@ -33,6 +33,8 @@ class StageScene : public Scene
 		int particleTime = 5;
 		bool isStart = false;
 
+		bool isOver = false;
+
 		//UI
 		Bar* bossHpBar = nullptr;
 		Vector2 bossHpBarPos;

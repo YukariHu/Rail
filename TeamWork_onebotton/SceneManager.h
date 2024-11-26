@@ -13,7 +13,7 @@ public:
 	enum class SceneType
 	{
 		Title,
-		StageSelect,
+		Claer,
 		Game,
 	};
 	SceneManager() = default;
@@ -35,7 +35,7 @@ private:
 
 	Scene* currentScene = nullptr;
 	Scene* tieleScene = nullptr;
-	Scene* stageSelectScene = nullptr;
+	Scene* clearSCene = nullptr;
 
 	std::vector<Scene*> stageScene;
 

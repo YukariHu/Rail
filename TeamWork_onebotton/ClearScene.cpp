@@ -14,7 +14,7 @@ void ClearScene::onInput(char* keys, char* prekeys)
 {
     if (keys[DIK_SPACE] && !prekeys[DIK_SPACE])
     {
-        sceneManager.switchScene(SceneManager::SceneType::Game);
+        sceneManager.switchScene(SceneManager::SceneType::Title);
     }
 }
 

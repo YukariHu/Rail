@@ -70,9 +70,21 @@ void StageScene::onInput(char* keys, char* prekeys)
 	}
 	
 
+
 	if (keys[DIK_SPACE] && !prekeys[DIK_SPACE])
 	{
 		//mainCamera.Shack(4,0.3f);
+		if (isOver)
+		{
+			if(boss->GetIsDead())
+{
+				sceneManager.switchScene(SceneManager::SceneType::Claer);
+			}
+			else if(player->GetIsDead())
+			{
+				sceneManager.switchScene(SceneManager::SceneType::Title);
+			}
+		}
 	}
 }
 
@@ -97,6 +109,13 @@ void StageScene::update()
 		particleTime = 5;
 		
 	}
+
+	//********isOver
+	if (boss->GetIsDead() || player->GetIsDead())
+	{
+		isOver = true;
+	}
+
 }
 
 void StageScene::draw(const Camera& camera)
