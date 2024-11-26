@@ -28,10 +28,13 @@ public:
 	const int GetColor() const { return color; }
 	const bool GetIsDead() const { return isDead; }
 	void SetIsEnableCollision(bool _isEnableCollision);
+	void SetIsDead(bool _isDead);
 
 	void SetTarget(Charactor* _target);
 
 	void SwitchState(const std::string& id);
+
+	void SetIsblender(bool isblender) { isBlender = isblender; }
 
 protected:
 	Vector2 size;
@@ -48,6 +51,7 @@ protected:
 	bool isDead = false;
 
 	bool isEnableCollision = true;//当たり判定を有効にするか
+	bool isBlender = true;
 
 	Charactor* target = nullptr;
 

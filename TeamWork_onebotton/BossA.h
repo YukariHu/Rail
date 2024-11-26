@@ -26,6 +26,8 @@ public:
 	void DeviationFire();
 	
 	bool GetisPhase1() { return isphase1; }
+
+	
 private:
 	
 	int alpha_;
@@ -49,6 +51,10 @@ private:
 
 	Timer fireRespawnTimer;
 	float fireRespawnInterval = 0.08f;
+
+
+	bool isStop = false;
+	
 
 	
 };

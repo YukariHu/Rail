@@ -4,9 +4,12 @@
 #include "Beam.h"
 #include "Easing.h"
 
+#define PI 3.1415926f
+
 extern Charactor* boss;
 extern Charactor* player;
 extern std::vector<Bullet*> bulletList;
+extern Camera mainCamera;
 
 extern int windowHeight;
 extern int windowWidth;
@@ -927,4 +930,43 @@ void BeamCrossMoveState::onExit()
 	}
 }
 
+#pragma endregion
+
+#pragma region DeadState
+DeadState::DeadState()
+{
+	deadTimer.set_wait_time(deadTime);
+	deadTimer.set_one_shot(true);
+	deadTimer.set_on_timeout([&]()
+		{
+			
+			boss->SetIsDead(true);
+		});
+
+
+}
+void DeadState::onEnter()
+{
+	
+	deadTimer.restart();
+	mainCamera.Shack(3.0f,3.0f);
+	
+}
+void DeadState::onUpdate()
+{
+	deadTimer.on_update(deltaTime);
+	
+
+	if (deadTimer.get_progress() < 0.5f)
+	{
+		boss->SetSize(boss->GetSize() - Vector2(0.1f, 0.1f));
+		//移动到中心位置
+
+	}
+	else
+	{
+		boss->SetIsblender(false);
+	}
+
+}
 #pragma endregion

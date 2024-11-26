@@ -5,6 +5,7 @@ class FireParticle
 {
 public:
 	FireParticle(Vector2 _pos, Vector2 _size, int _lifetime);
+	FireParticle(Vector2 _pos, Vector2 _size, int _lifetime,Vector2 _toward);
 	~FireParticle() = default;
 
 	void Update();
@@ -18,6 +19,7 @@ private:
 	Vector2 pos;
 	Vector2 size;
 	Vector2 velocity;
+	Vector2 toward = {0.0f,-1.0f};
 
 
 	int lifeTime;

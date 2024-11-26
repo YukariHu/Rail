@@ -77,11 +77,8 @@ void StageScene::onInput(char* keys, char* prekeys)
 		//mainCamera.Shack(4,0.3f);
 		if (isOver)
 		{
-			if(boss->GetIsDead())
-{
-				sceneManager.switchScene(SceneManager::SceneType::Claer);
-			}
-			else if(player->GetIsDead())
+
+			if(player->GetIsDead())
 			{
 				sceneManager.switchScene(SceneManager::SceneType::Title);
 			}
@@ -119,6 +116,11 @@ void StageScene::update()
 		player->SetIsEnableCollision(false);
 		boss->SetIsEnableCollision(false);
 		
+	}
+
+	if (isOver && boss->GetIsDead())
+	{
+		sceneManager.switchScene(SceneManager::SceneType::Claer);
 	}
 
 }

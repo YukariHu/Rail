@@ -202,7 +202,6 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="stageScene.h" />
-    <ClInclude Include="stageSelectScene.h" />
     <ClInclude Include="StateMachine.h" />
     <ClInclude Include="StateNode.h" />
     <ClInclude Include="ClearScene.h" />

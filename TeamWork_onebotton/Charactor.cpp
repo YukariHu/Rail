@@ -5,10 +5,7 @@ extern std::vector<Bullet*> bulletList;
 void Charactor::onUpdate()
 {
     Collision();
-    if (hp <= 0)
-    {
-        isDead = true;
-    }
+
 }
 
 void Charactor::onDraw(const Camera& camera)
@@ -40,6 +37,10 @@ void Charactor::Collision()
 void Charactor::onHurt(int damage)
 {
 	hp -= damage;
+    if (hp <= 0)
+    {
+        isDead = true;
+    }
 }
 
 int Charactor::GetHp()
@@ -70,6 +71,11 @@ const Vector2& Charactor::GetSize()
 void Charactor::SetIsEnableCollision(bool _isEnableCollision)
 {
 	this->isEnableCollision = _isEnableCollision;
+}
+
+void Charactor::SetIsDead(bool _isDead)
+{
+	this->isDead = _isDead;
 }
 
 void Charactor::SetTarget(Charactor* _target)

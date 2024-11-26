@@ -56,8 +56,11 @@ BossA::BossA()
 	stateMachine.RegisterState("BeamCross", new BeamCrossState());
 	stateMachine.RegisterState("BeamCrossMove", new BeamCrossMoveState());
 
+	stateMachine.RegisterState("Dead",new DeadState());
+
 
 	stateMachine.SetEntry("idle");
+
 	 
 	//bossの目
 	maxEyeSize = { 15.0f, 20.0f };
@@ -90,6 +93,14 @@ BossA::BossA()
 	fireRespawnTimer.set_on_timeout([&]() {
 
 		fireParticles.push_back(FireParticle({ pos.x,pos.y + 2.0f }, { size.x + 5.0f,size.y + 5.0f }, 60));
+		if (isStop)
+		{
+			for (int i = 0; i < 360; i += 360 / 30)
+			{
+				Vector2 direction = { cosf(i * PI / 180.0f), sinf(i * PI / 180.0f) };
+				fireParticles.push_back(FireParticle(pos, size, 60, direction));
+			}
+		}
 		});
 
 }
@@ -98,9 +109,9 @@ BossA::BossA()
 
 void BossA::onUpdate()
 {
-	if (!isDead)
+	if (!isStop)
 	{
-		stateMachine.onUpdate();
+		
 		EyeUpdate();
 		Charactor::onUpdate();
 
@@ -108,12 +119,13 @@ void BossA::onUpdate()
 
 			alpha_ = 0;
 		}
-
+		
 	}
-
-
-
 	fireRespawnTimer.on_update(deltaTime);
+	stateMachine.onUpdate();
+
+
+	
 	//火焰粒子更新并检查是否销毁 日语：火の粒子を更新し、破壊されたかどうかを確認します
 	auto it = fireParticles.begin();
 	while (it != fireParticles.end()) {
@@ -127,6 +139,8 @@ void BossA::onUpdate()
 		}
 	}
 
+
+
 }
 
 void BossA::onDraw(const Camera& camera)
@@ -136,9 +150,13 @@ void BossA::onDraw(const Camera& camera)
 	{
 		fireParticle.Draw();
 	}
-	Novice::DrawEllipse(static_cast<int>(pos.x - cameraPos.x), static_cast<int>(pos.y - cameraPos.y), static_cast<int>(size.x), static_cast<int>(size.x), 0.0f, color, kFillModeSolid);
-	Novice::DrawEllipse(static_cast<int>(pos.x + eyePos.x - cameraPos.x), static_cast<int>(pos.y + eyePos.y - cameraPos.y), static_cast<int>(eyeSize.x), static_cast<int>(eyeSize.y), eyeAngle, eyeColor, kFillModeSolid);
+	if (isBlender)
+	{
+		Novice::DrawEllipse(static_cast<int>(pos.x - cameraPos.x), static_cast<int>(pos.y - cameraPos.y), static_cast<int>(size.x), static_cast<int>(size.x), 0.0f, color, kFillModeSolid);
+		Novice::DrawEllipse(static_cast<int>(pos.x + eyePos.x - cameraPos.x), static_cast<int>(pos.y + eyePos.y - cameraPos.y), static_cast<int>(eyeSize.x), static_cast<int>(eyeSize.y), eyeAngle, eyeColor, kFillModeSolid);
 
+	}
+	
 }
 
 void BossA::onHurt(int damage)
@@ -154,7 +172,9 @@ void BossA::onHurt(int damage)
 		}
 		else
 		{
-			isDead = true;
+			//isDead = true;
+			isStop = true;
+			stateMachine.SwitchTo("Dead");
 		}
 		
 	}

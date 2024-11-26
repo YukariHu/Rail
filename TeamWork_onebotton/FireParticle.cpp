@@ -8,8 +8,9 @@ FireParticle::FireParticle(Vector2 _pos, Vector2 _size, int _lifetime)
 	this->size = _size;
 	this->lifeTime = _lifetime;
 
+
 	//在（2-4之间）随机获取火焰粒子升起的速度
-	velocity = Vector2(0, -1) * (rand() % 200 / 100.0f + 2.0f);
+	velocity = toward * (rand() % 200 / 100.0f + 2.0f);
 	////在（0.5-1.5之间）随机获取火焰粒子的大小
 	//size = Vector2(1, 1) * (rand() % 100 / 100.0f + 0.5f);
 
@@ -23,6 +24,22 @@ FireParticle::FireParticle(Vector2 _pos, Vector2 _size, int _lifetime)
 		isOver = true;
 		});*/
 
+}
+
+FireParticle::FireParticle(Vector2 _pos, Vector2 _size, int _lifetime, Vector2 _toward)
+{
+	this->pos = _pos;
+	this->size = _size;
+	this->lifeTime = _lifetime;
+	this->toward = _toward;
+
+	//在（2-4之间）随机获取火焰粒子升起的速度
+	velocity = toward * (rand() % 200 / 100.0f + 2.0f);
+	////在（0.5-1.5之间）随机获取火焰粒子的大小
+	//size = Vector2(1, 1) * (rand() % 100 / 100.0f + 0.5f);
+
+	alpha = 255;
+	color = GetColor(0, 139, 139, alpha);
 }
 
 void FireParticle::Update()

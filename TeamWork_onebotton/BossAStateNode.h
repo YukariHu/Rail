@@ -2,6 +2,7 @@
 #include "timer.h"
 #include "StateNode.h"
 #include "MyVector2.h"
+#include "FireParticle.h"
 
 class IdleState : public StateNode
 {
@@ -412,3 +413,22 @@ private:
 	bool isMove;
 
 };
+
+class DeadState : public StateNode
+{
+public:
+	DeadState();
+	~DeadState() = default;
+
+	void onEnter() override;
+	void onUpdate() override;
+
+private:
+
+	Timer deadTimer;
+	float deadTime = 4.5f;
+
+	//fire Particle
+
+};
+
