@@ -1,7 +1,7 @@
 #pragma once
 #include <MyVector2.h>
 #include "timer.h"
-
+#include "Camera.h"
 class Bar
 {
 public:
@@ -11,6 +11,8 @@ public:
 
 	void Update(int _value);
 	void Draw();
+
+	void Draw(Camera camera);
 
 	void SetrecoveryTime(float _recoveryTime) { recoveryTime = _recoveryTime; }
 

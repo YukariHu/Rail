@@ -32,7 +32,7 @@ StageScene::StageScene(int _id)
 	bossHpBarSize = { windowWidth - 10.0f,20.0f };
 
 	playerHpBarPos = { 30.0f,windowHeight - 50.0f };
-	playerHpBarSize = { 120.0f,15.0f };
+	playerHpBarSize = { 140.0f,15.0f };
 
 	dashBarPos = { 25.0f,windowHeight - 30.0f };
 	dashBarSize = { 180.0f,15.0f };
@@ -144,7 +144,7 @@ void StageScene::draw(const Camera& camera)
 	player->onDraw(camera);
 	
 	bossHpBar->Draw();
-	playerHpBar->Draw();
+	playerHpBar->Draw(camera);
 	dashBar->Draw();
 
 	if (isOver && boss->GetIsDead()) {
