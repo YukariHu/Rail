@@ -8,6 +8,7 @@ extern SceneManager sceneManager;
 void ClearScene::onEnter()
 {
     fireFlower_.Init();
+    clearName_.Init();
     fireFlowerTime_ = 30;
 
     alpha_ = 255;
@@ -46,15 +47,20 @@ void ClearScene::update()
             sceneManager.switchScene(SceneManager::SceneType::Title);
         }
     }
+    clearName_.Update();
 }
 
 void ClearScene::draw(const Camera& camera)
 {
-    Novice::DrawBox(0, 0, 1280, 720, 0.0f, 0x333333FF, kFillModeSolid);
+    Novice::DrawBox(0, 0, 1280, 720, 0.0f, 0x707147FF, kFillModeSolid);
+
+    Novice::DrawLine(0, 720 / 2, 1280, 720 / 2, WHITE);
+    
     fireFlower_.Draw();
 
-    Novice::DrawLine(0, 720 / 2, 1280, 720 / 2, 0x4A505FFF);
-    Novice::DrawEllipse(1280 / 2 + (int)camera.GetPos().x, 720 / 2, 20, 20, 0.0f, 0x4A505FFF, kFillModeSolid);
+    clearName_.Draw();
+
+    Novice::DrawEllipse(1280 / 2 + (int)camera.GetPos().x, 720 / 2, 20, 20, 0.0f, WHITE, kFillModeSolid);
 
     Novice::DrawBox(0, 0, 1280, 720, 0.0f, GetColor(255, 255, 255, alpha_), kFillModeSolid);
 }

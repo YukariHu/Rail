@@ -67,6 +67,8 @@ void StageScene::onEnter()
 
 	particleTime = 5;
 	rad_ = 1500;
+	isOver = false;
+	alpha_ = 0;
 }
 
 void StageScene::onInput(char* keys, char* prekeys)
@@ -124,13 +126,19 @@ void StageScene::update()
 		sceneManager.switchScene(SceneManager::SceneType::Claer);
 	}
 
+	if (player && player->GetHp() <= 0 && alpha_ == 255)
+	{
+		sceneManager.switchScene(SceneManager::SceneType::Title);
+	}
+
 	//***************
-	if(isOver){
-		alpha_++;
+	if (boss && boss->GetHp() <= 0 || player && player->GetHp() <= 0) {
+		alpha_+= 3;
 		if (alpha_ >= 255) {
 			alpha_ = 255;
 		}
 	}
+
 	rad_ = (int)SLerp((float)rad_, 0.0f, 0.05f);
 }
 
@@ -147,11 +155,13 @@ void StageScene::draw(const Camera& camera)
 	playerHpBar->Draw(camera);
 	dashBar->Draw();
 
-	if (isOver && boss->GetIsDead()) {
+	
+	if (boss && boss->GetHp() <= 0) {
 		Novice::DrawBox(0, 0, windowWidth, windowHeight, 0.0f, GetColor(255, 255, 255, alpha_), kFillModeSolid);
-	} else if (isOver && player->GetIsDead()) {
+	} else if (player && player->GetHp() <= 0) {
 		Novice::DrawBox(0, 0, windowWidth, windowHeight, 0.0f, GetColor(0, 0, 0, alpha_), kFillModeSolid);
 	}
+
 
 	Novice::DrawEllipse(-100, windowHeight / 2, rad_, rad_, 0.0f, WHITE, kFillModeSolid);
 }

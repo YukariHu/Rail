@@ -124,6 +124,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="C:\KamataEngine\DirectXGame\2d\ImGuiManager.cpp" />
     <ClCompile Include="C:\KamataEngine\Adapter\Novice.cpp" />
     <ClCompile Include="Charactor.cpp" />
+    <ClCompile Include="ClearName.cpp" />
     <ClCompile Include="DeviationShotBullet.cpp" />
     <ClCompile Include="FireFlower.cpp" />
     <ClCompile Include="FireFlowerManager.cpp" />
@@ -186,6 +187,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="C:\KamataEngine\Adapter\Novice.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Charactor.h" />
+    <ClInclude Include="ClearName.h" />
     <ClInclude Include="DeviationShotBullet.h" />
     <ClInclude Include="Easing.h" />
     <ClInclude Include="FireParticle.h" />

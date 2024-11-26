@@ -1,6 +1,7 @@
 #pragma once
 #include <Scene.h>
 #include "FireFlowerManager.h"
+#include "ClearName.h"
 
 class ClearScene : public Scene
 {
@@ -15,6 +16,8 @@ public:
 
 private:
     FireFlowerManager fireFlower_;
+    clearName clearName_;
+
     int fireFlowerTime_;
     int alpha_;
     bool tradition_;
