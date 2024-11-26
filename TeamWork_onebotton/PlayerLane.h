@@ -9,6 +9,8 @@ public:
 	void update();
 	void Draw();
 
+	bool GetLineShift() { return lineShift; };
+
 	Vector2 startLine;
 	Vector2 endLine;
 	Vector2 startLine2;

@@ -16,4 +16,6 @@ public:
 private:
     FireFlowerManager fireFlower_;
     int fireFlowerTime_;
+    int alpha_;
+    bool tradition_;
 };

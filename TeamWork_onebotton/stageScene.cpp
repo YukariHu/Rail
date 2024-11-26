@@ -19,6 +19,12 @@ std::vector<Bullet*> bulletList;
 
 BackParticleManager backParticle;
 
+
+float SLerp(float start, float end, float t)
+{
+	return start + t * (end - start);
+}
+
 StageScene::StageScene(int _id)
 {
 	id = _id;
@@ -31,7 +37,8 @@ StageScene::StageScene(int _id)
 	dashBarPos = { 25.0f,windowHeight - 30.0f };
 	dashBarSize = { 180.0f,15.0f };
 
-	
+	alpha_ = 0;
+	rad_ = 1500;
 }
 
 StageScene::~StageScene()
@@ -59,18 +66,12 @@ void StageScene::onEnter()
 	isStart = true;
 
 	particleTime = 5;
-	
+	rad_ = 1500;
 }
 
 void StageScene::onInput(char* keys, char* prekeys)
 {
 	player->onInput(keys, prekeys);
-	if (keys[DIK_BACK] && !prekeys[DIK_BACK])
-	{
-		sceneManager.switchScene(SceneManager::SceneType::Title);
-	}
-	
-
 
 	if (keys[DIK_SPACE] && !prekeys[DIK_SPACE])
 	{
@@ -123,11 +124,18 @@ void StageScene::update()
 		sceneManager.switchScene(SceneManager::SceneType::Claer);
 	}
 
+	//***************
+	if(isOver){
+		alpha_++;
+		if (alpha_ >= 255) {
+			alpha_ = 255;
+		}
+	}
+	rad_ = (int)SLerp((float)rad_, 0.0f, 0.05f);
 }
 
 void StageScene::draw(const Camera& camera)
 {
-
 	Novice::DrawBox(0, 0, windowWidth, windowHeight, 0.0f, backGroundColor, kFillModeSolid);
 
 	backParticle.Draw();
@@ -139,8 +147,13 @@ void StageScene::draw(const Camera& camera)
 	playerHpBar->Draw();
 	dashBar->Draw();
 
-	Novice::ScreenPrintf(0, 0, "PlayerHP:%d", player->GetHp());
-	Novice::ScreenPrintf(0, 20, "BossHP:%d", boss->GetHp());
+	if (isOver && boss->GetIsDead()) {
+		Novice::DrawBox(0, 0, windowWidth, windowHeight, 0.0f, GetColor(255, 255, 255, alpha_), kFillModeSolid);
+	} else if (isOver && player->GetIsDead()) {
+		Novice::DrawBox(0, 0, windowWidth, windowHeight, 0.0f, GetColor(0, 0, 0, alpha_), kFillModeSolid);
+	}
+
+	Novice::DrawEllipse(-100, windowHeight / 2, rad_, rad_, 0.0f, WHITE, kFillModeSolid);
 }
 
 void StageScene::onExit()

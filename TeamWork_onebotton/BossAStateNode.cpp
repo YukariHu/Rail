@@ -3,6 +3,7 @@
 #include "Bullet.h"
 #include "Beam.h"
 #include "Easing.h"
+#include "Player.h"
 
 #define PI 3.1415926f
 
@@ -54,7 +55,7 @@ void IdleState::onEnter()
 	topPos = boss->Getposition() + Vector2(0, 30.0f);
 	bottomPos = boss->Getposition() + Vector2(0, 30.0f);
 
-	moveStateIndex = rand() % 7;
+	moveStateIndex = rand() % 4;
 }
 
 void IdleState::onUpdate()
@@ -66,33 +67,40 @@ void IdleState::onUpdate()
 		dir *= -1;
 	}
 
-	switch (moveStateIndex)
-	{
-	case 0:
-		boss->SwitchState("moveB");
-		break;
-	case 1:
-		boss->SwitchState("RandomShottingMove");
-		break;
-	case 2:
-		boss->SwitchState("DeviationShotMove");
-		break;
-	case 3:
-		boss->SwitchState("BeamCrossMove");
-		break;
-	case 4:
-		boss->SwitchState("BeamLeftToRightMove");
-		break;
-	case 5:
-		boss->SwitchState("BeamLeftToRightXMove");
-		break;
-	case 6:
-		boss->SwitchState("BeamUpToDownMove");
-		break;
-
+	if (dynamic_cast<BossA*>(boss)->GetisPhase1()) {
+		switch (moveStateIndex)
+		{
+		case 0:
+			boss->SwitchState("moveB");
+			break;
+		case 1:
+			boss->SwitchState("RandomShottingMove");
+			break;
+		case 2:
+			boss->SwitchState("DeviationShotMove");
+			break;
+		case 3:
+			boss->SwitchState("BeamLeftToRightMove");
+			break;
+		}
+	} else{
+		switch (moveStateIndex)
+		{
+		case 0:
+			boss->SwitchState("BeamCrossMove");
+			break;
+		case 1:
+			boss->SwitchState("BeamCrossMove");
+			break;
+		case 2:
+			boss->SwitchState("BeamLeftToRightXMove");
+			break;
+		case 3:
+			boss->SwitchState("BeamUpToDownMove");
+			break;
+		}
 	}
 
-	Novice::ScreenPrintf(0, 60, "MoveState : %d", moveStateIndex);
 }
 
 #pragma endregion
