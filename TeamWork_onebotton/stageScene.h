@@ -3,7 +3,7 @@
 #include "BossA.h"
 #include "Player.h"
 #include "Bar.h"
-#include "PlayerLane.h"
+#include "read_csv.h"
 
 class StageScene : public Scene
 {
@@ -52,4 +52,13 @@ class StageScene : public Scene
 		int rad_;
 		int bgmHandle;
 		int bgmPlayHandle;
+
+
+		//guide
+		ReadCSV csv;
+		std::vector<std::vector<int>> guide = csv.ReadMap("./guide.csv");
+
+		int guideWidth = 4;
+		int guidePosX = 1100;
+		int guidePosY = 660;
 };

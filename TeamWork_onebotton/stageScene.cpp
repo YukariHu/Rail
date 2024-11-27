@@ -163,6 +163,15 @@ void StageScene::draw(const Camera& camera)
 
 
 	Novice::DrawEllipse(-100, windowHeight / 2, rad_, rad_, 0.0f, WHITE, kFillModeSolid);
+
+	//表示guide	
+	for (int i = 0; i < guide.size();i++) {
+		for (int j = 0; j < guide[i].size();j++) {
+			if (guide[i][j] == 1) {
+				Novice::DrawBox(guidePosX + (j * guideWidth), guidePosY + (i * guideWidth), guideWidth, guideWidth, 0.0f, WHITE, kFillModeSolid);
+			}
+		}
+	}
 }
 
 void StageScene::onExit()
