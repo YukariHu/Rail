@@ -4,6 +4,7 @@
 #include "PlayerParticles.h"
 #include "PlayerBullet.h"
 #include "PlayerLane.h"
+#include "SE.h"
 #include "timer.h"
 
 class Player : public Charactor
@@ -24,6 +25,7 @@ public:
 
 	PlayerParticles* particl_ = nullptr;
 	PlayerLane* lane_ = nullptr;
+	SE* se_ = nullptr;
 
 private:
 	Vector2 basicVelocity;

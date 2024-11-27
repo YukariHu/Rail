@@ -29,7 +29,7 @@ public:
 	int playerDashSE;
 	int playerLaneChangeSE;
 	int damageSE;
-	int bossBeam;
+	int bossBeamSE;
 
 
 	int startHandle;

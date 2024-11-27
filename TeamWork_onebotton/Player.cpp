@@ -66,6 +66,7 @@ void Player::onInput(char* keys, char* prekeys)
 		}
 
 		particl_->CreateChangeParticl(pos);
+
 	}
 
 	//if (keys[DIK_LSHIFT] != 0) {
