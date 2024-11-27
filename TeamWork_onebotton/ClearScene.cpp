@@ -52,6 +52,7 @@ void ClearScene::update()
         if (alpha_ >= 255) {
             alpha_ = 255;
             sceneManager.switchScene(SceneManager::SceneType::Title);
+            Novice::StopAudio(bgmPlayHandle);
         }
     }
     clearName_.Update();
