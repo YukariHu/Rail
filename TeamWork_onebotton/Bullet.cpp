@@ -24,7 +24,7 @@ Bullet::Bullet(Vector2 firePos, Vector2 dir, int _targertID)
 	speed = 10.0f;
 
 	velocity = { speed * dir.x,speed * dir.y };
-	damage = 1;
+	damage = 4;
 	isCanRemove = false;
 	targetID = _targertID;
 }
