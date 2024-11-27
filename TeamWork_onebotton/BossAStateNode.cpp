@@ -557,7 +557,7 @@ BeamLeftToRightState::BeamLeftToRightState()
 			mainCamera.Shack(5.0f, 0.2f);
 			currentFireCount++;
 			//fire
-			Beam* beam2 = new Beam({ 5.0f + currentFireCount * 50.0f , windowHeight + 20.0f}, { 0.0f, -1.0f },1.0f,0);
+			Beam* beam2 = new Beam({ 60.0f + currentFireCount * 50.0f , windowHeight + 20.0f}, { 0.0f, -1.0f },1.0f,0);
 			bulletList.push_back(beam2);
 
 		});
