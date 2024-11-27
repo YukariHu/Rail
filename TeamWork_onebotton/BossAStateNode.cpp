@@ -554,6 +554,7 @@ BeamLeftToRightState::BeamLeftToRightState()
 	timer.set_wait_time(0.08f);
 	timer.set_on_timeout([&]()
 		{
+			mainCamera.Shack(5.0f, 0.2f);
 			currentFireCount++;
 			//fire
 			Beam* beam2 = new Beam({ 5.0f + currentFireCount * 40.0f , windowHeight + 20.0f}, { 0.0f, -1.0f },1.0f,0);
@@ -650,14 +651,14 @@ BeamLeftToRightXState::BeamLeftToRightXState()
 				Beam* beam2 = new Beam({ -20.0f, -20.0f + currentFireCount * 50.0f }, { 1.0f, 0.0f }, 0.5f,0);
 
 				bulletList.push_back(beam2);
-
+				mainCamera.Shack(5.0f, 0.2f);
 			} 
 
 			if(currentFireCount % 2 == 0){
 				Beam* beam2 = new Beam({ windowWidth + 20.0f, -20.0f + currentFireCount * 50.0f }, { -1.0f, 0.0f }, 0.5f,0);
 
 				bulletList.push_back(beam2);
-
+				mainCamera.Shack(5.0f, 0.2f);
 			}
 		});
 }
@@ -752,14 +753,14 @@ BeamRailState::BeamRailState()
 				Beam* beam2 = new Beam({ (windowWidth / 2.0f) + 100.0f , -20.0f }, { 0.0f, 1.0f }, 0.2f,0);
 
 				bulletList.push_back(beam2);
-
+				mainCamera.Shack(5.0f, 0.2f);
 			}
 
 			if (randCount == 1) {
 				Beam* beam2 = new Beam({ (windowWidth / 2.0f) - 100.0f , -20.0f }, { 0.0f, 1.0f }, 0.2f,0);
 
 				bulletList.push_back(beam2);
-
+				mainCamera.Shack(5.0f, 0.2f);
 			}
 		});
 
@@ -861,7 +862,7 @@ BeamUpToDownState::BeamUpToDownState()
 			//fire
 			Beam* beam2 = new Beam({ -10.0f + currentFireCount * 40.0f , -20.0f }, { 0.0f, 1.0f }, 0.2f,0);
 			bulletList.push_back(beam2);
-
+			mainCamera.Shack(5.0f, 0.2f);
 		});
 }
 
@@ -954,6 +955,8 @@ BeamCrossState::BeamCrossState()
 
 			Beam* beam1 = new Beam({ -20.0f ,-10.0f + currentFireCount * 40.0f}, { 1.0f, 0.0f }, 0.2f,0);
 			bulletList.push_back(beam1);
+
+			mainCamera.Shack(5.0f, 0.2f);
 		});
 }
 

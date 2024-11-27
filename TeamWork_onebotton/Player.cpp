@@ -155,7 +155,6 @@ void Player::onUpdate()
 		fireCoolTimer.on_update(deltaTime);
 	}
 
-
 	isFireDown = false;
 	isDashDown = false;
 	Charactor::onUpdate();

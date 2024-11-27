@@ -11,7 +11,7 @@ public:
 
     void Init();
     void Update();
-    void Draw();
+    void Draw(const Camera& camera);
     void Finalize();
     void Create(const Vector2& direction, bool isStart);
 

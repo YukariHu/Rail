@@ -31,4 +31,5 @@ private:
     bool isStart = false;
     int bgmHandle;
     int bgmPlayHandle;
+    int alpha_;
 };

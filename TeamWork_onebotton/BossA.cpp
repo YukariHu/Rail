@@ -165,7 +165,7 @@ void BossA::onDraw(const Camera& camera)
 
 void BossA::onHurt(int damage)
 {
-	hp -= damage + 10;
+	hp -= damage;
 	if (hp <= 0)
 	{
 		if (isphase1)

@@ -23,4 +23,5 @@ private:
     bool tradition_;
     int bgmHandle;
     int bgmPlayHandle;
+    int color_;
 };

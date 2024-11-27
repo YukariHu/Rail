@@ -12,8 +12,6 @@ public:
 	void Update(int _value);
 	void Draw();
 
-	void Draw(Camera camera);
-
 	void SetrecoveryTime(float _recoveryTime) { recoveryTime = _recoveryTime; }
 
 private:

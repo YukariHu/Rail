@@ -25,10 +25,10 @@ void BackParticleManager::Update() {
     }
 }
 
-void BackParticleManager::Draw() {
+void BackParticleManager::Draw(const Camera& camera) {
     for (auto& particle : mpParticle_) {
         if (particle != nullptr) {
-            particle->Draw();
+            particle->Draw(camera);
         }
     }
 }

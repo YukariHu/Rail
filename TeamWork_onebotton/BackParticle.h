@@ -1,5 +1,6 @@
 #pragma once
 #include "MyVector2.h"
+#include "Camera.h"
 
 class BackParticle
 {
@@ -9,7 +10,7 @@ public:
 
     void Init(const Vector2& direction);
     void Update();
-    void Draw();
+    void Draw(const Camera& camera);
     bool IsAlive() const;
 
     void SetIsStart(bool isStart) { isStart_ = isStart; };

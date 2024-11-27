@@ -1,6 +1,7 @@
 ﻿#include "TitleScene.h"
 #include <Novice.h>
 #include "SceneManager.h"
+#include "Blend.h"
 
 extern SceneManager sceneManager;
 
@@ -30,12 +31,13 @@ void TitleScene::onEnter()
 
     bgmHandle = Novice::LoadAudio("./bgm/titleBGM.mp3");
     bgmPlayHandle = -1;
+    alpha_ = 255;
 }
 
 void TitleScene::onInput(char* keys, char* prekeys)
 {
-    if (keys[DIK_SPACE] && !prekeys[DIK_SPACE] /*||*/
-       /* Novice::IsTriggerMouse(0)*/) {
+    if (keys[DIK_SPACE] && !prekeys[DIK_SPACE] ||
+        Novice::IsTriggerMouse(0)) {
         hF_ = true;
         player_.SetTran(hF_);
         Novice::PlayAudio(buttonSound, false, 0.5f);
@@ -86,6 +88,11 @@ void TitleScene::update()
     if (hF_) {
         Novice::StopAudio(bgmPlayHandle);
     }
+
+    alpha_-= 2;
+    if (alpha_ <= 0) {
+        alpha_ = 0;
+    }
 }
 
 void TitleScene::draw(const Camera& camera)
@@ -102,5 +109,6 @@ void TitleScene::draw(const Camera& camera)
     titleLine_.Draw();
 
     player_.Draw();
-
+    
+    Novice::DrawBox(0, 0, 1280, 720, 0.0f, GetColor(0, 0, 0, alpha_), kFillModeSolid);
 }

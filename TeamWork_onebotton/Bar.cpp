@@ -201,17 +201,6 @@ void Bar::Draw()
 	{
 		Novice::DrawBox(int(pos.x) - i, int(pos.y) - i, int(borderSize.x) + i * 2, int(borderSize.y) + i * 2, 0.0f, borderColor, kFillModeWireFrame);
 	}
-
+	
 }
 
-void Bar::Draw(Camera camera)
-{
-	Novice::DrawBox(int(pos.x - camera.GetPos().x), int(pos.y - camera.GetPos().y), int(borderSize.x), int(borderSize.y), 0.0f, backColor, kFillModeSolid);
-	Novice::DrawBox(int(pos.x - camera.GetPos().x), int(pos.y - camera.GetPos().y), int(residualBarSize.x), int(residualBarSize.y), 0.0f, WHITE, kFillModeSolid);
-	Novice::DrawBox(int(pos.x - camera.GetPos().x), int(pos.y - camera.GetPos().y), int(barSize.x), int(barSize.y), 0.0f, barColor, kFillModeSolid);
-
-	for (int i = 0; i < borderWidth; i++)
-	{
-		Novice::DrawBox(int(pos.x - camera.GetPos().x) - i, int(pos.y - camera.GetPos().y) - i, int(borderSize.x) + i * 2, int(borderSize.y) + i * 2, 0.0f, borderColor, kFillModeWireFrame);
-	}
-}

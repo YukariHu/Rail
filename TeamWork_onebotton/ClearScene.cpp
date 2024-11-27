@@ -15,11 +15,13 @@ void ClearScene::onEnter()
     tradition_ = false;
     bgmHandle = Novice::LoadAudio("./bgm/clear.mp3");
     bgmPlayHandle = -1;
+    color_ = 255;
 }
 
 void ClearScene::onInput(char* keys, char* prekeys)
 {
-    if (keys[DIK_SPACE] && !prekeys[DIK_SPACE])
+    if (keys[DIK_SPACE] && !prekeys[DIK_SPACE] ||
+        Novice::IsTriggerMouse(0))
     {
         tradition_ = true;
     }
@@ -46,9 +48,10 @@ void ClearScene::update()
         if(alpha_ <= 0){
             alpha_ = 0;
         }
+        color_ = 255;
     } else {
         alpha_ += 5;
-
+        color_ = 0;
         if (alpha_ >= 255) {
             alpha_ = 255;
             sceneManager.switchScene(SceneManager::SceneType::Title);
@@ -70,5 +73,5 @@ void ClearScene::draw(const Camera& camera)
 
     Novice::DrawEllipse(1280 / 2 + (int)camera.GetPos().x, 720 / 2 + 200, 20, 20, 0.0f, WHITE, kFillModeSolid);
 
-    Novice::DrawBox(0, 0, 1280, 720, 0.0f, GetColor(255, 255, 255, alpha_), kFillModeSolid);
+    Novice::DrawBox(0, 0, 1280, 720, 0.0f, GetColor(color_, color_, color_, alpha_), kFillModeSolid);
 }

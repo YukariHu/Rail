@@ -145,13 +145,13 @@ void StageScene::draw(const Camera& camera)
 {
 	Novice::DrawBox(0, 0, windowWidth, windowHeight, 0.0f, backGroundColor, kFillModeSolid);
 
-	backParticle.Draw();
+	backParticle.Draw(camera);
 	BulletListDraw(camera);
 	player->onDraw(camera);
 	boss->onDraw(camera);
 
 	bossHpBar->Draw();
-	playerHpBar->Draw(camera);
+	playerHpBar->Draw();
 	dashBar->Draw();
 
 	

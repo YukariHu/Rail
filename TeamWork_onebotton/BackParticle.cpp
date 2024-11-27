@@ -37,12 +37,13 @@ void BackParticle::Update() {
     }
 }
 
-void BackParticle::Draw() {
+void BackParticle::Draw(const Camera& camera) {
+    const Vector2& cameraPos = camera.GetPos();
+
     if (alive_) {
-        Novice::DrawEllipse((int)pos_.x, (int)pos_.y, (int)rad_, (int)rad_, 0.0f, color_, kFillModeSolid);
+        Novice::DrawEllipse((int)pos_.x - (int)cameraPos.x, (int)pos_.y - (int)cameraPos.y, (int)rad_, (int)rad_, 0.0f, color_, kFillModeSolid);
     }
 
-    Novice::ScreenPrintf(0, 0, "%d", stageScene.GetIsStart());
 }
 
 bool BackParticle::IsAlive() const {
