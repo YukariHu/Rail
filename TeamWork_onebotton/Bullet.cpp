@@ -12,7 +12,7 @@ Bullet::Bullet(Vector2 firePos, Vector2 _dir)
 
 	velocity = { speed * dir.x,speed * dir.y };
 	
-	damage = 1;
+	damage = 4;
 	isCanRemove = false;
 	targetID = 0;
 }

@@ -1,7 +1,8 @@
 #include "Beam.h"
 #include "Novice.h"
 #include "Easing.h"
-
+#include "SceneManager.h"
+extern int beamSound;
 
 extern float deltaTime;
 Beam::Beam(Vector2 firePos, Vector2 _dir, float lifeTime,int _targetID)
@@ -22,6 +23,8 @@ Beam::Beam(Vector2 firePos, Vector2 _dir, float lifeTime,int _targetID)
 		color = WHITE;
 
 		isEnableCollision = false;
+
+		Novice::PlayAudio(beamSound,0,1.0f);
 
 
 		isAiming = true;

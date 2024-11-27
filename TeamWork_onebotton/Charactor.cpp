@@ -2,6 +2,8 @@
 #include "Bullet.h"
 extern std::vector<Bullet*> bulletList;
 extern Camera mainCamera;
+
+extern int damageSound;
 void Charactor::onUpdate()
 {
     Collision();
@@ -36,6 +38,7 @@ void Charactor::Collision()
 
 void Charactor::onHurt(int damage)
 {
+    Novice::PlayAudio(damageSound,false,0.5f);
 	hp -= damage;
     mainCamera.Shack(5.0f,0.3f);
     if (hp <= 0)

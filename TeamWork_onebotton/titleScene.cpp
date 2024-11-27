@@ -4,6 +4,7 @@
 
 extern SceneManager sceneManager;
 
+extern int buttonSound;
 float tLerp(float start, float end, float t)
 {
     return start + t * (end - start);
@@ -37,6 +38,7 @@ void TitleScene::onInput(char* keys, char* prekeys)
        /* Novice::IsTriggerMouse(0)*/) {
         hF_ = true;
         player_.SetTran(hF_);
+        Novice::PlayAudio(buttonSound, false, 0.5f);
     }
 
     if (h_ >= 1400) {
