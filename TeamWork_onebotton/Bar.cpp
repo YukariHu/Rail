@@ -13,7 +13,7 @@ Bar::Bar(Vector2 _pos, Vector2 _borderSize, int _maxValue , int _barColor)
 	residualBarSize = barSize;
 	preResidualBarSize = residualBarSize;
 	borderWidth = 3;
-	borderColor = WHITE;
+	borderColor = 0xDDDDDDFF;
 	maxValue = float(_maxValue);
 	value = maxValue;
 

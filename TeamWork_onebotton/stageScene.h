@@ -58,6 +58,9 @@ class StageScene : public Scene
 		ReadCSV csv;
 		std::vector<std::vector<int>> guide = csv.ReadMap("./guide.csv");
 
+		int dispTime;
+		int csvAlpha_;
+
 		int guideWidth = 4;
 		int guidePosX = 1100;
 		int guidePosY = 660;

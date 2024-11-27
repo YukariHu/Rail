@@ -36,7 +36,7 @@ StageScene::StageScene(int _id)
 	playerHpBarPos = { 30.0f,windowHeight - 50.0f };
 	playerHpBarSize = { 140.0f,15.0f };
 
-	dashBarPos = { 25.0f,windowHeight - 30.0f };
+	dashBarPos = { 27.0f,windowHeight - 30.0f };
 	dashBarSize = { 180.0f,15.0f };
 
 	alpha_ = 0;
@@ -55,10 +55,10 @@ void StageScene::onEnter()
 	boss = new BossA();
 	player = new Player();
 
-	bossHpBar = new Bar(bossHpBarPos,bossHpBarSize,boss->GetHp(), GetColor(255, 48, 48, 255), WHITE,4, 1.0f);//  255, 106, 106
-	playerHpBar = new Bar(playerHpBarPos, playerHpBarSize, player->GetHp(), GetColor(0, 205,102, 255));//0, 255,127
+	bossHpBar = new Bar(bossHpBarPos,bossHpBarSize,boss->GetHp(), 0xb23939FF, 0xDDDDDDFF,4, 1.0f);//  255, 106, 106
+	playerHpBar = new Bar(playerHpBarPos, playerHpBarSize, player->GetHp(), 0x559a4bFF);//0, 255,127
 	
-	dashBar = new Bar(dashBarPos, dashBarSize, dynamic_cast<Player*>(player)->GetDashCount(), GetColor(255,215, 0, 255), GetColor(0, 205, 102, 000),1,0.2f);//0, 255,127
+	dashBar = new Bar(dashBarPos, dashBarSize, dynamic_cast<Player*>(player)->GetDashCount(), 0xd0c94aFF, GetColor(0, 205, 102, 000),1,0.2f);//0, 255,127
 	
 	boss->SetTarget(player);
 	//player.ge
@@ -74,6 +74,8 @@ void StageScene::onEnter()
 	isOver = false;
 	alpha_ = 0;
 	bgmPlayHandle = -1;
+	dispTime = 540;
+	csvAlpha_ = 255;
 }
 
 void StageScene::onInput(char* keys, char* prekeys)
@@ -139,6 +141,16 @@ void StageScene::update()
 	}
 
 	rad_ = (int)SLerp((float)rad_, 0.0f, 0.05f);
+
+	dispTime--;
+
+	if (dispTime <= 0) {
+		dispTime = 0;
+		csvAlpha_-= 4;
+		if (csvAlpha_ <= 0) {
+			csvAlpha_ = 0;
+		}
+	}
 }
 
 void StageScene::draw(const Camera& camera)
@@ -174,7 +186,7 @@ void StageScene::draw(const Camera& camera)
 	for (int i = 0; i < guide.size();i++) {
 		for (int j = 0; j < guide[i].size();j++) {
 			if (guide[i][j] == 1) {
-				Novice::DrawBox(guidePosX + (j * guideWidth), guidePosY + (i * guideWidth), guideWidth, guideWidth, 0.0f, WHITE, kFillModeSolid);
+				Novice::DrawBox(guidePosX + (j * guideWidth), guidePosY + (i * guideWidth), guideWidth, guideWidth, 0.0f, GetColor(200,200,200,csvAlpha_), kFillModeSolid);
 			}
 		}
 	}

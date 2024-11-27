@@ -557,7 +557,7 @@ BeamLeftToRightState::BeamLeftToRightState()
 			mainCamera.Shack(5.0f, 0.2f);
 			currentFireCount++;
 			//fire
-			Beam* beam2 = new Beam({ 60.0f + currentFireCount * 50.0f , windowHeight + 20.0f}, { 0.0f, -1.0f },1.0f,0);
+			Beam* beam2 = new Beam({ 5.0f + currentFireCount * 50.0f , windowHeight + 20.0f}, { 0.0f, -1.0f },1.0f,0);
 			bulletList.push_back(beam2);
 
 		});
@@ -798,7 +798,7 @@ MoveBeamRailState::MoveBeamRailState()
 	currentMoveIndex = 0;
 	moveIndex = 1;
 
-	targetPos = Vector2(200.0f, 720.0f / 2.0f);
+	targetPos = Vector2(1080.0f, 720.0f / 2.0f);
 	totalTime = 1.0f;
 
 }
@@ -889,7 +889,7 @@ BeamUpToDownMoveState::BeamUpToDownMoveState()
 	currentMoveIndex = 0;
 	moveIndex = 1;
 
-	targetPos = Vector2(100.0f, windowHeight / 2.0f);
+	targetPos = Vector2(1180.0f, windowHeight / 2.0f);
 	totalTime = 1.0f;
 
 }

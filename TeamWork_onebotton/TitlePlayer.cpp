@@ -52,5 +52,5 @@ void TitlePlayer::Update()
 
 void TitlePlayer::Draw()
 {
-    Novice::DrawEllipse((int)pos_.x, (int)pos_.y, 20, 20, 0.0f, 0xB6BBC4FF, kFillModeSolid);
+    Novice::DrawEllipse((int)pos_.x, (int)pos_.y, 20, 20, 0.0f, WHITE, kFillModeSolid);
 }
