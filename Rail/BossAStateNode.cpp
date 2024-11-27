@@ -39,7 +39,7 @@ void IdleState::onEnter()
 	topPos = boss->Getposition() + Vector2(0, 30.0f);
 	bottomPos = boss->Getposition() + Vector2(0, 30.0f);
 
-	moveStateIndex = rand() % 4;
+	moveStateIndex = rand() % 5;
 	dynamic_cast<Player*>(player)->canShot = true;
 }
 
@@ -56,17 +56,22 @@ void IdleState::onUpdate()
 		switch (moveStateIndex)
 		{
 		case 0:
-			boss->SwitchState("moveB");
+			boss->SwitchState("moveA");
 			break;
 		case 1:
 			boss->SwitchState("RandomShottingMove");
+
 			break;
 		case 2:
 			boss->SwitchState("DeviationShotMove");
+			//boss->SwitchState("moveA");
 			break;
 		case 3:
 			boss->SwitchState("BeamLeftToRightMove");
+			//boss->SwitchState("moveA");
 			break;
+		case 4:
+			boss->SwitchState("moveB");
 		}
 	} else{
 		switch (moveStateIndex)
@@ -83,6 +88,8 @@ void IdleState::onUpdate()
 		case 3:
 			boss->SwitchState("BeamUpToDownMove");
 			break;
+		case 4:
+			boss->SwitchState("circlefire");
 		}
 	}
 
@@ -147,7 +154,7 @@ CircleFireState::CircleFireState()
 	timer.set_on_timeout([&]()
 		{
 			currentFireCount++;
-			bulletNum += 1;
+			bulletNum += 2;
 			//fire
 			BossA* bossA = (BossA*)(boss);
 			bossA->CircleFire(bulletNum);
@@ -156,7 +163,7 @@ CircleFireState::CircleFireState()
 }
 void CircleFireState::onEnter()
 {
-	bulletNum = 3;
+	bulletNum = 14;
 	timer.set_wait_time(0.5f);
 	timer.restart();
 }
@@ -173,62 +180,63 @@ void CircleFireState::onUpdate()
 void CircleFireState::onExit()
 {
 	currentFireCount = 0;
-	bulletNum = 3;
+	bulletNum = 12;
 }
 
 #pragma region MoveAState
 MoveAState::MoveAState()
 {
 	currentMoveIndex = 0;
-	moveIndex = 4;
+	moveIndex = 3;
 
 	targetPos[0] = Vector2(200, 150);
-	targetPos[1] = Vector2(200, static_cast<float>(windowHeight - 150));
-	targetPos[2] = Vector2(static_cast<float>(windowWidth - 150), static_cast<float>(windowHeight - 150));
+	targetPos[1] = Vector2(200, static_cast<float>(windowHeight - 300));
+	targetPos[2] = Vector2(static_cast<float>(windowWidth - 150), static_cast<float>(windowHeight - 300));
 	targetPos[3] = Vector2(static_cast<float>(windowWidth - 150), 150);
-	targetPos[4] = Vector2(static_cast<float>(windowWidth / 2), static_cast<float>(windowHeight / 2));
+	//targetPos[4] = Vector2(static_cast<float>(windowWidth / 2), static_cast<float>(windowHeight / 2));
 
-	totalTime = 1.0f;
+	moveTime = 1.0f;
+	moveTimer.set_one_shot(true);
+	moveTimer.set_wait_time(moveTime);
+	moveTimer.set_on_timeout([&]()
+		{
+			//isMove = false;
+			startPos = boss->Getposition();
+			currentMoveIndex++;
+			moveTimer.restart();
+			BossA* bossA = (BossA*)(boss);
+			bossA->CircleFire(10);
+			boss->SwitchState("idle");
+		});
+
 
 }
 void MoveAState::onEnter()
 {
 	startPos = boss->Getposition();
-	passTime = 0.0f;
-	isMove = true;
+	//isMove = true;
 }
 void MoveAState::onUpdate()
 {
-	passTime += deltaTime;
-	float t = passTime / totalTime;
 
-	float easeT = Easing::EaseInOut(t);
+	moveTimer.on_update(deltaTime);
+	
+	
+	float easeT = Easing::EaseInOut(moveTimer.get_progress());
 	boss->Setposition(startPos + (targetPos[currentMoveIndex] - startPos) * easeT);
-
-	if (t >= 1.0f)
+	if (easeT >= 1.0f)
 	{
-		t = 1.0f;
-		isMove = false;
+		easeT = 1.0f;
 	}
 
-	if (isMove == false)
-	{
-		if (currentMoveIndex >= moveIndex)
-		{
-			
-			BossA* bossA = (BossA*)(boss);
-			int bulletNum = 3;
-			bossA->CircleFire(bulletNum); 
-			boss->SwitchState("CircleFire"); 
-		}
-	}
 }
 void MoveAState::onExit()
 {
-	if (currentMoveIndex >= moveIndex)
+	if (currentMoveIndex == moveIndex)
 	{
 		currentMoveIndex = 0;
 	}
+		
 }
 #pragma endregion
 

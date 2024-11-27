@@ -163,7 +163,7 @@ void Player::onUpdate()
 	{
 		if (isCanFire)
 		{
-			Novice::PlayAudio(playerShotSound, false, 0.5f);
+			Novice::PlayAudio(playerShotSound, false, 0.3f);
 			isCanFire = false;
 			int mousePosX, mousePosY;
 			Novice::GetMousePosition(&mousePosX, &mousePosY);

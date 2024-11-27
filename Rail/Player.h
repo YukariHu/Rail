@@ -38,7 +38,7 @@ private:
 	bool isFireDown = false;
 
 	//ダッシュ管理
-	int maxDashCount = 5;
+	int maxDashCount = 4;
 	int dashCount;
 	Timer dashCoolTimer;
 	float dashCoolTime = 1.0f;

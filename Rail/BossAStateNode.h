@@ -48,8 +48,10 @@ private:
 	Vector2 targetPos[5];
 	Vector2 startPos;
 
-	float totalTime;
-	float passTime;
+	float moveTime;
+	Timer moveTimer;
+
+
 	bool isMove;
 	bool attackCompleted;
 };

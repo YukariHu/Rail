@@ -52,7 +52,7 @@ private:
 	std::vector<FireParticle> fireParticles;
 
 	Timer fireRespawnTimer;
-	float fireRespawnInterval = 0.08f;
+	float fireRespawnInterval = 0.06f;
 
 
 	bool isStop = false;

@@ -24,7 +24,7 @@ Beam::Beam(Vector2 firePos, Vector2 _dir, float lifeTime,int _targetID)
 
 		isEnableCollision = false;
 
-		Novice::PlayAudio(beamSound,0,1.0f);
+		Novice::PlayAudio(beamSound,0,1.4f);
 
 
 		isAiming = true;
