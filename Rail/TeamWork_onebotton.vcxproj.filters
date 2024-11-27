@@ -161,6 +161,12 @@
     <ClCompile Include="FireFlowerManager.cpp">
       <Filter>Scene\Clear</Filter>
     </ClCompile>
+    <ClCompile Include="ClearName.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="FireParticle.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -350,5 +356,8 @@
     <ClInclude Include="FireFlowerManager.h">
       <Filter>Scene\Clear</Filter>
     </ClInclude>
+    <ClInclude Include="Blend.h" />
+    <ClInclude Include="ClearName.h" />
+    <ClInclude Include="FireParticle.h" />
   </ItemGroup>
 </Project>
