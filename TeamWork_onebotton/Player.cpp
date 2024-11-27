@@ -5,6 +5,9 @@ extern int windowWidth;
 extern float deltaTime;
 extern std::vector<Bullet*> bulletList;
 
+extern int playerShotSound;
+extern int dashSound;
+extern int laneChangeSound;
 
 Player::Player()
 {
@@ -66,7 +69,7 @@ void Player::onInput(char* keys, char* prekeys)
 		} else {
 			lineChange_ = true;
 		}
-
+		Novice::PlayAudio(laneChangeSound, false, 1.0f);
 		particl_->CreateChangeParticl(pos);
 	}
 
@@ -101,6 +104,7 @@ void Player::onUpdate()
 	{
 		if (dashCount > 0)
 		{
+			Novice::PlayAudio(dashSound, false, 1.0f);
 			dashCount--;
 			isDash = true;
 			isEnableCollision = false;
@@ -139,6 +143,7 @@ void Player::onUpdate()
 	{
 		if (isCanFire)
 		{
+			Novice::PlayAudio(playerShotSound, false, 0.5f);
 			isCanFire = false;
 			int mousePosX, mousePosY;
 			Novice::GetMousePosition(&mousePosX, &mousePosY);

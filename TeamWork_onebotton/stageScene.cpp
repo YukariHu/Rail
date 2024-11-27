@@ -13,6 +13,8 @@ extern int windowWidth;
 
 extern Camera mainCamera;
 
+
+
 Charactor* boss = nullptr;
 Charactor* player = nullptr;
 std::vector<Bullet*> bulletList;
