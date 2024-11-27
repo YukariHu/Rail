@@ -11,7 +11,7 @@ DeviationShotBullet::DeviationShotBullet(Vector2 firePos, Vector2 _dir, int _tar
 	speed = 15.0f;
 	velocity.x = speed * cosf(dir.x);
 	velocity.y = speed * sinf(dir.y);
-	damage = 2;
+	damage = 4;
 	isCanRemove = false;
 
 	this->targetID = _targetID;
