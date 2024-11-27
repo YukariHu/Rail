@@ -353,7 +353,7 @@ void StraightLineFire::onExit()
 
 RandomShotting::RandomShotting()
 {
-	fireCount = 20;
+	fireCount = 90;
 	currentFireCount = 0;
 
 	timer.set_one_shot(false);
@@ -371,7 +371,7 @@ void RandomShotting::onEnter()
 {
 	passTime = 0.0f;
 	isMove = true;
-	timer.set_wait_time(0.08f);
+	timer.set_wait_time(0.02f);
 	timer.restart();
 }
 

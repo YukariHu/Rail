@@ -14,6 +14,7 @@ public:
 		int targetPosX;
 		int targetPosY;
 		Vector2 shotPos;
+		Vector2 direction;
 	};
 	Shot shot[20] = {};
 
