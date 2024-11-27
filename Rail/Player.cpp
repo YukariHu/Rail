@@ -55,6 +55,7 @@ Player::Player()
 	dashTimer.set_on_timeout([&]() {
 		velocity = { basicVelocity };
 		isDash = false;
+		isBackDash = false;
 		isEnableCollision = true;
 		dashTimer.restart();
 		});
@@ -78,6 +79,11 @@ void Player::onInput(char* keys, char* prekeys)
 	if (keys[DIK_C] != 0 && prekeys[DIK_C] == 0 || keys[DIK_LSHIFT] != 0 && prekeys[DIK_LSHIFT] == 0)
 	{
 		isDashDown = true;
+	}
+
+	if (keys[DIK_X] != 0 && prekeys[DIK_X] == 0)
+	{
+		isBackDashDown = true;
 	}
 
 	//射撃
@@ -107,9 +113,27 @@ void Player::onUpdate()
 		}
 	}
 
+	if (isBackDashDown && !isDash)
+	{
+		if (dashCount > 0)
+		{
+			Novice::PlayAudio(dashSound, false, 1.0f);
+			dashCount--;
+			isBackDash = true;
+			isEnableCollision = false;
+			velocity = { -basicVelocity.x, -basicVelocity.y };
+		}
+	}
+
 	if (isDash)
 	{
 		velocity = dashVelocity;
+		dashTimer.on_update(deltaTime);
+	}
+
+	if (isBackDash)
+	{
+		velocity = dashVelocity * -0.4f;
 		dashTimer.on_update(deltaTime);
 	}
 
@@ -158,6 +182,7 @@ void Player::onUpdate()
 
 	isFireDown = false;
 	isDashDown = false;
+	isBackDashDown = false;
 	Charactor::onUpdate();
 
 }

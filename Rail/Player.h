@@ -49,5 +49,8 @@ private:
 	bool isDashDown = false;
 	Vector2 dashVelocity;
 
+	bool isBackDash = false;
+	bool isBackDashDown = false;
+
 
 };

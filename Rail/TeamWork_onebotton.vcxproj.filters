@@ -306,7 +306,6 @@
     <ClInclude Include="PlayerLane.h">
       <Filter>Charactor</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h" />
     <ClInclude Include="BackParticleManager.h">
       <Filter>BackParticle</Filter>
     </ClInclude>
@@ -359,5 +358,8 @@
     <ClInclude Include="Blend.h" />
     <ClInclude Include="ClearName.h" />
     <ClInclude Include="FireParticle.h" />
+    <ClInclude Include="Camera.h">
+      <Filter>Tool</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
