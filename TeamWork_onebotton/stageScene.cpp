@@ -154,6 +154,12 @@ void StageScene::draw(const Camera& camera)
 	playerHpBar->Draw();
 	dashBar->Draw();
 
+	//hp数字を表示
+	//Novice::ScreenPrintf(5, 5, "BossHP:%d", boss->GetHp());
+	//Novice::ScreenPrintf(5, 20, "PlayerHP:%d", player->GetHp());
+	
+
+
 	
 	if (boss && boss->GetHp() <= 0) {
 		Novice::DrawBox(0, 0, windowWidth, windowHeight, 0.0f, GetColor(255, 255, 255, alpha_), kFillModeSolid);
