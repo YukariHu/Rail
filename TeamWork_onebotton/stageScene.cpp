@@ -121,11 +121,13 @@ void StageScene::update()
 	if (isOver && boss->GetIsDead())
 	{
 		sceneManager.switchScene(SceneManager::SceneType::Claer);
+		Novice::StopAudio(bgmPlayHandle);
 	}
 
 	if (player && player->GetHp() <= 0 && alpha_ == 255)
 	{
 		sceneManager.switchScene(SceneManager::SceneType::Title);
+		Novice::StopAudio(bgmPlayHandle);
 	}
 
 	//***************

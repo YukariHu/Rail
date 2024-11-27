@@ -83,6 +83,9 @@ void TitleScene::update()
     {
         bgmPlayHandle = Novice::PlayAudio(bgmHandle, 1, 0.5f);
     }
+    if (hF_) {
+        Novice::StopAudio(bgmPlayHandle);
+    }
 }
 
 void TitleScene::draw(const Camera& camera)
