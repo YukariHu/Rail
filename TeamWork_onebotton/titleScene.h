@@ -29,4 +29,6 @@ private:
     int h_;
     int hF_;
     bool isStart = false;
+    int bgmHandle;
+    int bgmPlayHandle;
 };

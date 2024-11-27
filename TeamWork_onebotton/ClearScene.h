@@ -21,4 +21,6 @@ private:
     int fireFlowerTime_;
     int alpha_;
     bool tradition_;
+    int bgmHandle;
+    int bgmPlayHandle;
 };

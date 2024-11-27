@@ -41,6 +41,8 @@ StageScene::StageScene(int _id)
 
 	alpha_ = 0;
 	rad_ = 1500;
+	bgmHandle = Novice::LoadAudio("./bgm/bossBGM.mp3");
+	bgmPlayHandle = -1;
 }
 
 StageScene::~StageScene()
@@ -71,6 +73,7 @@ void StageScene::onEnter()
 	rad_ = 1500;
 	isOver = false;
 	alpha_ = 0;
+	bgmPlayHandle = -1;
 }
 
 void StageScene::onInput(char* keys, char* prekeys)
@@ -80,6 +83,11 @@ void StageScene::onInput(char* keys, char* prekeys)
 
 void StageScene::update()
 {
+	if (Novice::IsPlayingAudio(bgmPlayHandle) == 0 || bgmPlayHandle == -1)
+	{
+		bgmPlayHandle = Novice::PlayAudio(bgmHandle, 1, 0.5f);
+	}
+
 	mainCamera.onUpdate();
 	BulletListUpdate();
 	boss->onUpdate();
