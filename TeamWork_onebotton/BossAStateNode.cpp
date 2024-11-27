@@ -555,7 +555,7 @@ BeamLeftToRightState::BeamLeftToRightState()
 		{
 			currentFireCount++;
 			//fire
-			Beam* beam2 = new Beam({ 5.0f + currentFireCount * 40.0f , windowHeight + 20.0f}, { 0.0f, -1.0f },1.0f,0);
+			Beam* beam2 = new Beam({ 5.0f + currentFireCount * 50.0f , windowHeight + 20.0f}, { 0.0f, -1.0f },1.0f,0);
 			bulletList.push_back(beam2);
 
 		});
