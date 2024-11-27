@@ -26,6 +26,9 @@ void TitleScene::onEnter()
         titleParticle_.Create({ -1.0f, 0.0f }, isStart);
     }
     isStart = true;
+
+    bgmHandle = Novice::LoadAudio("./bgm/titleBGM.mp3");
+    bgmPlayHandle = -1;
 }
 
 void TitleScene::onInput(char* keys, char* prekeys)
@@ -73,12 +76,17 @@ void TitleScene::update()
     if (player_.GetPos().x >= 1280.0f) {
         h_ = (int)tLerp((float)h_, 1500.0f, 0.05f);
     }
+
+    if (Novice::IsPlayingAudio(bgmPlayHandle) == 0 || bgmPlayHandle == -1)
+    {
+        bgmPlayHandle = Novice::PlayAudio(bgmHandle, 1, 0.5f);
+    }
 }
 
 void TitleScene::draw(const Camera& camera)
 {
     (void)camera;
-    Novice::DrawBox(0, 0, 1280, 720, 0.0f, 0x161A30FF, kFillModeSolid);
+    Novice::DrawBox(0, 0, 1280, 720, 0.0f, 0x363636FF, kFillModeSolid);
 
     titleParticle_.Draw();
 

@@ -13,6 +13,8 @@ void ClearScene::onEnter()
 
     alpha_ = 255;
     tradition_ = false;
+    bgmHandle = Novice::LoadAudio("./bgm/clear.mp3");
+    bgmPlayHandle = -1;
 }
 
 void ClearScene::onInput(char* keys, char* prekeys)
@@ -25,6 +27,11 @@ void ClearScene::onInput(char* keys, char* prekeys)
 
 void ClearScene::update()
 {
+    if (Novice::IsPlayingAudio(bgmPlayHandle) == 0 || bgmPlayHandle == -1)
+    {
+        bgmPlayHandle = Novice::PlayAudio(bgmHandle, 1, 0.5f);
+    }
+
     fireFlower_.Update();
     fireFlowerTime_--;
 

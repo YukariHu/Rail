@@ -50,4 +50,6 @@ class StageScene : public Scene
 
 		int alpha_;
 		int rad_;
+		int bgmHandle;
+		int bgmPlayHandle;
 };

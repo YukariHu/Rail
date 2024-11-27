@@ -206,8 +206,10 @@ void BossA::StraightFire()
 
 void BossA::RandomFire()
 {
-	Vector2 direction = { cosf(float(rand() % 180) * PI / float(rand() % 180)), sinf(float(rand() % 180)* PI / 180) };
-	Bullet* bullet = new Bullet(pos, direction,0);
+	float angle = float(rand() % 360);  
+	Vector2 direction = { cosf(angle * PI / 180.0f), sinf(angle * PI / 180.0f) };
+
+	Bullet* bullet = new Bullet(pos, direction, 0);
 	bulletList.push_back(bullet);
 }
 
