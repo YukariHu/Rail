@@ -44,6 +44,9 @@
     <Filter Include="Scene\Clear">
       <UniqueIdentifier>{4b7d7626-6342-4e07-939c-27e190da9313}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SE">
+      <UniqueIdentifier>{376a08dc-61a1-49a0-8ab8-dbee281cbfe4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp">
@@ -160,6 +163,9 @@
     </ClCompile>
     <ClCompile Include="FireFlowerManager.cpp">
       <Filter>Scene\Clear</Filter>
+    </ClCompile>
+    <ClCompile Include="SE.cpp">
+      <Filter>SE</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -349,6 +355,11 @@
     </ClInclude>
     <ClInclude Include="FireFlowerManager.h">
       <Filter>Scene\Clear</Filter>
+    </ClInclude>
+    <ClInclude Include="Blend.h" />
+    <ClInclude Include="stageSelectScene.h" />
+    <ClInclude Include="SE.h">
+      <Filter>SE</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
