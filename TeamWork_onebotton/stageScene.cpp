@@ -145,9 +145,9 @@ void StageScene::draw(const Camera& camera)
 
 	backParticle.Draw();
 	BulletListDraw(camera);
-	boss->onDraw(camera);
 	player->onDraw(camera);
-	
+	boss->onDraw(camera);
+
 	bossHpBar->Draw();
 	playerHpBar->Draw(camera);
 	dashBar->Draw();

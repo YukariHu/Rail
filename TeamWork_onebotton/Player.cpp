@@ -20,6 +20,7 @@ Player::Player()
 	maxHp = 100;
 	hp = maxHp;
 
+	canShot = false;
 
 	t_ = 0.0f;
 	lineChange_ = false;
@@ -73,11 +74,6 @@ void Player::onInput(char* keys, char* prekeys)
 		particl_->CreateChangeParticl(pos);
 	}
 
-	//if (keys[DIK_LSHIFT] != 0) {
-	//	velocity = { 1.0f / 100.0f, 1.0f / 100.0f };
-	//} else {
-	//	velocity = { 1.0f / 180.0f, 1.0f / 180.0f };
-	//}
 
 	if (keys[DIK_C] != 0 && prekeys[DIK_C] == 0 || keys[DIK_LSHIFT] != 0 && prekeys[DIK_LSHIFT] == 0)
 	{
@@ -85,7 +81,7 @@ void Player::onInput(char* keys, char* prekeys)
 	}
 
 	//射撃
-	if (Novice::IsPressMouse(0))
+	if (Novice::IsPressMouse(0) && canShot)
 	{
 		isFireDown = true;
 	}

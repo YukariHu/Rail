@@ -356,6 +356,31 @@ private:
 	int randCount;
 };
 
+
+
+class MoveBeamRailState : public StateNode
+{
+public:
+	MoveBeamRailState();
+	~MoveBeamRailState() = default;
+
+	void onEnter() override;
+	void onUpdate() override;
+	void onExit() override;
+private:
+
+
+	int moveIndex;
+	int currentMoveIndex;
+
+	Vector2 targetPos;
+	Vector2 startPos;
+
+	float totalTime;
+	float passTime;
+	bool isMove;
+};
+
 class BeamUpToDownState : public StateNode
 {
 public:

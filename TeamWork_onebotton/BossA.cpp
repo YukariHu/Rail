@@ -49,6 +49,7 @@ BossA::BossA()
 	stateMachine.RegisterState("BeamLeftToRightXMove", new BeamLeftToRightXMoveState());
 
 	stateMachine.RegisterState("BeamRail", new BeamRailState());
+	stateMachine.RegisterState("MoveBeamRail", new MoveBeamRailState());
 
 	stateMachine.RegisterState("BeamUpToDown", new BeamUpToDownState());
 	stateMachine.RegisterState("BeamUpToDownMove", new BeamUpToDownMoveState());

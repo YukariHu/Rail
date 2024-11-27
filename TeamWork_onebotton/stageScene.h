@@ -3,7 +3,7 @@
 #include "BossA.h"
 #include "Player.h"
 #include "Bar.h"
-
+#include "PlayerLane.h"
 
 class StageScene : public Scene
 {

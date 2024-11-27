@@ -123,7 +123,7 @@ void Beam::onDraw(const Camera& camera)
 				static_cast<int>(size.x),
 				static_cast<int>(size.y),
 				0.0f,
-				0xFFFFFF08,
+				0xFFFFFF10,
 				kFillModeSolid
 
 			);
@@ -166,7 +166,7 @@ void Beam::onDraw(const Camera& camera)
 				static_cast<int>(size.x),
 				static_cast<int>(size.y),
 				0.0f,
-				0xFFFFFF08,
+				0xFFFFFF10,
 				kFillModeSolid
 
 			);
@@ -207,7 +207,7 @@ void Beam::onDraw(const Camera& camera)
 				static_cast<int>(size.y),
 				static_cast<int>(size.x),
 				0.0f,
-				0xFFFFFF08,
+				0xFFFFFF10,
 				kFillModeSolid
 			);
 		}
@@ -246,7 +246,7 @@ void Beam::onDraw(const Camera& camera)
 				static_cast<int>(size.y),
 				static_cast<int>(size.x),
 				0.0f,
-				0xFFFFFF08,
+				0xFFFFFF10,
 				kFillModeSolid
 			);
 		}

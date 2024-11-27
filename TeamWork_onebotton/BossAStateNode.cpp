@@ -40,6 +40,7 @@ void IdleState::onEnter()
 	bottomPos = boss->Getposition() + Vector2(0, 30.0f);
 
 	moveStateIndex = rand() % 4;
+	dynamic_cast<Player*>(player)->canShot = true;
 }
 
 void IdleState::onUpdate()
@@ -71,7 +72,7 @@ void IdleState::onUpdate()
 		switch (moveStateIndex)
 		{
 		case 0:
-			boss->SwitchState("BeamCrossMove");
+			boss->SwitchState("MoveBeamRail");
 			break;
 		case 1:
 			boss->SwitchState("BeamCrossMove");
@@ -353,7 +354,7 @@ void StraightLineFire::onExit()
 
 RandomShotting::RandomShotting()
 {
-	fireCount = 90;
+	fireCount = 60;
 	currentFireCount = 0;
 
 	timer.set_one_shot(false);
@@ -550,7 +551,7 @@ BeamLeftToRightState::BeamLeftToRightState()
 {
 	fireCount = 40;
 	timer.set_one_shot(false);
-	timer.set_wait_time(0.1f);
+	timer.set_wait_time(0.08f);
 	timer.set_on_timeout([&]()
 		{
 			currentFireCount++;
@@ -783,6 +784,67 @@ void BeamRailState::onUpdate()
 	}
 
 }
+
+#pragma endregion
+
+
+#pragma region MoveBeamRailState
+
+
+
+MoveBeamRailState::MoveBeamRailState()
+{
+	currentMoveIndex = 0;
+	moveIndex = 1;
+
+	targetPos = Vector2(200.0f, 720.0f / 2.0f);
+	totalTime = 1.0f;
+
+}
+void MoveBeamRailState::onEnter()
+{
+	startPos = boss->Getposition();
+	passTime = 0.0f;
+	isMove = true;
+}
+
+void MoveBeamRailState::onUpdate()
+{
+	passTime += deltaTime;
+	float t = passTime / totalTime;
+
+	float easeT = Easing::EaseInOut(t);
+	boss->Setposition(startPos + (targetPos - startPos) * easeT);
+
+	if (t >= 1.0f)
+	{
+		t = 1.0f;
+		isMove = false;
+	}
+	if (isMove == false)
+	{
+
+		if (currentMoveIndex >= moveIndex)
+		{
+
+			boss->SwitchState("idle");
+		} else
+		{
+			boss->SwitchState("BeamRail");
+			currentMoveIndex++;
+		}
+
+	}
+}
+
+void MoveBeamRailState::onExit()
+{
+	if (currentMoveIndex >= moveIndex)
+	{
+		currentMoveIndex = 0;
+	}
+}
+
 
 #pragma endregion
 

@@ -21,6 +21,7 @@ public:
 	int shotTimer;
 	int coolTime;
 
+
 public:
 	PlayerBullet();
 

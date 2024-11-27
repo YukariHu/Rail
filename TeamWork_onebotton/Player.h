@@ -25,6 +25,8 @@ public:
 	PlayerParticles* particl_ = nullptr;
 	PlayerLane* lane_ = nullptr;
 
+	bool canShot;
+
 private:
 	Vector2 basicVelocity;
 
@@ -46,5 +48,6 @@ private:
 	bool isDash = false;
 	bool isDashDown = false;
 	Vector2 dashVelocity;
+
 
 };
