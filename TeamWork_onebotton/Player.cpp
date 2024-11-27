@@ -144,10 +144,11 @@ void Player::onUpdate()
 			int mousePosX, mousePosY;
 			Novice::GetMousePosition(&mousePosX, &mousePosY);
 			Vector2 mousePos = { static_cast<float>(mousePosX), static_cast<float>(mousePosY) };
+
 			PlayerBu* playerBullet = new PlayerBu(pos, mousePos);
 			bulletList.push_back(playerBullet);
-
 		}
+
 	}
 
 	if (!isCanFire)
